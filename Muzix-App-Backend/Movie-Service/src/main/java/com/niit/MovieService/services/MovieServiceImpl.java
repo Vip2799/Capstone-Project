@@ -16,6 +16,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -41,17 +43,29 @@ public class MovieServiceImpl implements MovieService{
 //            movieRepository.insert(movie);
 //        }
         for(int i = 0 ; i < movieList.size() ; i++){
-            movieRepository.insert(movieList.get(i));
-
+            if(movieRepository.findById(movieList.get(i).getId()).isPresent()){
+                Movie movie = movieRepository.findById(movieList.get(i).getId()).get();
+                movie.getKeyWords().add("trending");
+                movieRepository.save(movie);
+            }else {
+                movieList.get(i).setKeyWords(Arrays.asList("trending"));
+                movieRepository.insert(movieList.get(i));
+            }
         }
-
         return movieRepository.findAll();
     }
 
     @Override
     public List<Movie> loadFreeMovies(List<Movie> freeMovieList) {
         for(int i = 0 ; i < freeMovieList.size() ; i++){
-            movieRepository.insert(freeMovieList.get(i));
+            if(movieRepository.findById(freeMovieList.get(i).getId()).isPresent()){
+                Movie movie = movieRepository.findById(freeMovieList.get(i).getId()).get();
+                movie.getKeyWords().add("free");
+                movieRepository.save(movie);
+            }else {
+                freeMovieList.get(i).setKeyWords(Arrays.asList("free"));
+                movieRepository.insert(freeMovieList.get(i));
+            }
         }
 
         return movieRepository.findAll();
@@ -60,7 +74,14 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public List<Movie> loadTrendingMovies(List<Movie> trendingList) {
         for(int i = 0 ; i < trendingList.size() ; i++){
-            movieRepository.insert(trendingList.get(i));
+            if(movieRepository.findById(trendingList.get(i).getId()).isPresent()){
+                 Movie movie = movieRepository.findById(trendingList.get(i).getId()).get();
+                movie.getKeyWords().add("trending");
+                movieRepository.save(movie);
+            }else {
+                trendingList.get(i).setKeyWords(Arrays.asList("trending"));
+                movieRepository.insert(trendingList.get(i));
+            }
         }
 
         return movieRepository.findAll();

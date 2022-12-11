@@ -18,7 +18,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @PostMapping("addmovies")
+    @PostMapping("addpopularmovies")
     public ResponseEntity<?> loadAllMovies(@RequestBody List<Movie> movieList){
         try {
             return new ResponseEntity<>(movieService.loadPopularMovies(movieList), HttpStatus.CREATED);
@@ -27,6 +27,15 @@ public class MovieController {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @PostMapping("addfreemovies")
+    public ResponseEntity<?> loadFreeMovies(@RequestBody List<Movie> movieList){
+        return new ResponseEntity<>(movieService.loadFreeMovies(movieList),HttpStatus.CREATED);
+    }
+    @PostMapping("addtrendingmovies")
+    public ResponseEntity<?> loadTrendingMovies(@RequestBody List<Movie> movieList){
+        return new ResponseEntity<>(movieService.loadTrendingMovies(movieList),HttpStatus.CREATED);
     }
 
     @PostMapping("addmovie")
