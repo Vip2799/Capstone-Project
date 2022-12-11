@@ -20,13 +20,9 @@ public class MovieController {
 
     @PostMapping("addpopularmovies")
     public ResponseEntity<?> loadAllMovies(@RequestBody List<Movie> movieList){
-        try {
+
             return new ResponseEntity<>(movieService.loadPopularMovies(movieList), HttpStatus.CREATED);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @PostMapping("addfreemovies")

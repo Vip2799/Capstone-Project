@@ -27,7 +27,7 @@ public class MovieServiceImpl implements MovieService{
 
 
     @Override
-    public List<Movie> loadPopularMovies(List<Movie> movieList) throws IOException, InterruptedException {
+    public List<Movie> loadPopularMovies(List<Movie> movieList) {
 //        String url = "https://api.themoviedb.org/3/tv/popular?api_key=15e383204c1b8a09dbfaaa4c01ed7e17&language=en-US&page=1";
 //        HttpRequest  request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
 //        HttpClient client = HttpClient.newBuilder().build();
@@ -45,10 +45,10 @@ public class MovieServiceImpl implements MovieService{
         for(int i = 0 ; i < movieList.size() ; i++){
             if(movieRepository.findById(movieList.get(i).getId()).isPresent()){
                 Movie movie = movieRepository.findById(movieList.get(i).getId()).get();
-                movie.getKeyWords().add("trending");
+                movie.getKeyWords().add("popular");
                 movieRepository.save(movie);
             }else {
-                movieList.get(i).setKeyWords(Arrays.asList("trending"));
+                movieList.get(i).setKeyWords(Arrays.asList("popular"));
                 movieRepository.insert(movieList.get(i));
             }
         }
@@ -83,17 +83,13 @@ public class MovieServiceImpl implements MovieService{
                 movieRepository.insert(trendingList.get(i));
             }
         }
-
         return movieRepository.findAll();
     }
 
     @Override
     public List<Movie> updateMovieList(List<Movie> movieList) {
         movieRepository.deleteAll();
-        for(int i = 0 ; i < movieList.size() ; i++){
-            movieRepository.insert(movieList.get(i));
-        }
-
+        movieRepository.insert(movieList);
         return movieRepository.findAll();
     }
 

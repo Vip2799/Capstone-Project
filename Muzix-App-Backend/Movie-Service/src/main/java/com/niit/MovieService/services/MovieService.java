@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 public interface MovieService {
 
-    List<Movie> loadPopularMovies(List<Movie> list) throws IOException, InterruptedException;
+    List<Movie> loadPopularMovies(List<Movie> list) ;
 
     List<Movie> loadFreeMovies(List<Movie> freeMovieList);
 
