@@ -7,19 +7,25 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Movie-Service" />
+        <module name="Search-Service" />
         <module name="Favourite-List-Service" />
+        <module name="User-Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Favourite-List-Service" target="11" />
       <module name="Movie-Service" target="11" />
       <module name="Muzix-App-Backend" target="11" />
+      <module name="Search-Service" target="11" />
+      <module name="User-Service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Favourite-List-Service" options="-parameters" />
       <module name="Movie-Service" options="-parameters" />
+      <module name="Search-Service" options="-parameters" />
+      <module name="User-Service" options="-parameters" />
     </option>
   </component>
 </project>
