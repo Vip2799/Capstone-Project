@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/Muzix-App-Backend.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/Muzix-App-Backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/Search-Service/Search-Service.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/Search-Service/Search-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/User-Service/User-Service.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/User-Service/User-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/authentication/authentication.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/authentication/authentication.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/capstone-project.iml" filepath="$PROJECT_DIR$/.idea/capstone-project.iml" />
     </modules>
   </component>

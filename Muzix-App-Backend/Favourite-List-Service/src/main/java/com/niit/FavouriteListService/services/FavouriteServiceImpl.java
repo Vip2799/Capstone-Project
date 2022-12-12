@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 @Service
 public class FavouriteServiceImpl implements FavouriteService{
@@ -87,10 +88,14 @@ public class FavouriteServiceImpl implements FavouriteService{
         List<FavouriteList> favLists = favAccount.getFavouriteLists();
         for(int i = 0 ; i < favLists.size() ; i++){
             if(favLists.get(i).getFavListName().equals(favListName)){
-                favLists.remove(i);
+                FavouriteList favList = favLists.get(i);
+                for (int j = 0 ; j < favList.getMovieList().size() ; i++ ){
+                    
+                }
                 break;
             }
         }
+
         favAccount.setFavouriteLists(favLists);
         return favouriteRepository.save(favAccount);
     }

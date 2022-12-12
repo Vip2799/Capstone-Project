@@ -39,12 +39,12 @@ public class FavouriteServiceController {
 
     @GetMapping("getAccount/{email}")
     public ResponseEntity<?> getFavAccount(@PathVariable String email){
-        return new ResponseEntity<>(favouriteService.getFavAccountByEmail(email),HttpStatus.FOUND);
+        return new ResponseEntity<>(favouriteService.getFavAccountByEmail(email),HttpStatus.OK);
     }
 
     @GetMapping("favList/get/{email}/{name}")
     public ResponseEntity<?> getFavAccByEmail(@PathVariable String email, @PathVariable String name){
-        return new ResponseEntity<>(favouriteService.getFavListByName(email,name),HttpStatus.FOUND);
+        return new ResponseEntity<>(favouriteService.getFavListByName(email,name),HttpStatus.OK);
     }
 
     @DeleteMapping("favList/delete/{email}/{name}")

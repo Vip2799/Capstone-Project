@@ -35,6 +35,7 @@
 		<module>Favourite-List-Service</module>
 		<module>Search-Service</module>
 		<module>User-Service</module>
+		<module>authentication</module>
 	</modules>
 
 	<build>
