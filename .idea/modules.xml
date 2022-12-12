@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/ApiGateWay/ApiGateWay.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/ApiGateWay/ApiGateWay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/EurekaServer/EurekaServer.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/EurekaServer/EurekaServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/Favourite-List-Service/Favourite-List-Service.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/Favourite-List-Service/Favourite-List-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/Movie-Service/Movie-Service.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/Movie-Service/Movie-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Muzix-App-Backend/Muzix-App-Backend.iml" filepath="$PROJECT_DIR$/Muzix-App-Backend/Muzix-App-Backend.iml" />

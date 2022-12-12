@@ -2,6 +2,7 @@ package com.niit.userService.UserService.models;
 
 import com.niit.MovieService.domain.Movie;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -12,6 +13,10 @@ public class User {
     @Id
     private String email;
     private String userName;
+    @Transient
+    private String password;
+
+    private String profilePic;
     private int age;
     private long mobileNo;
     private Address address;
@@ -19,9 +24,11 @@ public class User {
     public User() {
     }
 
-    public User(String email, String userName, int age, long mobileNo, Address address) {
+    public User(String email, String userName,String profilePic,String password, int age, long mobileNo, Address address) {
         this.email = email;
         this.userName = userName;
+        this.password = password;
+        this.profilePic = profilePic;
         this.age = age;
         this.mobileNo = mobileNo;
         this.address = address;
@@ -67,12 +74,29 @@ public class User {
         this.address = address;
     }
 
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
                 ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", profilePic='" + profilePic + '\'' +
                 ", age=" + age +
                 ", mobileNo=" + mobileNo +
                 ", address=" + address +

@@ -6,6 +6,9 @@ import com.niit.searchService.SearchService.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MovieServiceImpl implements MovieService{
 
@@ -19,5 +22,19 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public Movie searchMovieByName(String name) throws MovieNotFoundException {
         return movieRepository.findByName(name);
+    }
+
+    @Override
+    public List<Movie> startsWithName(String name) {
+        List<Movie> allMovies = movieRepository.findAll();
+        List<Movie> searchedList = new ArrayList<>();
+//        System.out.println(allMovies);
+        for(Movie movie : allMovies){
+            if(movie.getName().startsWith(name)){
+                searchedList.add(movie);
+            }
+
+        }
+        return searchedList;
     }
 }

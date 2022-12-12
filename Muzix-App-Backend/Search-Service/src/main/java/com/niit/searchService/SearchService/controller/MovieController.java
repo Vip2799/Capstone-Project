@@ -30,4 +30,9 @@ public class MovieController {
             throw new MovieNotFoundException();
         }
     }
+
+    @GetMapping("startsWith/{name}")
+    public ResponseEntity<?> searchAllStartsWith(@PathVariable String name){
+        return new ResponseEntity<>(movieService.startsWithName(name),HttpStatus.OK);
+    }
 }
