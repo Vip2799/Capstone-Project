@@ -59,15 +59,34 @@ public class FavouriteServiceImpl implements FavouriteService{
     }
 
     @Override
-    public boolean deleteFavListByName(String email, String favListName) {
-        List<FavouriteList> favouriteList = favouriteRepository.findById(email).get().getFavouriteLists();
+    public FavouriteList getFavListByName(String email, String favListName) {
+        Favourite favAccount = favouriteRepository.findById(email).get();
+        FavouriteList favList = null ;
+        for(int i = 0  ; i < favAccount.getFavouriteLists().size() ; i++){
+            if(favAccount.getFavouriteLists().get(i).getFavListName().equalsIgnoreCase(favListName)){
+                favList = favAccount.getFavouriteLists().get(i);
+            }
+        }
+        return favList;
+    }
+
+    @Override
+    public List<Favourite> getAllFavAcc() {
+        return favouriteRepository.findAll();
+    }
+
+    @Override
+    public Favourite deleteFavListByName(String email, String favListName) {
+        Favourite favAcc = favouriteRepository.findById(email).get();
+        List<FavouriteList> favouriteList = favAcc.getFavouriteLists();
         for(int i = 0 ; i < favouriteList.size() ; i ++){
             if(favListName.equalsIgnoreCase(favouriteList.get(i).getFavListName())){
                 favouriteList.remove(i);
                 break;
             }
         }
-        return true;
+        favAcc.setFavouriteLists(favouriteList);
+        return favouriteRepository.save(favAcc);
     }
 
     @Override
@@ -87,28 +106,19 @@ public class FavouriteServiceImpl implements FavouriteService{
         Favourite favAccount = favouriteRepository.findById(email).get();
         List<FavouriteList> favLists = favAccount.getFavouriteLists();
         for(int i = 0 ; i < favLists.size() ; i++){
-            if(favLists.get(i).getFavListName().equals(favListName)){
+            if(favLists.get(i).getFavListName().equalsIgnoreCase(favListName)){
                 FavouriteList favList = favLists.get(i);
                 for (int j = 0 ; j < favList.getMovieList().size() ; i++ ){
-                    
+                    if(favList.getMovieList().get(j).getId() == movieId){
+                        favList.getMovieList().remove(j);
+                        favLists.set(i,favList);
+                        break;
+                    }
                 }
                 break;
             }
         }
-
         favAccount.setFavouriteLists(favLists);
         return favouriteRepository.save(favAccount);
-    }
-
-    @Override
-    public FavouriteList getFavListByName(String email, String favListName) {
-        Favourite favAccount = favouriteRepository.findById(email).get();
-        FavouriteList favList = null ;
-        for(int i = 0  ; i < favAccount.getFavouriteLists().size() ; i++){
-            if(favAccount.getFavouriteLists().get(i).getFavListName().equalsIgnoreCase(favListName)){
-                favList = favAccount.getFavouriteLists().get(i);
-            }
-        }
-        return favList;
     }
 }

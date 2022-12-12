@@ -16,10 +16,12 @@ public interface FavouriteService {
     Favourite deleteMovieFromFavList(String email, String favListName, int movieId);
 
     FavouriteList getFavListByName(String email, String favListName);
-    boolean deleteFavListByName(String email,String favListName);
+    Favourite deleteFavListByName(String email,String favListName);
 
     Favourite deleteFavAccBYEmail(String email);
 
     boolean deleteAllFavAcc();
+
+    List<Favourite> getAllFavAcc();
 
 }

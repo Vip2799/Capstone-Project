@@ -47,6 +47,11 @@ public class FavouriteServiceController {
         return new ResponseEntity<>(favouriteService.getFavListByName(email,name),HttpStatus.OK);
     }
 
+    @GetMapping("allFavAcc")
+    public ResponseEntity<?> getAllFavAcc(){
+        return new ResponseEntity<>(favouriteService.getAllFavAcc(),HttpStatus.OK);
+    }
+
     @DeleteMapping("favList/delete/{email}/{name}")
     public ResponseEntity<?> deleteFavListByName(@PathVariable String email, @PathVariable String name){
         return new ResponseEntity<>(favouriteService.deleteFavListByName(email,name),HttpStatus.ACCEPTED);
