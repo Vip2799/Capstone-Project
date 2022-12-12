@@ -18,6 +18,8 @@ public interface FavouriteService {
     FavouriteList getFavListByName(String email, String favListName);
     boolean deleteFavListByName(String email,String favListName);
 
-    boolean deleteAllFavList();
+    Favourite deleteFavAccBYEmail(String email);
+
+    boolean deleteAllFavAcc();
 
 }

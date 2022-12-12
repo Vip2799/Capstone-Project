@@ -21,11 +21,6 @@ public class FavouriteServiceController {
         return new ResponseEntity<>(favouriteService.createFavouriteAccount(email), HttpStatus.CREATED);
     }
 
-    @GetMapping("getAccount/{email}")
-    public ResponseEntity<?> getFavAccount(@PathVariable String email){
-        return new ResponseEntity<>(favouriteService.getFavAccountByEmail(email),HttpStatus.FOUND);
-    }
-
     @PostMapping("favList/{email}/{name}")
     public ResponseEntity<?> createFavList(@PathVariable String email, @PathVariable("name") String favListName){
         return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
@@ -42,19 +37,34 @@ public class FavouriteServiceController {
         return responseEntity;
     }
 
+    @GetMapping("getAccount/{email}")
+    public ResponseEntity<?> getFavAccount(@PathVariable String email){
+        return new ResponseEntity<>(favouriteService.getFavAccountByEmail(email),HttpStatus.FOUND);
+    }
+
+    @GetMapping("favList/get/{email}/{name}")
+    public ResponseEntity<?> getFavAccByEmail(@PathVariable String email, @PathVariable String name){
+        return new ResponseEntity<>(favouriteService.getFavListByName(email,name),HttpStatus.FOUND);
+    }
+
     @DeleteMapping("favList/delete/{email}/{name}")
     public ResponseEntity<?> deleteFavListByName(@PathVariable String email, @PathVariable String name){
         return new ResponseEntity<>(favouriteService.deleteFavListByName(email,name),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("favLists/deleteAll")
-    public ResponseEntity<?> deleteAllFavList(){
-        return new ResponseEntity<>(favouriteService.deleteAllFavList(),HttpStatus.ACCEPTED);
+    public ResponseEntity<?> deleteAllFavAcc(){
+        return new ResponseEntity<>(favouriteService.deleteAllFavAcc(),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("favList/deleteMovie/{email}/{name}/{id}")
     public ResponseEntity<?> deleteMovie(@PathVariable String email, @PathVariable String name, @PathVariable("id") int movieId){
         return new ResponseEntity<>(favouriteService.deleteMovieFromFavList(email,name,movieId),HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("favList/deleteFavAcc/{email}")
+    public ResponseEntity<?> deleteFavAcc(@PathVariable String email){
+        return new ResponseEntity<>(favouriteService.deleteFavAccBYEmail(email),HttpStatus.ACCEPTED);
     }
 
 

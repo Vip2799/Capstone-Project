@@ -70,7 +70,13 @@ public class FavouriteServiceImpl implements FavouriteService{
     }
 
     @Override
-    public boolean deleteAllFavList() {
+    public Favourite deleteFavAccBYEmail(String email) {
+        favouriteRepository.deleteById(email);
+        return favouriteRepository.findById(email).get();
+    }
+
+    @Override
+    public boolean deleteAllFavAcc() {
         favouriteRepository.deleteAll();
         return true ;
     }
