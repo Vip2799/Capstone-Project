@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService{
             ResponseEntity rs = userProxy.saveUser(user);
             System.out.println(rs.getBody());
             ResponseEntity responseEntity = favouriteProxy.createFavouriteAccount(user.getEmail());
-            System.out.println(responseEntity.getBody());
         }
         return savedUser;
     }

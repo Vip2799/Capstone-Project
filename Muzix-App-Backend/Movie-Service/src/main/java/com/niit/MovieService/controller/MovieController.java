@@ -21,7 +21,7 @@ public class MovieController {
     @PostMapping("addpopularmovies")
     public ResponseEntity<?> loadAllMovies(@RequestBody List<Movie> movieList){
 
-            return new ResponseEntity<>(movieService.loadPopularMovies(movieList), HttpStatus.CREATED);
+        return new ResponseEntity<>(movieService.loadPopularMovies(movieList), HttpStatus.CREATED);
 
     }
 
