@@ -41,6 +41,7 @@ public class FavouriteRepositoryLayer {
 
     @AfterEach
     void tearDown() {
+        favouriteRepository.deleteAll();
 //        favouriteList = null;
 //        favourite = null;
     }
@@ -56,21 +57,26 @@ public class FavouriteRepositoryLayer {
 
     @Test
     public void getFavouriteAccount(){
+        favouriteRepository.insert(new Favourite("Test@1234",new ArrayList<>()));
         Optional<Favourite> favourite1 = favouriteRepository.findById("Test@1234");
         assertEquals(true,favourite1.isPresent());
     }
 
     @Test
     public void findAllFavouriteList(){
+        favouriteRepository.insert(favourite);
+        Favourite fav = new Favourite("Test2@gmail.com",new ArrayList<>());
+        favouriteRepository.insert(fav);
        List<Favourite> allFavouriteList = favouriteRepository.findAll();
        assertEquals(2,allFavouriteList.size());
     }
 
     @Test
     public void deleteFavList(){
+        favouriteRepository.save(favourite);
         favouriteRepository.deleteById("Test@1234");
         List<Favourite> allFavouriteList = favouriteRepository.findAll();
-        assertEquals(1,allFavouriteList.size());
+        assertEquals(0,allFavouriteList.size());
 
     }
 

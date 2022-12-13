@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataMongoTest
 public class MovieRepositoryTest {
 
+
     @Autowired
     private MovieRepository movieRepository;
 

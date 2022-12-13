@@ -23,6 +23,11 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
     public Movie(int id, String name, String[] origin_country, String first_air_date, String backdrop_path, int[] genre_ids, String original_language, String overview, double vote_average, List<String> keyWords) {
         this.id = id;
         this.name = name;

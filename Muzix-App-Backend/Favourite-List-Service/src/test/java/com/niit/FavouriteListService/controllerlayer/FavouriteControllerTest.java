@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -47,7 +48,7 @@ public class FavouriteControllerTest {
     @BeforeEach
     void setUp() {
         List<Movie> movieList = new ArrayList<>();
-        movieList.add(new Movie(1,"Movie3"));
+        movieList.add(new Movie(1,"Movie3",new String[]{"IND"},"22-2-1994","skhfcbn",new int[]{123,234},"Eng","jkdcbhjhdce",8.9, Arrays.asList("popular")));
         favouriteList = new FavouriteList("Fav3",movieList);
         List<FavouriteList> favouriteLists = new ArrayList<>();
         favouriteLists.add(favouriteList);
@@ -81,7 +82,7 @@ public class FavouriteControllerTest {
 //                .andExpect(status().isCreated()).andDo(MockMvcResultHandlers.print());
         when(favouriteService.deleteFavAccBYEmail(any())).thenReturn(favourite);
        // when(favouriteService.deleteFavAccBYEmail(favourite.getEmail())).thenReturn(true);
-        mockMvc.perform(delete("/favList/deleteFavAcc/Test@1233")
+        mockMvc.perform(delete("/favourite/favList/deleteFavAcc/Test@1233")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isAccepted())
                 .andDo(MockMvcResultHandlers.print());
