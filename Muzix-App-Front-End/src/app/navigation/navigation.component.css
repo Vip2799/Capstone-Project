@@ -1,13 +1,23 @@
 
-mat-icon{
+.mat-icon{
   /* margin-right: 10px; */
   /* border: 1px solid; */
-  width: 35px;
+  /* width: 35px; */
   position: relative;
   top: 4px;
-  color: rgb(8, 20, 30);
+  /* left: -10px; */
+  /* color: rgb(8, 20, 30); */
 }
 
+.mat-icon mat-icon{
+  position: relative;
+  left: 1px;
+}
+
+.sidenav-container{
+  /* border: 2px solid red; */
+  background-color: rgb(212, 231, 247);
+}
 #logo{
   cursor: pointer;
   position: relative;
@@ -36,7 +46,7 @@ mat-icon{
   box-shadow: 0 6px 20px 0  rgba(124, 235, 255, 0.8);
 }
 #profile{
-  background-image: url("../resource/profile.jpg");
+  /* background-image: url("../resource/profile.jpg"); */
   width: 50px;
   height: 50px;
   cursor: pointer;
@@ -183,4 +193,6 @@ justify-content: end;
   /* position: relative; */
   background-color: rgb(215, 191, 253);
   /* z-index: inherit; */
+  /* border: 2px solid; */
+  /* border-radius: 30px; */
 }

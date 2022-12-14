@@ -29,8 +29,7 @@
           <button class="mat-icon" id="person" mat-icon-button><mat-icon  fontIcon ="person"> </mat-icon></button>
           <button mat-raised-button *ngIf="false ; else loggedIn">Login</button>
           <ng-template #loggedIn>
-            <span id="profile" (click)="profile()"></span> 
-            
+            <img id="profile" src="../../assets/profile.jpg" (click)="profile()"> 
           </ng-template>
         </div>
         
@@ -49,7 +48,8 @@
         </mat-nav-list>
       </div>
     <!-- </ng-template> -->
-    <app-profile></app-profile>
+    <!-- <app-profile></app-profile> -->
+    <app-registration></app-registration>
     <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

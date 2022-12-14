@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.List;
 @RestController
+@CrossOrigin(origins = ("http://localhost:4200/"))
 @RequestMapping("/movie/")
 public class MovieController {
     @Autowired

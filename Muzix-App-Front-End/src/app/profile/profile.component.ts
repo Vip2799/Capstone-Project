@@ -20,7 +20,7 @@ export class ProfileComponent {
     ]
   });
 
-  edit:boolean = false;
+  edit:boolean = true;
 
   editProfile(){
     if(this.edit){

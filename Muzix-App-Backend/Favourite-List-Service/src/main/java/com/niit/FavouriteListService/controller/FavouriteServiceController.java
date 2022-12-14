@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = ("http://localhost:4200/"))
 @RequestMapping("/favourite/")
 public class FavouriteServiceController {
 
@@ -21,8 +22,8 @@ public class FavouriteServiceController {
         return new ResponseEntity<>(favouriteService.createFavouriteAccount(email), HttpStatus.CREATED);
     }
 
-    @PostMapping("favList/{email}/{name}")
-    public ResponseEntity<?> createFavList(@PathVariable String email, @PathVariable("name") String favListName){
+    @PostMapping("favList/{email}")
+    public ResponseEntity<?> createFavList(@PathVariable String email, @RequestBody String favListName){
         return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
     }
 

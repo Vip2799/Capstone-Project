@@ -46,7 +46,7 @@ public class FavouriteServiceImpl implements FavouriteService{
             if(favListName.equalsIgnoreCase(favLists.get(i).getFavListName())){
                 FavouriteList favList = favLists.get(i);
                 for(int j = 0 ; j < favList.getMovieList().size() ; j++){
-                    if(favList.getMovieList().get(i).getId() == movie.getId()){
+                    if(favList.getMovieList().get(j).getId() == movie.getId()){
                         throw new MovieAlreadyExistsException();
                     }
                 }
