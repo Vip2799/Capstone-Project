@@ -1,0 +1,186 @@
+
+mat-icon{
+  /* margin-right: 10px; */
+  /* border: 1px solid; */
+  width: 35px;
+  position: relative;
+  top: 4px;
+  color: rgb(8, 20, 30);
+}
+
+#logo{
+  cursor: pointer;
+  position: relative;
+  top: 6px;
+  margin-right: -20px;
+
+}
+
+#logo1{
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+#profcont #fav:hover mat-icon {
+  color: rgb(245, 216, 26);
+}
+#profcont #home:hover mat-icon {
+  color: rgb(128, 48, 232);
+}
+#profcont #person:hover mat-icon {
+  color: rgb(238, 234, 244);
+}
+
+#profile:hover {
+  box-shadow: 0 6px 20px 0  rgba(124, 235, 255, 0.8);
+}
+#profile{
+  background-image: url("../resource/profile.jpg");
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  /* border: 2px solid; */
+  background-size: 50px;
+  align-self: center;
+  border-radius: 50%;
+  box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.4);
+  margin-right: 20px;
+}
+
+
+#name{
+  font-family: Comic Sans MS;
+
+}
+
+#profcont{
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-right: 20px;
+/* align-items: center; */
+justify-content: end;
+  padding: 0%;
+  
+}
+
+#person{
+  size: 50x;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-right: 50px;
+}
+
+.mat-icon{
+  text-align: center;
+  position: relative;
+  top: -3px;
+  left: -3px;
+  margin-right: 25px;
+}
+
+#container{
+  display: flex;
+  flex-flow: row nowrap ;
+  /* border : 1px solid; */
+  /* justify-content: space-between; */
+  width: 100%;
+  /* align-items: center; */
+  height: fit-content;
+  margin-left: 15%;
+  /* padding: 0px */
+  /* position: relative; */
+  /* top: 100px; */
+  /* z-index: 10; */
+}
+
+#toolkit{
+  /* border: 1px solid red; */
+  position: relative;
+  border-radius: 10px;
+  background-color: rgb(88, 193, 242);
+  /* right: 10px; */
+  left: 87%;
+  opacity: 1;
+  
+  /* top: 50px;
+  left: -80px; */
+  width: fit-content;
+    padding: 10px;
+  text-align: center;
+  /* z-index: 3; */
+}
+#logo mat-icon:hover{
+  color: red;
+}
+
+#toolkitcontainer{
+    position: absolute;
+    right: 12%;
+    top: 9%;
+    z-index: 2;
+}
+
+#toolkit::after{
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 15px;
+  height: 15px;
+  background-color: rgb(88, 193, 242);
+  rotate: 45deg;
+  left: 50%;
+}
+
+#logout{
+  /* background-color: rgb(192, 53, 53); */
+  border-radius: 20px;
+  margin-top: 3px;
+
+}
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  /* z-index: 1; */
+}
+
+#toolkit a{
+  border-bottom: 1px dashed;
+}
+#toolkit a:hover{
+  /* color: white; */
+ 
+}
+
+
+
+#navstart{
+  align-self:flex-end;
+  height: 100%;
+  /* border: 2px solid green; */
+}
+
+.navcomponent{
+  margin-bottom: 15%;
+  cursor: pointer;
+  font-family: cursive;
+  font-weight: 500;
+  width: fit-content;
+  /* justify-content: center; */
+  /* align-self: center; */
+  /* justify-self: center; */
+  align-self: center;
+  /* padding: 2px; */
+  border: 1px solid;
+}
+
+.topnav{
+  /* position: relative; */
+  background-color: rgb(215, 191, 253);
+  /* z-index: inherit; */
+}

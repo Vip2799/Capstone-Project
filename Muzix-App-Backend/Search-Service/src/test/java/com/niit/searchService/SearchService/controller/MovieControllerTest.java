@@ -38,7 +38,7 @@ public class MovieControllerTest {
     @BeforeEach
     public void setUp() {
         list = Arrays.asList("Romantic");
-        movie = new Movie(1, "DDLJ", new String[]{"India"}, "12/01/2000", "test", new int[]{123}, "Hindi", "Nice", 4.5, list);
+        movie = new Movie(1, "hbcab","DDLJ", "12/01/2000", "test", new int[]{123}, "Hindi", "Nice", 4.5, list);
         mockMvc = MockMvcBuilders.standaloneSetup(movieController).build();
     }
 

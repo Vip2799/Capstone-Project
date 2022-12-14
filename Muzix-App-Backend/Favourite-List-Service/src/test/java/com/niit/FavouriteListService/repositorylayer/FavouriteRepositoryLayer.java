@@ -83,7 +83,7 @@ public class FavouriteRepositoryLayer {
     @Test
     public void addMovieToFavList(){
         Favourite favouriteList1 = favouriteRepository.insert(favourite);
-        assertEquals("Movie1",favouriteList1.getFavouriteLists().get(0).getMovieList().get(0).getName());
+        assertEquals("Movie1",favouriteList1.getFavouriteLists().get(0).getMovieList().get(0).getTitle());
     }
 
 }

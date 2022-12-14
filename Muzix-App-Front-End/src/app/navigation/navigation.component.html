@@ -1,0 +1,55 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'">
+    <mat-toolbar> Vipul</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#" *ngIf="isLoggedIn ; else notLoggedIn">Profile</a>
+      <a mat-list-item href="#">Favourite</a>
+      <ng-template #notLoggedIn>
+        <a mat-list-item href="#">Login</a>
+        <a mat-list-item href="#">Register</a>
+      </ng-template>
+    </mat-nav-list>
+  </mat-sidenav> -->
+  <mat-sidenav-content>
+    <mat-toolbar class="topnav">
+      <div id="logo">
+        <mat-icon fontIcon="play_circle_filled"></mat-icon>
+      </div>
+      <a id="logo1">Muzix-App</a>
+     
+      <section id="container">
+        <!-- <a mat-list-item href="#" *ngIf="isLoggedIn ; else notLoggedIn">Profile</a> -->
+        <!-- <div id="navstart">
+          <h3  href="#" class="navcomponent">Movies</h3>
+        </div> -->
+        <div id="profcont" >
+          <button class="mat-icon" id="home" mat-icon-button><mat-icon  fontIcon ="home"> </mat-icon></button>
+          <button class="mat-icon" id="fav" mat-icon-button><mat-icon  fontIcon ="star"> </mat-icon></button>
+          <button class="mat-icon" id="person" mat-icon-button><mat-icon  fontIcon ="person"> </mat-icon></button>
+          <button mat-raised-button *ngIf="false ; else loggedIn">Login</button>
+          <ng-template #loggedIn>
+            <span id="profile" (click)="profile()"></span> 
+            
+          </ng-template>
+        </div>
+        
+        
+      </section>  
+            
+
+    </mat-toolbar>
+    <!-- <ng-template > -->
+      <div id="toolkitcontainer" *ngIf="toolkit">
+        <mat-nav-list id="toolkit">
+          <a mat-list-item id="name"><small>User: </small><strong>Vipul</strong> </a>
+          <a mat-list-item>Profile</a>
+          <a mat-list-item>Favourite List</a>
+          <button type="button" mat-list-item id="logout" class="btn btn-outline-danger">Logout</button>
+        </mat-nav-list>
+      </div>
+    <!-- </ng-template> -->
+    <app-profile></app-profile>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

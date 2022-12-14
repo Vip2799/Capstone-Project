@@ -7,38 +7,39 @@ import java.util.Arrays;
 
 @Document
 public class Movie {
+    private String backdrop_path;
     @Id
     private int id;
-    private String name;
-    private String[] origin_country;
-    private String first_air_date;
-    private String backdrop_path;
+    private String title;
+    private String release_date;
     private int[] genre_ids;
     private String original_language;
     private String overview;
     private double vote_average;
 
+    private String poster_path;
     private List<String> keyWords;
 
     public Movie() {
     }
 
-    public Movie(int id, String name){
+    public Movie(int id, String title){
         this.id = id;
-        this.name = name;
+        this.title = title;
     }
 
-    public Movie(int id, String name, String[] origin_country, String first_air_date, String backdrop_path, int[] genre_ids, String original_language, String overview, double vote_average, List<String> keyWords) {
+    public Movie(int id, String poster_path, String title, String release_date, String backdrop_path, int[] genre_ids, String original_language, String overview, double vote_average, List<String> keyWords) {
         this.id = id;
-        this.name = name;
-        this.origin_country = origin_country;
-        this.first_air_date = first_air_date;
+        this.title = title;
+        this.poster_path = poster_path ;
+        this.release_date = release_date;
         this.backdrop_path = backdrop_path;
         this.genre_ids = genre_ids;
         this.original_language = original_language;
         this.overview = overview;
         this.vote_average = vote_average;
         this.keyWords = keyWords;
+
     }
 
     public List<String> getKeyWords() {
@@ -57,28 +58,20 @@ public class Movie {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String[] getOrigin_country() {
-        return origin_country;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setOrigin_country(String[] origin_country) {
-        this.origin_country = origin_country;
-    }
-
-    public String getFirst_air_date() {
-        return first_air_date;
-    }
-
-    public void setFirst_air_date(String first_air_date) {
-        this.first_air_date = first_air_date;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
     public String getBackdrop_path() {
@@ -121,18 +114,27 @@ public class Movie {
         this.vote_average = vote_average;
     }
 
+    public String getPoster_path() {
+        return poster_path;
+    }
+
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", origin_country=" + Arrays.toString(origin_country) +
-                ", first_air_date='" + first_air_date + '\'' +
+                ", title='" + title + '\'' +
+                ", release_date='" + release_date + '\'' +
                 ", backdrop_path='" + backdrop_path + '\'' +
                 ", genre_ids=" + Arrays.toString(genre_ids) +
                 ", original_language='" + original_language + '\'' +
                 ", overview='" + overview + '\'' +
                 ", vote_average=" + vote_average +
+                ", poster_path='" + poster_path + '\'' +
+                ", keyWords=" + keyWords +
                 '}';
     }
 }
