@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Muzix-App-Front-End';
+
+  searchText : string = '';
+
+  onSearchTextEntered(searchValue:string){
+    this.searchText = searchValue;
+    console.log(this.searchText);
+  }
 }
