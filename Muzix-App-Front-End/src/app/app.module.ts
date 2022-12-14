@@ -22,14 +22,15 @@ import { RegistrationComponent } from './registration/registration.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieViewComponent } from './movie-view/movie-view.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ProfileComponent,
     SearchComponent,
-      RegistrationComponent,
-      MovieViewComponent
+    RegistrationComponent,
+    MovieViewComponent
 
   ],
   imports: [

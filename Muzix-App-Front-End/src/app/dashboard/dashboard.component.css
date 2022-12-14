@@ -1,0 +1,13 @@
+.cardWidth{
+    width: 165px;
+    height: 210px;
+}
+h1 {
+    color: #999999;
+    font-family: arial, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-bottom: 1px;
+    margin-left: 500px; 
+}

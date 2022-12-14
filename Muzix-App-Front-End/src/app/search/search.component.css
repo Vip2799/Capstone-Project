@@ -1,10 +1,11 @@
 .search-container{
     display: flex;
     justify-content: center;
+    width: 100%;
     margin-top: 20px;
 }
 
-input{
+.search-container input{
     border-radius: 10rem 0 0 10rem;
     border: none;
     background-color: #f1f1f1;
@@ -16,7 +17,7 @@ input{
     outline: none;
 }
 
-button{
+.search-container button{
     background-color: rgb(209, 37, 37);
     color: black;
     width: 5rem;
@@ -27,7 +28,10 @@ button{
     outline: none;
 }
 
-button:hover{
+.search-container button:hover{
     opacity: 1;
     cursor: pointer;
+}
+.cardWidth{
+    width: 200px;
 }

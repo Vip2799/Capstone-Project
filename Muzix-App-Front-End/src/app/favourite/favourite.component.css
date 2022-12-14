@@ -1,0 +1,30 @@
+#header{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.cardWidth{
+    width: 200px;
+}
+
+mat-expansion-panel{
+
+    background-color: aqua;
+}
+
+#main{
+   position: relative; 
+}
+
+#add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table{
+    border: 1px solid black;
+    
+}

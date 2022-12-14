@@ -1,13 +1,9 @@
-<div class="search-container">
-    <input type="text" placeholder="Search Movie" [(ngModel)]="enterSearchValue" >
-    <button (click)="onSearchTextChanged()">Search</button>
-</div>
 
 <div class="container">
     <div class="row">
       <div class="col-lg-2 m-3 p-1 mb-2 rounded" *ngFor="let movie of movies">
         <mat-card class="example-card" class="cardWidth">
-          <mat-card-title> <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" width="200px" height="200px" alt=""> </mat-card-title>
+          <mat-card-title> <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" width="100px" height="150px" alt=""> </mat-card-title>
           <mat-card-content>
             <p class="text-center"><b>{{movie.title}}</b></p>
             <p>{{movie.release_date}}</p>
@@ -28,3 +24,4 @@
       </div>
     </div>
   </div>
+  

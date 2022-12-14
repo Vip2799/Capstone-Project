@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Movie } from 'src/models/movie';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -6,15 +9,29 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-
   
-enterSearchValue: string = "";
 
-@Output()
-searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
+  enterSearchValue : string = '';
+  movies: any = [];
 
-onSearchTextChanged(){
-  this.searchTextChanged.emit(this.enterSearchValue);
+constructor(private searchService: SearchService){}
+
+ngOnInit(){
+  
 }
 
+onSearchTextChanged(){
+ this.searchService.searchedMovie(this.enterSearchValue).subscribe(
+
+  data=> {
+  
+    this.movies = data;
+    
+    // console.log(data);
+  }
+
+ );
+ 
+
+}
 }
