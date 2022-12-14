@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../services/user.service';
+import { passwordMisMatch } from '../validations/passwordMisMatch';
+import { passwordValidation } from '../validations/passwordValidation';
 
 @Component({
   selector: 'app-registration',
@@ -19,11 +21,12 @@ export class RegistrationComponent {
     streetName: ["", Validators.required],
     city: ["", Validators.required],
     state: ["", Validators.required],
-    pinCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(6), Validators.maxLength(6)])
+    pinCode: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]
     ],
-    password: ["", Validators.required],
-    confirmPassword: ["", Validators.required]
+    password: [null,[ Validators.required, passwordValidation]],
+    confirmPassword: [null, Validators.required]
+  },{
+    validator : [passwordMisMatch]
   });
 
   get userName(){
