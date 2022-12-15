@@ -13,7 +13,7 @@ public interface FavouriteService {
     Favourite addFavouriteList(String email, String favListName);
 
     Favourite addMovieToFavList(String email, String favListName, Movie movie) throws MovieAlreadyExistsException;
-    Favourite deleteMovieFromFavList(String email, String favListName, int movieId);
+    Favourite deleteMovieFromFavList(String email, int movieId);
 
     FavouriteList getFavListByName(String email, String favListName);
     Favourite deleteFavListByName(String email,String favListName);

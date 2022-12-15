@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public Movie searchMovieByName(String name) throws MovieNotFoundException {
-        return movieRepository.findByName(name);
+        return movieRepository.findByTitle(name);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MovieServiceImpl implements MovieService{
         List<Movie> searchedList = new ArrayList<>();
 //        System.out.println(allMovies);
         for(Movie movie : allMovies){
-            if(movie.getName().startsWith(name)){
+            if(movie.getTitle().startsWith(name)){
                 searchedList.add(movie);
             }
 

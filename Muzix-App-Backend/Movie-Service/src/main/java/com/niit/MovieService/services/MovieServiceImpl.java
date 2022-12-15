@@ -123,4 +123,9 @@ public class MovieServiceImpl implements MovieService{
     public List<Movie> getAllMovies() {
         return movieRepository.findAll();
     }
+
+    @Override
+    public Movie getMovieById(int id) {
+        return movieRepository.findById(id).get();
+    }
 }

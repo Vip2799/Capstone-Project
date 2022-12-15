@@ -8,7 +8,7 @@ export class MovieServiceService {
 
   constructor(private http:HttpClient) { }
 
-  baseUrl:String = "http://localhost:8080/movie/"
+  baseUrl:String = "http://localhost:8080/movie/api/v1/"
 
 
   addPopularMovies( movieList:any){
@@ -69,9 +69,19 @@ export class MovieServiceService {
 
   getAllMovies(){
     let httpHeaders=new HttpHeaders({
-      'Authorization' : 'Bearer' +localStorage.getItem('jwt')
+      'authorization' : 'Bearer' +localStorage.getItem('jwt')
      });
      let requestToken={ headers : httpHeaders }
+     console.log(requestToken)
      return this.http.get(this.baseUrl+"allmovies",requestToken)
+  }
+
+  getMovieById(id:number){
+      return new Promise((res,rej)=>{
+        this.http.get("http://localhost:8080/movie/"+id).subscribe(data=>{
+          res(data);
+        })
+
+      })
   }
 }

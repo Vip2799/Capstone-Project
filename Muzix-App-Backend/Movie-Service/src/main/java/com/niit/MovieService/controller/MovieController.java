@@ -26,6 +26,7 @@ public class MovieController {
 
     }
 
+
     @PostMapping("addfreemovies")
     public ResponseEntity<?> loadFreeMovies(@RequestBody List<Movie> movieList){
         return new ResponseEntity<>(movieService.loadFreeMovies(movieList),HttpStatus.CREATED);
@@ -68,4 +69,8 @@ public class MovieController {
         return new ResponseEntity<>(movieService.getAllMovies(),HttpStatus.OK);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<?> getMovieById(@PathVariable int id){
+        return new ResponseEntity<>(movieService.getMovieById(id),HttpStatus.ACCEPTED);
+    }
 }

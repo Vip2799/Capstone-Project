@@ -1,5 +1,40 @@
 <div class="container-fluid row">
+    <div id="bgImage" [ngStyle]="{'background-image':'url('+backdropBaseUrl+movie.backdrop_path+')'}"></div>
     <div class="col-7 content">
+        <div id="playlistbtn">
+            <button mat-icon-button (click)="playListOption()">
+                <mat-icon id="addplaylist" fontIcon="playlist_add"></mat-icon>
+            </button>
+            <div id="playlistOption" *ngIf="isPlaylistOptionOpen">
+                <!-- <div id="tooltip"></div> -->
+                <button mat-raised-button><mat-icon fontIcon="add"></mat-icon> Create New Playlist</button>
+                <mat-list id="playlists">
+                    <li *ngFor="let list of favListsAcc.favouriteLists"  mat-list-item  (click)="addMovieToFavList(list.favListName)">{{list.favListName}}</li>
+                </mat-list>
+            </div>
+        </div>
+        
 
+        <div id="header">
+            <h1>{{movie.title}}</h1>
+            <ul id="genre">
+                <li  *ngFor="let genre of currentGenre">{{genre.name }}  </li>
+            </ul>
+            <p>Release_Date : {{movie.release_date}}</p>
+        </div>
+        <div id="body">
+            <h3>Overview : </h3>
+            <p>
+                {{movie.overview}}
+            </p>
+        </div>
+        <button id="playbtn" mat-fab color="j">
+            <mat-icon id="play" fontIcon="play_circle"></mat-icon>
+        </button>
+        <h3>Play</h3>
+        
+    </div>
+    <div class="col poster">
+        <img id="moviePoster" [src]="posterBaseUrl + movie.poster_path" alt="">
     </div>
 </div>

@@ -39,18 +39,23 @@
 
     </mat-toolbar>
     <!-- <ng-template > -->
-      <div id="toolkitcontainer" *ngIf="toolkit">
-        <mat-nav-list id="toolkit">
-          <a mat-list-item id="name"><small>User: </small><strong>Vipul</strong> </a>
-          <a mat-list-item>Profile</a>
-          <a mat-list-item>Favourite List</a>
-          <button type="button" mat-list-item id="logout" class="btn btn-outline-danger">Logout</button>
-        </mat-nav-list>
-      </div>
+      
+
     <!-- </ng-template> -->
     <!-- <app-profile></app-profile> -->
     <!-- <app-registration></app-registration> -->
-    <app-movie-view></app-movie-view>
     <!-- Add Content Here -->
   </mat-sidenav-content>
+
 </mat-sidenav-container>
+<!-- <app-favourite></app-favourite> -->
+<!-- <app-login></app-login> -->
+<div id="toolkitcontainer" *ngIf="toolkit">
+  <mat-nav-list id="toolkit">
+    <a mat-list-item id="name"><small>User: </small><strong>Vipul</strong> </a>
+    <a mat-list-item>Profile</a>
+    <a mat-list-item>Favourite List</a>
+    <button type="button" mat-list-item id="logout" class="btn btn-outline-danger">Logout</button>
+  </mat-nav-list>
+</div>
+<app-movie-view></app-movie-view>

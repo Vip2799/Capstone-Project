@@ -102,11 +102,11 @@ public class FavouriteServiceImpl implements FavouriteService{
     }
 
     @Override
-    public Favourite deleteMovieFromFavList(String email, String favListName, int movieId) {
+    public Favourite deleteMovieFromFavList(String email, int movieId) {
         Favourite favAccount = favouriteRepository.findById(email).get();
         List<FavouriteList> favLists = favAccount.getFavouriteLists();
         for(int i = 0 ; i < favLists.size() ; i++){
-            if(favLists.get(i).getFavListName().equalsIgnoreCase(favListName)){
+//            if(favLists.get(i).getFavListName().equalsIgnoreCase(favListName)){
                 FavouriteList favList = favLists.get(i);
                 for (int j = 0 ; j < favList.getMovieList().size() ; i++ ){
                     if(favList.getMovieList().get(j).getId() == movieId){
@@ -115,8 +115,8 @@ public class FavouriteServiceImpl implements FavouriteService{
                         break;
                     }
                 }
-                break;
-            }
+//                break;
+//            }
         }
         favAccount.setFavouriteLists(favLists);
         return favouriteRepository.save(favAccount);

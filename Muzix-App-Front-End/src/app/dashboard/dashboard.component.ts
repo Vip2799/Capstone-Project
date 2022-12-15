@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Movie } from '../models/Movie';
-import { MovieServiceService } from '../Services/movie-service.service';
+import { MovieService } from '../services/movie.service';
+// import { MovieServiceService } from '../Services/movie-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,8 +9,7 @@ import { MovieServiceService } from '../Services/movie-service.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
-  constructor(private movieService:MovieServiceService){
+  constructor(private movieService:MovieService){
     
    
   }

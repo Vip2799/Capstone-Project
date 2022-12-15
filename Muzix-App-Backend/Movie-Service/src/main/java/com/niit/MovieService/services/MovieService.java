@@ -23,5 +23,7 @@ public interface MovieService {
     boolean deleteMovie(int movieId) throws MovieNotFoundException;
     List<Movie> getAllMovies() ;
 
+    Movie getMovieById(int id);
+
 
 }

@@ -22,7 +22,11 @@ import { RegistrationComponent } from './registration/registration.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieViewComponent } from './movie-view/movie-view.component';
-
+import { FavouriteComponent } from './favourite/favourite.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,16 +34,21 @@ import { MovieViewComponent } from './movie-view/movie-view.component';
     ProfileComponent,
     SearchComponent,
     RegistrationComponent,
-    MovieViewComponent
+    MovieViewComponent,
+    FavouriteComponent,
+    LoginComponent,
+    DashboardComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatExpansionModule,
     MatSnackBarModule,
     HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

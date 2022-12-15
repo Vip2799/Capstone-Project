@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from 'src/models/movie';
 import { SearchService } from '../services/search.service';
 
 @Component({

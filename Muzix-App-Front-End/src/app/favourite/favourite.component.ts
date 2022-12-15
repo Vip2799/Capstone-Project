@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Favourite } from 'src/models/favourite';
-import { Movie } from 'src/models/movie';
 import { FavouriteService } from '../services/favourite.service';
 import { SearchService } from '../services/search.service';
 
@@ -22,19 +20,19 @@ export class FavouriteComponent {
   lists : any = [];
 
   name : any;
+  isShow : boolean = true;
 
   favs : any ;
 
   constructor(private favourite : FavouriteService, private search: SearchService){}
 
+  
+
   ngOnInit(){
   
-    // this.favourite.get(this.listName).subscribe(data1=>{this.movies=data1,
-    //   console.log(data1);})
 
       this.favourite.getAcc().subscribe(data => {
         
-        this.lists = data[0];
         this.favs = data.favouriteLists;
     
       })
@@ -43,6 +41,7 @@ export class FavouriteComponent {
 
   addMovie(){
 
+   
     console.log(this.movie);
     this.search.searchedMovie(this.movieName).subscribe(data=>
 
@@ -66,4 +65,28 @@ export class FavouriteComponent {
     )
   }
 
+ view(listName:any){
+    this.isShow = true;
+     this.favourite.get(listName).subscribe(data=>
+      {this.movies=data.movieList,
+      console.log(data);})
+ }
+
+hide(){
+  this.isShow = false;
+}
+
+delete(id:any){
+
+  window.location.reload();
+ 
+  this.favourite.deleteMovieFromList(id).subscribe(data1 =>
+    
+        {this.favourite.get(this.listName).subscribe(data=>
+          {this.movies=data.movieList,
+            data1 = data;
+          console.log(data);
+      })
+         })
+      }
 }
