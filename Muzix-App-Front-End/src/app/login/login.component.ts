@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode"
 import { UserService } from '../services/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-constructor(private fb:FormBuilder,private _snackBar:MatSnackBar,private userService:UserService) { }
+constructor(private fb:FormBuilder,private router:Router,private _snackBar:MatSnackBar,private userService:UserService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem("emailId"))
@@ -42,12 +43,13 @@ constructor(private fb:FormBuilder,private _snackBar:MatSnackBar,private userSer
     console.log(this.decodeEmail);
         localStorage.setItem('emailId',this.decodeEmail);
         localStorage.setItem('jwt',this.data.token);
-       alert('Login success');
+      //  alert('Login success');
+       this.router.navigate(["/home"]);
       }
     )
     
     this._snackBar.open('Congrats, you have successfully the LogedIn!!', 'success', {​
-      duration: 5000,​
+      duration: 3000,​
        panelClass: ['mat-toolbar', 'mat-primary']​
      }) 
     

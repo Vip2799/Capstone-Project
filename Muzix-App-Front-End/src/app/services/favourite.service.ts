@@ -7,50 +7,59 @@ import { Movie } from '../models/Movie';
   providedIn: 'root'
 })
 export class FavouriteService {
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  URL:string = "http://localhost:8081/favourite/";
+  URL: string = "http://localhost:8081/favourite/";
 
-  create(listName:any){
-    return this.http.post<any>(this.URL+'favList/vipul@gmail.com',listName);
+  createFavList(favListName:string){
+    return this.http.post(`http://localhost:8081/favourite/favList/${localStorage.getItem("emailId")}`,favListName)
   }
 
-  add(listName:any, movie:any){
-    // console.log(movie);
-    let response = this.http.post<any>(this.URL+'favList/addMovie/vipul@gmail.com/'+listName,movie);
-    response.subscribe(data=>{
-      console.log("insidepost",data);
+  addMovieToFav(email: string, listName: string, movie: Movie) {
+    console.log(email, listName, movie);
+    return new Promise((res, rej) => {
+      this.http.post(this.URL + 'favList/addMovie/' + email + '/' + listName, movie).subscribe(data => {
+        if (data) {
+          res(data);
+        }
+        else {
+          rej();
+        }
+
+      })
+    });
+  }
+
+  getFavListByListName(listName: any) {
+    return this.http.get<any>(this.URL + 'favList/get/vipul@gmail.com/' + listName);
+  }
+
+  getFavListByName2(listName:any){
+    return new Promise((res,rej)=>{
+      this.http.get(this.URL+'favList/get/vipul@gmail.com/'+listName).subscribe(data=>{
+        res(data);
+      })
+    });
+  }
+
+  getAcc() {
+    return this.http.get<any>(this.URL + 'getAccount/vipul@gmail.com');
+  }
+
+
+  deleteFavList(listName: any) {
+    return this.http.delete<any>(this.URL + 'favList/delete/' + localStorage.getItem('email'), listName);
+  }
+
+  deleteMovieFromList(listname: any, id: any) {
+    return this.http.delete<any>(this.URL + 'favList/deleteMovie/vipul@gmail.com/' + listname + '/' + id);
+  }
+
+  getFavListAcc(){
+    return new Promise((res,rej)=>{
+      this.http.get<any>(this.URL+'getAccount/vipul@gmail.com').subscribe(data=>{
+        res(data);
+      })
     })
-    return response
-  }
-
-  get(listName:any){
-    console.log(listName);
-    var response = this.http.get<any>(this.URL+'favList/get/vipul@gmail.com/'+listName);
-    console.log("in service")
-    console.log(response.subscribe(data=>{
-      console.log(data);
-    }));
-    return response;
-  }
-
-  getMovieList(obj:any){
-    let resp =  this.http.get<any>("http://localhost:8081/favourite/favList/get/vipul@gmail.com/bollywood");
-    resp.subscribe(data=>{
-      console.log(data);
-    })
-  }
-
-  getAcc(){
-    return this.http.get<any>(this.URL+'getAccount/vipul@gmail.com');
-  }
-
-
-  deleteFavList(listName:any){
-    return this.http.delete<any>(this.URL+'favList/delete/'+localStorage.getItem('email'),listName);
-  }
-
-  deleteMovieFromList( id:any){
-    return this.http.delete<any>(this.URL+'favList/deleteMovie/vipul@gmail.com/'+id);
   }
 }

@@ -46,9 +46,9 @@ public class MovieControllerTest {
 
     @BeforeEach
     void setUp(){
-        movie1 = new Movie(115,"Captain America", new String[]{"USA"},"02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
-        movie2 = new Movie(109,"Iron-Man", new String[]{"US"},"02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
-        movie3 = new Movie(101,"Sholay", new String[]{"IND"},"02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
+        movie1 = new Movie(115,"Captain America", "usa","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
+        movie2 = new Movie(109,"Iron-Man", "jhhh","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
+        movie3 = new Movie(101,"Sholay", "jhvvh","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
         movieList = Arrays.asList(movie1,movie2,movie3);
         mockMvc = MockMvcBuilders.standaloneSetup(movieController).build();
 

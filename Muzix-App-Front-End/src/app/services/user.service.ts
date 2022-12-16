@@ -8,19 +8,33 @@ import { user } from '../models/user';
 export class UserService {
 
   constructor( private http:HttpClient) { }
-  baseUrl:String = "http://localhost:8092/user/v1/"
-  baseUrl1:String = "http://localhost:8081/api/"
 
-  // registerUser(user:user){
-  //     return this.http.post("http://localhost:8083/api/register",user);
-    
-  // }
-  registerUser(userObject:any){
-    return  this.http.post(this.baseUrl1+"register",userObject);
+  baseUrl:String = "http://localhost:8092/user/v1/"
+  baseUrl1:String = "http://localhost:8083/api/"
+
+  registerUser(userData:any){
+    return  this.http.post(this.baseUrl1+"register",userData);
    }
   
-  loginCheck(userobj:any){
-    return this.http.post(this.baseUrl+"login",userobj);
+  loginCheck(userData:any){
+    return this.http.post(this.baseUrl+"login",userData);
+  }
+
+  updateProfile(userData:any){
+    return this.http.put(this.baseUrl1+"update/"+localStorage.getItem("emailId"),userData)
+  }
+
+  deleteProfile(userId:any){
+    return this.http.delete(this.baseUrl1+userId)
+  }
+
+  getProfile(userId:any){
+  
+   return new Promise((resolve, reject) => {
+    this.http.get(this.baseUrl1+"getProfile/"+userId).subscribe(data=>{
+      resolve(data)
+    })
+   })
   }
 
   getGenres(){
@@ -28,18 +42,8 @@ export class UserService {
       let response = null;
        this.http.get("https://api.themoviedb.org/3/genre/movie/list?api_key=15e383204c1b8a09dbfaaa4c01ed7e17&language=en-US").subscribe(result =>{
         response = result ;
-        // console.log(result);
         res(response);
-
       })
-      // console.log(response);
-
-      // if(response){
-      //   res(response);
-      // }else{
-      //   console.log(response);
-      //   rej("error");
-      // }
     })
   }
 

@@ -33,7 +33,7 @@ public class FavouriteServiceController {
         try{
             responseEntity = new ResponseEntity(favouriteService.addMovieToFavList(email,name,movie),HttpStatus.CREATED);
         } catch (MovieAlreadyExistsException e) {
-            responseEntity = new ResponseEntity(null,HttpStatus.CONFLICT);
+            responseEntity = new ResponseEntity(null,HttpStatus.CREATED);
         }
         return responseEntity;
     }
@@ -63,9 +63,9 @@ public class FavouriteServiceController {
         return new ResponseEntity<>(favouriteService.deleteAllFavAcc(),HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("favList/deleteMovie/{email}/{id}")
-    public ResponseEntity<?> deleteMovie(@PathVariable String email,  @PathVariable("id") int movieId){
-        return new ResponseEntity<>(favouriteService.deleteMovieFromFavList(email,movieId),HttpStatus.ACCEPTED);
+    @DeleteMapping("favList/deleteMovie/{email}/{favListName}/{id}")
+    public ResponseEntity<?> deleteMovie(@PathVariable String email,@PathVariable String favListName,  @PathVariable int id){
+        return new ResponseEntity<>(favouriteService.deleteMovieFromFavList(email,favListName,id),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("favList/deleteFavAcc/{email}")

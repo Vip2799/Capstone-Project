@@ -1,95 +1,64 @@
 <div class="container" id="main">
-    <div class="title-header" id="header">
-    <h2>My Lists</h2>
-    
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Create List</mat-panel-title>
-            </mat-expansion-panel-header>    
-            <mat-form-field appearance="fill">
-                <mat-label>List Name</mat-label>
-                <input matInput type="text" [(ngModel)]="listName">
-                <button (click)="createList()">continue</button>
-            </mat-form-field>
-        </mat-expansion-panel>
+  <br>
+<div class="title-header" id="header">
+  <div id="icon">
+   
+    My <mat-icon>favorite</mat-icon> Lists
+  </div>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Create List</mat-panel-title>
+        </mat-expansion-panel-header>    
+        <mat-form-field appearance="outline">
+            <mat-label>List Name</mat-label>
+            <input matInput type="text" [(ngModel)]="listName">
+            <br>
+            <button mat-raised-button (click)="createList()">continue</button>
+        </mat-form-field>
+    </mat-expansion-panel>
+
+</div>
+</div>
+<br>
+
+<div class="container" id="list" *ngIf="isShow">
+  <div *ngFor="let fav of favs">
+    <button id="view" mat-raised-button class="col-lg-2 m-3 p-1 mb-2" (click)="view(fav.favListName)">{{fav.favListName}}</button>
     
     </div>
-    
-    <br>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>No</th>
-        <th>List Name</th>
-        <th>Movies</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let fav of favs  let i = index">
-        <td>{{i+1}}</td>
-        <td>{{fav.favListName}}</td> 
-        <td *ngFor="let movie  of fav.movieList">{{movie.title}}</td> 
-        <td><button   class="btn" (click)="view(fav.favListName)">View</button></td>
-        <td><button   class="btn" (click)="hide()">Hide</button></td>
-      </tr>
-    </tbody>
-    </table>
-    
-    <div class="container" *ngIf="isShow">
-      <div class="row">
-        <div class="col-lg-2 m-3 p-1 mb-2 rounded"  *ngFor="let movie of movies">
-          <mat-card class="example-card" class="cardWidth">
-            <mat-card-title> <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" width="200px" height="200px" alt=""> </mat-card-title>
-            <mat-card-content>
-              <p class="text-center"><b>{{movie.title}}</b></p>
-              <p>{{movie.release_date}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <a>
-                <button><mat-icon>play_circle</mat-icon></button>
-              </a>
-                <a >
-                  <button (click)="delete(movie.id)"><mat-icon>delete</mat-icon></button>
-                </a>
-            </mat-card-actions>
-          </mat-card>  
-        </div>
-      </div>
-    </div>
-    
-    <div class="btn"  id="add">
-    <button  type="button" class="btn btn-success" data-target="#model" data-toggle="modal">Add Movie</button>
-    </div>
-    </div>
-    
-    
-    <div class="container" id="dialog">
-    
-      
-    
-      <div class="modal" id="model">
-    
-        <div class="modal-dialog modal-dialog-centered" >
-          <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"> &times;</button>
-              </div>
-    
-              <div class="modal-body">
-                <mat-label>Movie Name : </mat-label>
-                <input matInput type="text" [(ngModel)]="movieName">
-              </div>
-    
-              <div class="modal-footer">
-                <button class="btn btn-primary justify-content-center" (click)="addMovie()" data-dismiss="modal">Add</button>
-              </div>
+</div>
+
+<br>
+
+<div  class="container" *ngIf="isShow" id="card">
+  <div class="row">
+    <div class="col-lg-2 m-3 p-1 mb-2   rounded"  *ngFor="let movie of movies">
+      <mat-card class="example-card" class="cardWidth">
+        <mat-card-title> <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" width="200px" height="200px" alt=""> </mat-card-title>
+        <mat-card-content>
+          <p class="text-center"><b>{{movie.title}}</b></p>
+          <div id="genreList">
+            <p class="genre1" *ngFor="let genre of movie.currentGenreList">{{genre.name}}</p>
+
           </div>
-        </div>
-      </div>
+          <p>{{movie.release_date}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a>
+            <button mat-icon-button><mat-icon>play_circle</mat-icon></button>
+          </a>
+          <a color="primary" >
+            <button mat-icon-button (click)="delete(moviesOfList.favListName,movie.id)"><mat-icon>delete</mat-icon></button>
+          </a>        
+        </mat-card-actions>
+      </mat-card>  
     </div>
-    
-    
-    
-    
-    
-     
+  </div>
+
+</div>
+
+
+
+
+
+ 

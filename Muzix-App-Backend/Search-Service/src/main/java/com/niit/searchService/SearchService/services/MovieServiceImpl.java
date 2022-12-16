@@ -30,7 +30,7 @@ public class MovieServiceImpl implements MovieService{
         List<Movie> searchedList = new ArrayList<>();
 //        System.out.println(allMovies);
         for(Movie movie : allMovies){
-            if(movie.getTitle().startsWith(name)){
+            if(movie.getTitle().contains(name)){
                 searchedList.add(movie);
             }
 

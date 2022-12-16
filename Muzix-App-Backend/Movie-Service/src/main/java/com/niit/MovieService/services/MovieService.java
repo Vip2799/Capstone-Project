@@ -6,6 +6,8 @@ import com.niit.MovieService.exceptions.MovieNotFoundException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
 public interface MovieService {
 
     List<Movie> loadPopularMovies(List<Movie> list) ;
@@ -24,6 +26,10 @@ public interface MovieService {
     List<Movie> getAllMovies() ;
 
     Movie getMovieById(int id);
+
+    int getRatingOnMovieIdAndUserId(int id,String email);
+
+    Map<String,Integer> addRating(int id, String email, int rating);
 
 
 }

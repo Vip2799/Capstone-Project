@@ -50,11 +50,11 @@
     <h1>Free Movies</h1>
     <div class="container">
         <div class="row flex-nowrap">
-          <div class="col-lg-2 m-3 p-1 mb-2 rounded" *ngFor="let movie of freeMovies">
-            <mat-card class="example-card" class="cardWidth">
+          <div class="col-lg-2 m-3 p-1 mb-2 rounded" *ngFor="let movie of freeMovies" >
+            <mat-card (click)="routeToView(movie.id)" class="example-card" class="cardWidth" >
               <mat-card-title> <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.poster_path}}" width="165px" height="140px" alt=""> </mat-card-title>
               <mat-card-content>
-                <p class="text-center"><b>{{movie.title}}</b></p>
+                <p  class="text-center"><b>{{movie.title}}</b></p>
                 <p>{{movie.release_date}}</p>
               </mat-card-content>
               <!-- <mat-card-actions>

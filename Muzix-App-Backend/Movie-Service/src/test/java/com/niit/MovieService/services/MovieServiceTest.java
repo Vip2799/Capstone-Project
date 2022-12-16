@@ -33,8 +33,8 @@ public class MovieServiceTest {
 
     @BeforeEach
     public void setUp(){
-        movie1 = new Movie(102,"Kesariyaan", new String[]{"Kerala"},"08-10-2022","jhbfvjhdsvy",new int[]{102,100,234},"Hindi","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular","trending"));
-        movie2 = new Movie(109,"Iron-Man", new String[]{"US"},"02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
+        movie1 = new Movie(102,"Kesariyaan", "usa","08-10-2022","jhbfvjhdsvy",new int[]{102,100,234},"Hindi","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular","trending"));
+        movie2 = new Movie(109,"Iron-Man", "ncvn","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
         List<Movie> movieList = Arrays.asList(movie1,movie2);
     }
 

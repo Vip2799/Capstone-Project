@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Map;
 
 @Document
 public class Movie {
@@ -19,7 +20,7 @@ public class Movie {
 
     private String poster_path;
     private List<String> keyWords;
-
+    private Map<String,Integer> rating ;
     public Movie() {
     }
 
@@ -28,7 +29,7 @@ public class Movie {
         this.title = title;
     }
 
-    public Movie(int id, String poster_path, String title, String release_date, String backdrop_path, int[] genre_ids, String original_language, String overview, double vote_average, List<String> keyWords) {
+    public Movie(int id, String poster_path,Map<String,Integer> rating,String title, String release_date, String backdrop_path, int[] genre_ids, String original_language, String overview, double vote_average, List<String> keyWords) {
         this.id = id;
         this.title = title;
         this.poster_path = poster_path ;
@@ -39,7 +40,16 @@ public class Movie {
         this.overview = overview;
         this.vote_average = vote_average;
         this.keyWords = keyWords;
+        this.rating = rating ;
 
+    }
+
+    public Map<String, Integer> getRating() {
+        return rating;
+    }
+
+    public void setRating(Map<String, Integer> rating) {
+        this.rating = rating;
     }
 
     public List<String> getKeyWords() {
@@ -125,16 +135,17 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
+                "backdrop_path='" + backdrop_path + '\'' +
+                ", id=" + id +
                 ", title='" + title + '\'' +
                 ", release_date='" + release_date + '\'' +
-                ", backdrop_path='" + backdrop_path + '\'' +
                 ", genre_ids=" + Arrays.toString(genre_ids) +
                 ", original_language='" + original_language + '\'' +
                 ", overview='" + overview + '\'' +
                 ", vote_average=" + vote_average +
                 ", poster_path='" + poster_path + '\'' +
                 ", keyWords=" + keyWords +
+                ", rating=" + rating +
                 '}';
     }
 }

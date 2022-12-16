@@ -1,13 +1,20 @@
-<div class="container-fluid row">
+<div class="container-fluid row" >
     <div id="bgImage" [ngStyle]="{'background-image':'url('+backdropBaseUrl+movie.backdrop_path+')'}"></div>
     <div class="col-7 content">
         <div id="playlistbtn">
-            <button mat-icon-button (click)="playListOption()">
+                        
+            <button id="listbtn" mat-icon-button (click)="playListOption()" >
                 <mat-icon id="addplaylist" fontIcon="playlist_add"></mat-icon>
             </button>
             <div id="playlistOption" *ngIf="isPlaylistOptionOpen">
                 <!-- <div id="tooltip"></div> -->
-                <button mat-raised-button><mat-icon fontIcon="add"></mat-icon> Create New Playlist</button>
+                <button id="create" (click)="create()" *ngIf="createFavList ; else inputfield" mat-raised-button><mat-icon fontIcon="add"></mat-icon> Create New Playlist </button>
+                <ng-template #inputfield>
+                    <div class="input-group">
+                        <input type="text" class="form-control btn-success" [(ngModel)]="favListNameInput"  placeholder="Favourite List Name">
+                        <button id="input" (click)="createPlaylist()" mat-raised-button class="input-group-btn">Save</button>
+                    </div>
+                </ng-template>
                 <mat-list id="playlists">
                     <li *ngFor="let list of favListsAcc.favouriteLists"  mat-list-item  (click)="addMovieToFavList(list.favListName)">{{list.favListName}}</li>
                 </mat-list>
@@ -15,23 +22,61 @@
         </div>
         
 
-        <div id="header">
+        <div id="header" >
             <h1>{{movie.title}}</h1>
             <ul id="genre">
                 <li  *ngFor="let genre of currentGenre">{{genre.name }}  </li>
             </ul>
             <p>Release_Date : {{movie.release_date}}</p>
         </div>
-        <div id="body">
+        <div id="body" >
             <h3>Overview : </h3>
             <p>
                 {{movie.overview}}
             </p>
         </div>
-        <button id="playbtn" mat-fab color="j">
-            <mat-icon id="play" fontIcon="play_circle"></mat-icon>
-        </button>
-        <h3>Play</h3>
+        <div id="action-bar">
+            
+            <ng-template #ratingbtn>
+                <button mat-icon-button id="ratingBtn" (click)="ratingbtnOption()">
+                    <mat-icon fontIcon="star"></mat-icon>
+                    <div id="tooltip">Rating</div>
+                </button>
+            </ng-template>
+            <div id="rating" *ngIf="ratingOption ; else ratingbtn ">
+                <input type="radio" name="rate" id="rate1" value="5" (change)="selectRating($event)">
+                <label for="rate1"> <mat-icon fontIcon="star"></mat-icon></label>
+                <input type="radio" name="rate" id="rate2" value="4" (change)="selectRating($event)">
+                <label for="rate2"> <mat-icon fontIcon="star"></mat-icon></label>
+                <input type="radio" name="rate" id="rate3" value="3" (change)="selectRating($event)">
+                <label for="rate3"><mat-icon fontIcon="star" ></mat-icon></label>
+                <input type="radio" name="rate" id="rate4" value="2" (change)="selectRating($event)">
+                <label for="rate4"><mat-icon fontIcon="star"></mat-icon></label>
+                <input type="radio" name="rate" id="rate5" value="1" (change)="selectRating($event)">
+                <label for="rate5"><mat-icon fontIcon="star"></mat-icon></label>
+
+            </div>
+
+            <button *ngIf="playView ; else playTrailorView" id="playbtn" mat-fab color="j" (click)="playTrailor()">
+                <mat-icon id="play" fontIcon="play_circle"></mat-icon>
+            <h3>Play</h3>
+            </button>
+            <ng-template #playTrailorView>
+                <div id="playContainer">
+                    <div id="playHeader">
+                            <!-- {{trailerUrl}} -->
+                            <h3>Playing Trailor</h3>
+                        <button mat-icon-button (click)="playTrailor()"><mat-icon fontIcon="close" ></mat-icon></button> 
+                    </div>
+                    <div id="playTrailor">
+                        <embed [src]="this.trailerUrl | safe" type="">
+                    </div>
+                </div> 
+            </ng-template>
+             
+        </div>
+        
+        
         
     </div>
     <div class="col poster">

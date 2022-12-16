@@ -16,9 +16,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class MovieServiceImpl implements MovieService{
 
@@ -49,6 +48,7 @@ public class MovieServiceImpl implements MovieService{
                 movieRepository.save(movie);
             }else {
                 movieList.get(i).setKeyWords(Arrays.asList("popular"));
+                movieList.get(i).setRating(new HashMap<>());
                 movieRepository.insert(movieList.get(i));
             }
         }
@@ -64,6 +64,7 @@ public class MovieServiceImpl implements MovieService{
                 movieRepository.save(movie);
             }else {
                 freeMovieList.get(i).setKeyWords(Arrays.asList("free"));
+                freeMovieList.get(i).setRating(new HashMap<>());
                 movieRepository.insert(freeMovieList.get(i));
             }
         }
@@ -80,6 +81,7 @@ public class MovieServiceImpl implements MovieService{
                 movieRepository.save(movie);
             }else {
                 trendingList.get(i).setKeyWords(Arrays.asList("trending"));
+                trendingList.get(i).setRating(new HashMap<>());
                 movieRepository.insert(trendingList.get(i));
             }
         }
@@ -127,5 +129,29 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public Movie getMovieById(int id) {
         return movieRepository.findById(id).get();
+    }
+
+    @Override
+    public int getRatingOnMovieIdAndUserId(int id, String email) {
+        Movie movie = movieRepository.findById(id).get();
+        Map<String,Integer> ratings = movie.getRating();
+        return ratings.get(email);
+    }
+
+    @Override
+    public Map<String, Integer> addRating(int id, String email, int rating) {
+        Movie movie = movieRepository.findById(id).get();
+        Map<String, Integer> ratings = movie.getRating();
+        if(ratings.containsKey(email)){
+            ratings.replace(email,rating);
+            movie.setRating(ratings);
+            movieRepository.save(movie);
+        }
+        else {
+            ratings.put(email,rating);
+            movie.setRating(ratings);
+            movieRepository.save(movie);
+        }
+        return ratings;
     }
 }

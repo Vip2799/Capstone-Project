@@ -25,7 +25,9 @@ public class FavouriteServiceImpl implements FavouriteService{
 
     @Override
     public Favourite getFavAccountByEmail(String email) {
-        return favouriteRepository.findById(email).get();
+        Favourite favAcc = favouriteRepository.findById(email).get() ;
+//        System.out.println(favAcc);
+        return favAcc;
     }
 
     @Override
@@ -102,21 +104,23 @@ public class FavouriteServiceImpl implements FavouriteService{
     }
 
     @Override
-    public Favourite deleteMovieFromFavList(String email, int movieId) {
+    public Favourite deleteMovieFromFavList(String email,String favListName, int movieId) {
         Favourite favAccount = favouriteRepository.findById(email).get();
         List<FavouriteList> favLists = favAccount.getFavouriteLists();
         for(int i = 0 ; i < favLists.size() ; i++){
-//            if(favLists.get(i).getFavListName().equalsIgnoreCase(favListName)){
+            if(favLists.get(i).getFavListName().equalsIgnoreCase(favListName)){
                 FavouriteList favList = favLists.get(i);
-                for (int j = 0 ; j < favList.getMovieList().size() ; i++ ){
+                for (int j = 0 ; j < favList.getMovieList().size() ; j++ ){
+                    System.out.println(favList.getMovieList().size());
                     if(favList.getMovieList().get(j).getId() == movieId){
                         favList.getMovieList().remove(j);
                         favLists.set(i,favList);
+                        System.out.println(favList);
                         break;
                     }
                 }
-//                break;
-//            }
+                break;
+            }
         }
         favAccount.setFavouriteLists(favLists);
         return favouriteRepository.save(favAccount);

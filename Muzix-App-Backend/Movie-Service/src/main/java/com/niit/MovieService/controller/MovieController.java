@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.List;
 @RestController
-@CrossOrigin(origins = ("http://localhost:4200/"))
-@RequestMapping("/movie/")
+@CrossOrigin(origins = "http://localhost:4200/")
+@RequestMapping("/movie/api/v1/")
 public class MovieController {
     @Autowired
     private MovieService movieService;
@@ -72,5 +72,15 @@ public class MovieController {
     @GetMapping("{id}")
     public ResponseEntity<?> getMovieById(@PathVariable int id){
         return new ResponseEntity<>(movieService.getMovieById(id),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("rating/{id}/{email}")
+    public ResponseEntity<?> getRatingOfMovie(@PathVariable int id, @PathVariable String email){
+        return new ResponseEntity<>(movieService.getRatingOnMovieIdAndUserId(id,email),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("addrating/{id}/{email}/{rating}")
+    public ResponseEntity<?> addRating(@PathVariable int id, @PathVariable String email, @PathVariable int rating){
+        return new ResponseEntity<>(movieService.addRating(id,email,rating),HttpStatus.CREATED);
     }
 }

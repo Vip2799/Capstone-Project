@@ -1,6 +1,6 @@
 <div class="search-container">
-    <input type="text" placeholder="Search Movie" [(ngModel)]="enterSearchValue" >
-    <button (click)="onSearchTextChanged()">Search</button>
+    <input (input)="onSearchTextChanged()" type="text" placeholder="Search Movie" [(ngModel)]="enterSearchValue" >
+    <button >Search</button>
 </div>
 
 <div class="container">

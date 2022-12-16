@@ -27,6 +27,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SafePipe } from './safe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MovieViewComponent,
     FavouriteComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SafePipe
 
   ],
   imports: [

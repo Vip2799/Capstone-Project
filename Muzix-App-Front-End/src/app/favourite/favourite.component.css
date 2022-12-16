@@ -8,6 +8,19 @@
 .cardWidth{
     width: 200px;
 }
+#genreList{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+
+#icon{
+    display: flex;
+    color: black;
+    font-weight: bold;
+   font-size: 20px;
+}
 
 mat-expansion-panel{
 
@@ -18,13 +31,42 @@ mat-expansion-panel{
    position: relative; 
 }
 
-#add{
+/* #add{
     display: flex;
     align-items: center;
     justify-content: center;
+} */
+
+#list{
+    border: 1px solid black;  
+    display: flex;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 40px 40px 40px 40px;
 }
 
-.table{
-    border: 1px solid black;
+#view{
+    background-color: black;
+    color: whitesmoke;
+    opacity: .8;
+}
+
+.container #view:hover{
+    opacity: 2;
+    cursor: pointer;
+}
+
+#close{
+   margin-left: 400px;
+}
+
+#card{
+    background-color: darksalmon;
     
+}
+
+.text-center{
+    font-size: 15px;
 }
