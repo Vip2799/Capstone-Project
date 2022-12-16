@@ -20,11 +20,11 @@ public class User {
     private int age;
     private long mobileNo;
     private Address address;
-
+    private String subscribedPlan;
     public User() {
     }
 
-    public User(String email, String userName,String profilePic,String password, int age, long mobileNo, Address address) {
+    public User(String email, String userName,String subscribedPlan,String profilePic,String password, int age, long mobileNo, Address address) {
         this.email = email;
         this.userName = userName;
         this.password = password;
@@ -32,6 +32,15 @@ public class User {
         this.age = age;
         this.mobileNo = mobileNo;
         this.address = address;
+        this.subscribedPlan = subscribedPlan;
+    }
+
+    public String getSubscribedPlan() {
+        return subscribedPlan;
+    }
+
+    public void setSubscribedPlan(String subscribedPlan) {
+        this.subscribedPlan = subscribedPlan;
     }
 
     public String getEmail() {
@@ -100,6 +109,7 @@ public class User {
                 ", age=" + age +
                 ", mobileNo=" + mobileNo +
                 ", address=" + address +
+                ", subscribedPlan='" + subscribedPlan + '\'' +
                 '}';
     }
 }
