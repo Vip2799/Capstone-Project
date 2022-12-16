@@ -14,7 +14,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("user/v1/")
-@CrossOrigin("*")
 public class UserController {
 
     private UserService userService;

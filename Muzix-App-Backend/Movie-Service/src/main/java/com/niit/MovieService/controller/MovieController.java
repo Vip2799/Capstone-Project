@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.List;
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
 @RequestMapping("/movie/api/v1/")
 public class MovieController {
     @Autowired
@@ -25,7 +24,6 @@ public class MovieController {
         return new ResponseEntity<>(movieService.loadPopularMovies(movieList), HttpStatus.CREATED);
 
     }
-
 
     @PostMapping("addfreemovies")
     public ResponseEntity<?> loadFreeMovies(@RequestBody List<Movie> movieList){
