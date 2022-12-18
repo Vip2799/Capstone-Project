@@ -1,6 +1,7 @@
-<div class="container-fluid row" >
+<div class="container-fluid row " >
+    <div id="playbg" [ngStyle]="{'z-index':zaxis}"></div>
     <div id="bgImage" [ngStyle]="{'background-image':'url('+backdropBaseUrl+movie.backdrop_path+')'}"></div>
-    <div class="col-7 content">
+    <div class="col-lg-7 col-md-9 col-sm-12 content">
         <div id="playlistbtn">
                         
             <button id="listbtn" mat-icon-button (click)="playListOption()" >
@@ -27,7 +28,9 @@
             <ul id="genre">
                 <li  *ngFor="let genre of currentGenre">{{genre.name }}  </li>
             </ul>
-            <p>Release_Date : {{movie.release_date}}</p>
+            <div>
+                <p>Release_Date : {{movie.release_date}}</p>
+            </div>
         </div>
         <div id="body" >
             <h3>Overview : </h3>
@@ -59,7 +62,7 @@
 
             <button *ngIf="playView ; else playTrailorView" id="playbtn" mat-fab color="j" (click)="playTrailor()">
                 <mat-icon id="play" fontIcon="play_circle"></mat-icon>
-            <h3>Play</h3>
+            <h3>Play trailer</h3>
             </button>
             <ng-template #playTrailorView>
                 <div id="playContainer">
@@ -79,7 +82,27 @@
         
         
     </div>
-    <div class="col poster">
+    <div class="col-lg col-sm-12 col-md-12 poster">
         <img id="moviePoster" [src]="posterBaseUrl + movie.poster_path" alt="">
     </div>
+</div>
+
+<div id="footercontainer">
+    <h2 id="footer">Recommended Watch List </h2>
+<!-- 
+    <div id="movieContainer">
+        <div class="movie-card" *ngFor="let movie of recommendedMovieList" (click)="navigateToMovie(movie.id)">
+            <div class="img">
+                <img [src]="posterBaseUrl + movie.poster_path" alt="">
+            </div>
+            <h3>{{movie.title}}</h3>
+            <h3 class="date">Release_Date : {{movie.release_date}} </h3>
+            <div class="footGenre"  >
+                <h4 *ngFor="let genre of movie.currentGenreList">{{genre.name}}</h4>
+            </div>
+
+        </div>
+
+    </div> -->
+    <app-movie-card (parentMethod)="navigateToMovie($event)"></app-movie-card>
 </div>

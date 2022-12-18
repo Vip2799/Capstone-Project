@@ -1,20 +1,36 @@
 .full-width {
   width: 100%;
+  /* height: 50%; */
 }
 
 .registration-card {
-  width: 700px;
+  width: 550px;
+  /* height: 40vh; */
+  opacity: 0.9;
   /* min-width: 120px; */
   margin: 20px auto;
+  padding: 15px;
+  margin-right: 2%;
   box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
+  border-radius: 20px;
+  background-color: aliceblue;
 }
+
+.row{
+  line-height: 0px;
+}
+
+
 mat-card-header{
   display: flex;
   justify-content: center;
   text-align: center;
   /* border: 2px solid; */
   width: 100%;
+  padding-bottom: 20px;
+  padding-top: 0px;
 }
+
 .mat-radio-button {
   display: block;
   margin: 5px 0;
@@ -24,13 +40,11 @@ mat-card-header{
   /* background-image: url("../../assets/defaultprofile.jpg"); */
   /* border: 1px dashed; */
   box-shadow: 5px 10px 10px rgba(38, 36, 36, 0.3);
-
   cursor: pointer;
   background-size: 90px;
   height: 100%;
   width: 100%;
-  /* border-radius: 50%; */
-  
+  /* border-radius: 50%; */  
 }
 
 #uploadInput:hover #uploadbtn{
@@ -38,14 +52,16 @@ mat-card-header{
 }
 
 #uploadbtn{
-  padding-bottom: 15px;
+  padding: 10px 0px 20px 0px;
   opacity: 0;
-  width: 90px;
+  width: 100px;
+  height: fit-content;
+  /* border: 2px solid red; */
   /* border: 1px solid; */
   position: absolute;
-  bottom: -10px;
-  left: 3%;
-  background-color: rgba(0,0,0,0.5);
+  bottom: -3px;
+  left: 1%;
+  background-color: rgba(0,0,0,0.8);
   color: wheat;
   font-size: 9px;
   text-align: center;
@@ -58,8 +74,8 @@ mat-card-header{
   height: 100px;
   width: 100px;
   position:relative;
-  top:-15px;
-  left: 25px;
+  top:-20px;
+  left: 2px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -98,3 +114,50 @@ mat-card-actions{
 mat-card-actions button{
   width: 100px;
 }
+#login{
+  text-align: center;
+}
+a{
+  text-decoration: none;
+
+}
+
+form{
+  background-image: url("../../assets/pexels-pixabay-265685.jpg");
+  background-size: 120%;
+  /* background-repeat: no-repeat; */
+  /* background */
+  
+  padding: 20px;
+  /* border: 2px solid; */
+}
+
+h1{
+  font-family: Aclonica;
+  font-size: 300%;
+  margin-top: 7%;
+  color: white;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  /* border: 2px solid red; */
+}
+#applogo{
+  position: absolute;
+  top: 40%;
+  left: 12%;
+  display: flex;
+  flex-flow: row nowrap;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  /* padding-top: 10px; */
+  width: 20%;
+  height: 15%;
+  /* border: 2px solid; */
+}
+

@@ -1,0 +1,14 @@
+<div id="movieContainer">
+    <div class="movie-card" *ngFor="let movie of allMovies" (click)="navigateToMovie(movie.id)">
+        <div class="img">
+            <img [src]="posterBaseUrl + movie.poster_path" alt="">
+        </div>
+        <h3>{{movie.title}}</h3>
+        <h3 class="date">Release_Date : {{movie.release_date}} </h3>
+        <div class="footGenre"  >
+            <h4 *ngFor="let genre of movie.currentGenreList">{{genre.name}}</h4>
+        </div>
+
+    </div>
+
+</div>

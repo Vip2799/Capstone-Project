@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { passwordMisMatch } from '../validations/passwordMisMatch';
 import { passwordValidation } from '../validations/passwordValidation';
@@ -98,7 +99,7 @@ export class RegistrationComponent {
     console.log(filedata)
     console.log(file);
   }
-  constructor(private fb: FormBuilder, private regUser: UserService, private snackbar: MatSnackBar) {}
+  constructor(private fb: FormBuilder,private router:Router, private regUser: UserService, private snackbar: MatSnackBar) {}
 
   onSubmit(): void {
     this.regUser.registerUser({
@@ -118,6 +119,7 @@ export class RegistrationComponent {
       console.log(data);
       
     })
+    this.router.navigate(["login"]);
     this.snackbar.open("Registration Successfull",": )", {duration:3000});
   }
 }

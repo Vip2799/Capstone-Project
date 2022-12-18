@@ -3,7 +3,7 @@
 }
 
 .profile-card {
-  width: 700px;
+  width: 100%;
   /* min-width: 120px; */
   margin: 20px auto;
   box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
@@ -29,13 +29,50 @@ form{
 
   cursor: pointer;
   background-size: 90px;
-  height: 90px;
-  width: 90px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
-  position:relative;
+  /* position:relative;
   top:-10px;
-  left: 20px;
+  left: 20px; */
 }
+#uploadInput{
+  border: 1px solid gray;
+  height: 100px;
+  width: 100px;
+  position:relative;
+  top:-20px;
+  left: 2px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#file{
+  display: none;
+}
+
+#uploadInput:hover #uploadbtn{
+  opacity: 1;
+}
+
+
+#uploadbtn{
+  padding: 3px 0px 20px 0px;
+  opacity: 0;
+  width: 100px;
+  height: fit-content;
+  /* border: 2px solid red; */
+  /* border: 1px solid; */
+  position: absolute;
+  bottom: -10px;
+  left: 1%;
+  background-color: rgba(0,0,0,0.8);
+  color: wheat;
+  font-size: 9px;
+  text-align: center;
+  cursor: pointer;
+  /* font-size: 8px; */
+}
+
 
 #profilephoto:hover {
   box-shadow: 0px 2px 15px 10px rgba(255, 129, 129, 0.3);
@@ -66,4 +103,25 @@ mat-card-actions{
 }
 mat-card-actions button{
   width: 100px;
+}
+
+#edit{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  /* width: fit-content; */
+  /* border: 2px solid; */
+  /* font-size: 30px; */
+  
+}
+#save{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+#edit mat-icon{
+  width: 70px;
+  height: 70px;
+  color: black;
+  font-size: 30px;
 }

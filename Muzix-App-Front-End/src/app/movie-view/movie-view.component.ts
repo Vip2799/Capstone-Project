@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
 import { genre } from '../models/genre';
 import { Movie } from '../models/Movie';
+import { updatedMovieList } from '../models/updatedMovieList';
 import { FavouriteService } from '../services/favourite.service';
 // import { Favourite1Service } from '../services/favourite1.service';
 import { MovieService } from '../services/movie.service';
@@ -16,13 +18,20 @@ import { UserService } from '../services/user.service';
 })
 export class MovieViewComponent implements OnInit {
 
-  constructor(private userservice: UserService, private movieservice: MovieService, private favService: FavouriteService, private snackBar: MatSnackBar, private http: HttpClient) { }
+  constructor(private activeRoute: ActivatedRoute, private userservice: UserService, private movieservice: MovieService, private favService: FavouriteService, private snackBar: MatSnackBar, private http: HttpClient, private router: Router) { }
+
+  // ngOnChanges(changes: SimpleChanges): void {
+  //     this.movieservice.getMovieById(this.paramMovieId).then(data=>{
+  //       this.movie = data ;
+  //       console.log(changes);
+  //     })
+  // }
   isPlaylistOptionOpen: boolean = false;
 
   posterBaseUrl: string = "https://www.themoviedb.org/t/p/w440_and_h660_face";
   backdropBaseUrl: string = "https://www.themoviedb.org/t/p/original/"
   movie: any = {
-    id:  0 ,
+    id: 0,
     title: '',
     release_date: '',
     backdrop_path: '',
@@ -31,9 +40,10 @@ export class MovieViewComponent implements OnInit {
     overview: '',
     vote_average: 0,
     poster_path: '',
-    keyWords: []
+    keyWords: [],
+    rating: 0
   }
-
+  paramId: any = "";
   favListsAcc: any = {};
 
   genresList: any = {};
@@ -43,6 +53,8 @@ export class MovieViewComponent implements OnInit {
 
   responseKey: any = {};
   currentGenre: genre[] = [];
+
+  // recommendedMovieList: updatedMovieList[] = [];
 
   trailerInit() {
     this.movieservice.getTrailor(this.movie.id).then((data) => {
@@ -57,15 +69,50 @@ export class MovieViewComponent implements OnInit {
 
     })
   }
+  //  allMovies:any = [] ;
+  // genreList:any= [];
+  // getRecommendedList(){
+  //   this.movieservice.getAllMovies().subscribe(data=>{
+  //     this.allMovies = data ;
 
-  ngOnInit(): void {
+  //     // this.recommendedMovieList = this.allMovies.slice(1,20)
+  //     this.userservice.getGenres().then(data=>{
+  //       this.genreList = data ;
 
-    // setTimeout(() => {
-    //   console.log(this.trailerUrl);
+  //       for(let i = 0 ; i < 20 ; i++){
+  //         let genreString: any[] = [];
+  //         for(let genre of this.allMovies[i].genre_ids){
+  //           // console.log(this.genreList)
+  //           this.genreList.genres.forEach((data: any) =>{
+  //               if(data.id == genre){
+  //                genreString.push(data);
+  //               }
+  //           })
+  //         }
+  //         this.allMovies[i].currentGenreList = genreString ;
+  //         this.recommendedMovieList.push(this.allMovies[i]);
+  //       }
+  //     })
 
-    // }, 3000)
 
-    this.movieservice.getMovieById(13).then(obj => {
+  //   })
+  // }
+
+  paramMovieId: number = 0;
+
+  getparam() {
+    return new Promise((res, rej) => {
+      this.activeRoute.paramMap.subscribe(data => {
+        this.paramId = data.get("id");
+        this.paramMovieId = parseInt(this.paramId);
+        res(data.get("id"));
+
+      })
+    })
+  }
+
+  updateMovie() {
+    this.movieservice.getMovieById(this.paramMovieId).then(obj => {
       this.movie = obj;
 
       this.trailerInit();
@@ -77,7 +124,7 @@ export class MovieViewComponent implements OnInit {
       this.userservice.getGenres().then((response) => {
         this.genresList = response;
         this.genres = this.genresList.genres;
-  
+
         for (let genre_id of this.movie.genre_ids) {
           // this.currentGenre = this.genres.filter((obj) => obj.id == genre_id)
           this.genres.forEach(obj => {
@@ -86,9 +133,52 @@ export class MovieViewComponent implements OnInit {
             }
           })
         }
-  
+
       }).catch(err => console.log(err))
     })
+
+  }
+
+  ngOnInit(): void {
+
+    this.movieservice.currentMovieListToShow = this.movieservice.getUpdatedMovieList();
+
+    this.getparam();
+    // this.recommendedMovieList = this.movieservice.getUpdatedMovieList()
+
+    // this.movieservice.getAllMovies().subscribe
+    // console.log(localStorage.getItem("emailId"));
+    this.movieservice.getRating(this.movie.id, localStorage.getItem("emailId")).then(data => {
+      if (data) {
+        this.movie.rating = data;
+      }
+    })
+
+    // this.movieservice.getMovieById(this.paramMovieId).then(obj => {
+    //   this.movie = obj;
+
+    //   this.trailerInit();
+
+    //   this.favService.getFavListAcc().then(data => {
+    //     this.favListsAcc = data;
+    //   })
+
+    //   this.userservice.getGenres().then((response) => {
+    //     this.genresList = response;
+    //     this.genres = this.genresList.genres;
+
+    //     for (let genre_id of this.movie.genre_ids) {
+    //       // this.currentGenre = this.genres.filter((obj) => obj.id == genre_id)
+    //       this.genres.forEach(obj => {
+    //         if (obj.id == genre_id) {
+    //           this.currentGenre.push(obj);
+    //         }
+    //       })
+    //     }
+
+    //   }).catch(err => console.log(err))
+    // })
+    this.updateMovie();
 
   }
 
@@ -103,7 +193,7 @@ export class MovieViewComponent implements OnInit {
   }
 
 
-  email: string = "vipul@gmail.com";
+  email: any = localStorage.getItem("emailId");
   addMovieToFavList(favListName: string) {
     this.favService.addMovieToFav(this.email, favListName, this.movie).then(data => {
       console.log(data);
@@ -126,7 +216,7 @@ export class MovieViewComponent implements OnInit {
     if (this.favListNameInput == "") {
       alert("Please type name of Favourite List")
     } else {
-      this.favService.createFavList( this.favListNameInput).subscribe(data => {
+      this.favService.createFavList(this.favListNameInput).subscribe(data => {
         console.log(data);
         this.snackBar.open(`${this.favListNameInput} Favourite List is created `, "*_*", { duration: 2000 });
         window.location.reload();
@@ -143,6 +233,7 @@ export class MovieViewComponent implements OnInit {
   // }
 
   selectRating(rating: any) {
+    this.movieservice.addRating(localStorage.getItem("emailId"), this.movie.id, rating);
     this.snackBar.open(`You rated this movie`, rating.target.value + "/5", { duration: 1000 });
     setTimeout(() => {
       this.ratingOption = false;
@@ -151,12 +242,15 @@ export class MovieViewComponent implements OnInit {
   }
 
   playView: boolean = true;
+  zaxis: number = -2;
   playTrailor() {
     if (this.playView) {
       this.playView = false;
+      this.zaxis = 5;
     }
     else {
       this.playView = true;
+      this.zaxis = -2;
     }
   }
 
@@ -168,5 +262,19 @@ export class MovieViewComponent implements OnInit {
     else {
       this.ratingOption = true;
     }
+  }
+
+  navigateToMovie(id: number) {
+    this.router.navigate(['movie-view', id]);
+    this.getparam().then(data=>{
+      this.updateMovie();
+      // alert("hello")
+      document.documentElement.scrollTop = 0 ;
+    })
+    // setTimeout(() => {
+    // this.updateMovie()
+
+    // }, 1000)
+    // window.location.reload();
   }
 }

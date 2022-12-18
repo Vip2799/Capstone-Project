@@ -79,8 +79,8 @@ public class MovieController {
         return new ResponseEntity<>(movieService.getRatingOnMovieIdAndUserId(id,email),HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("addrating/{id}/{email}/{rating}")
-    public ResponseEntity<?> addRating(@PathVariable int id, @PathVariable String email, @PathVariable int rating){
+    @PostMapping("addrating/{id}/{rating}")
+    public ResponseEntity<?> addRating(@PathVariable int id, @RequestBody String email, @PathVariable int rating){
         return new ResponseEntity<>(movieService.addRating(id,email,rating),HttpStatus.CREATED);
     }
 }

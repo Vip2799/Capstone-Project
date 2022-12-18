@@ -16,6 +16,7 @@
 
 .sidenav-container{
   /* border: 2px solid red; */
+  margin-bottom: -20px;
   background-color: rgb(212, 231, 247);
 }
 #logo{
@@ -30,6 +31,11 @@
   text-decoration: none;
   color: black;
   cursor: pointer;
+  font-family: Aclonica;
+  font-size: 150%;
+  /* margin-top: 7%; */
+  /* color: white; */
+  
 }
 
 #profcont #fav:hover mat-icon {
@@ -70,7 +76,7 @@
   flex-flow: row nowrap;
   margin-right: 20px;
 /* align-items: center; */
-justify-content: end;
+justify-content: flex-end;
   padding: 0%;
   
 }
@@ -162,10 +168,7 @@ justify-content: end;
 #toolkit a{
   border-bottom: 1px dashed;
 }
-#toolkit a:hover{
-  /* color: white; */
- 
-}
+
 
 
 
@@ -191,8 +194,14 @@ justify-content: end;
 
 .topnav{
   /* position: relative; */
-  background-color: rgb(215, 191, 253);
+  background-color: rgb(185, 142, 255);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9);
   /* z-index: inherit; */
   /* border: 2px solid; */
   /* border-radius: 30px; */
+}
+
+
+#profcont   {
+  /* text-decoration: none; */
 }

@@ -31,33 +31,33 @@ export class FavouriteService {
   }
 
   getFavListByListName(listName: any) {
-    return this.http.get<any>(this.URL + 'favList/get/vipul@gmail.com/' + listName);
+    return this.http.get<any>(`${this.URL} favList/get/${localStorage.getItem("emailId")}/ ${listName}`);
   }
 
   getFavListByName2(listName:any){
     return new Promise((res,rej)=>{
-      this.http.get(this.URL+'favList/get/vipul@gmail.com/'+listName).subscribe(data=>{
+      this.http.get(`${this.URL}favList/get/${localStorage.getItem("emailId")}/${listName}`).subscribe(data=>{
         res(data);
       })
     });
   }
 
   getAcc() {
-    return this.http.get<any>(this.URL + 'getAccount/vipul@gmail.com');
+    return this.http.get<any>(`${this.URL}getAccount/${localStorage.getItem("emailId")}`);
   }
 
 
   deleteFavList(listName: any) {
-    return this.http.delete<any>(this.URL + 'favList/delete/' + localStorage.getItem('email'), listName);
+    return this.http.delete<any>(`${this.URL}favList/delete/${localStorage.getItem("emailId")}`, listName);
   }
 
   deleteMovieFromList(listname: any, id: any) {
-    return this.http.delete<any>(this.URL + 'favList/deleteMovie/vipul@gmail.com/' + listname + '/' + id);
+    return this.http.delete<any>(`${this.URL}favList/deleteMovie/${localStorage.getItem("emailId")}/${listname}/${id}` );
   }
 
   getFavListAcc(){
     return new Promise((res,rej)=>{
-      this.http.get<any>(this.URL+'getAccount/vipul@gmail.com').subscribe(data=>{
+      this.http.get<any>(`${this.URL}getAccount/${localStorage.getItem("emailId")}`).subscribe(data=>{
         res(data);
       })
     })

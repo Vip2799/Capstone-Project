@@ -133,25 +133,26 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public int getRatingOnMovieIdAndUserId(int id, String email) {
+        String updatedEmail = email.replace(".","-");
         Movie movie = movieRepository.findById(id).get();
         Map<String,Integer> ratings = movie.getRating();
-        return ratings.get(email);
+        return ratings.get(updatedEmail);
     }
 
     @Override
     public Map<String, Integer> addRating(int id, String email, int rating) {
         Movie movie = movieRepository.findById(id).get();
         Map<String, Integer> ratings = movie.getRating();
+        String updatedEmail= email.replace(".","-");
+        System.out.println(email);
         if(ratings.containsKey(email)){
-            ratings.replace(email,rating);
-            movie.setRating(ratings);
-            movieRepository.save(movie);
+            ratings.replace(updatedEmail,rating);
         }
         else {
-            ratings.put(email,rating);
-            movie.setRating(ratings);
-            movieRepository.save(movie);
+            ratings.put(updatedEmail,rating);
         }
+        movie.setRating(ratings);
+        movieRepository.save(movie);
         return ratings;
     }
 }

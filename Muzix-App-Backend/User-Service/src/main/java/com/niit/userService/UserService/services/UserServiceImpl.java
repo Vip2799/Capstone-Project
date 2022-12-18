@@ -44,20 +44,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUser(String email, User user) throws UserNotFoundException {
+    public User updateUser( User user) throws UserNotFoundException {
 
-        if(userRepository.findById(email).isEmpty()){
-            throw  new UserNotFoundException();
-        }
-       User user1 = userRepository.findById(email).get();
 
-       user1.setUserName(user.getUserName());
-       user1.setAge(user.getAge());
-       user1.setMobileNo(user.getMobileNo());
-       user1.setAddress(user.getAddress());
-       user1.setProfilePic(user.getProfilePic());
+//       User user1 = userRepository.findById(email).get();
+//
+//       user1.setUserName(user.getUserName());
+//       user1.setAge(user.getAge());
+//       user1.setMobileNo(user.getMobileNo());
+//       user1.setAddress(user.getAddress());
+//       user1.setProfilePic(user.getProfilePic());
 
-        return userRepository.save(user1);
+        return userRepository.save(user);
     }
 
     @Override
@@ -69,6 +67,10 @@ public class UserServiceImpl implements UserService{
         return  true;
     }
 
+    @Override
+    public User getUserById(String email) {
+        return userRepository.findById(email).get();
+    }
 
 
 }

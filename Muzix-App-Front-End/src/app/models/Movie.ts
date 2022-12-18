@@ -10,6 +10,11 @@ export type Movie = {
     vote_average: number;
     poster_path: string
     keyWords : string[];
+    rating:rating[] ;
 
+}
 
+interface rating{
+    email:string,
+    rating:number
 }

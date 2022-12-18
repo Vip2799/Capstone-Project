@@ -28,6 +28,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SafePipe } from './safe.pipe';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MoviesComponent } from './movies/movies.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,9 @@ import { SafePipe } from './safe.pipe';
     FavouriteComponent,
     LoginComponent,
     DashboardComponent,
-    SafePipe
+    SafePipe,
+    MovieCardComponent,
+    MoviesComponent
 
   ],
   imports: [

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@CrossOrigin(origins = ("http://localhost:4200/"))
+@CrossOrigin(origins = ("http://localhost:4200"))
 @RequestMapping("/api")
 public class UserController {
 
@@ -33,10 +33,15 @@ public class UserController {
         }
     }
 
-    @PutMapping("/update/{email}")
-    public ResponseEntity<?> editUser(@PathVariable String email, @RequestBody User user) throws UserNotFoundException {
+    @PutMapping("/update")
+    public ResponseEntity<?> editUser( @RequestBody User user) throws UserNotFoundException {
 
-        return new ResponseEntity<>(userService.updateUser(email,user),HttpStatus.OK);
+        return new ResponseEntity<>(userService.updateUser(user),HttpStatus.OK);
+    }
+
+    @GetMapping("/getProfile/{email}")
+    public ResponseEntity<?> getProfile(@PathVariable String email){
+        return new ResponseEntity(userService.getUserById(email),HttpStatus.ACCEPTED);
     }
 
 

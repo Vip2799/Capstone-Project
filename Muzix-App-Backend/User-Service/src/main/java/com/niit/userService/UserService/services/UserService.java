@@ -9,10 +9,10 @@ public interface UserService {
 
     User addUser(User user) throws UserAlreadyExistsException;
 
-    User updateUser(String email, User user) throws UserNotFoundException;
+    User updateUser( User user) throws UserNotFoundException;
 
     boolean deleteUser(String email) throws UserNotFoundException;
 
-
+    User getUserById(String email);
 
 }

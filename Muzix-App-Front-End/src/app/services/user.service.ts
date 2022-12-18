@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { genre } from '../models/genre';
 import { user } from '../models/user';
 
 @Injectable({
@@ -21,7 +22,7 @@ export class UserService {
   }
 
   updateProfile(userData:any){
-    return this.http.put(this.baseUrl1+"update/"+localStorage.getItem("emailId"),userData)
+    return this.http.put(this.baseUrl1+"update",userData)
   }
 
   deleteProfile(userId:any){
@@ -32,15 +33,22 @@ export class UserService {
   
    return new Promise((resolve, reject) => {
     this.http.get(this.baseUrl1+"getProfile/"+userId).subscribe(data=>{
-      resolve(data)
+      resolve(data);
+      console.log(data);
     })
    })
+  }
+
+  getUser(email:string){
+    this.http.get("http://localhost:8083/api/getProfile/vip1@gmail.com").subscribe(data=>{
+      console.log(data);
+    })
   }
 
   getGenres(){
     return new Promise((res,rej)=>{
       let response = null;
-       this.http.get("https://api.themoviedb.org/3/genre/movie/list?api_key=15e383204c1b8a09dbfaaa4c01ed7e17&language=en-US").subscribe(result =>{
+       this.http.get<genre[]>("https://api.themoviedb.org/3/genre/movie/list?api_key=15e383204c1b8a09dbfaaa4c01ed7e17&language=en-US").subscribe(result =>{
         response = result ;
         res(response);
       })
