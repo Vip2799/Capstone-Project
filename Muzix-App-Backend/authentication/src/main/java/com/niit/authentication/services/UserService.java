@@ -8,4 +8,6 @@ public interface UserService {
 
     User addUser(User user) throws UserAlreadyExistsException;
     User getUserByEmailAndPassword(String email,String password) throws UserNotFoundException;
+
+
 }

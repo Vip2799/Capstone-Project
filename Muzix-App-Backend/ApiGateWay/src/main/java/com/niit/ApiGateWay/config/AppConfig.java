@@ -20,11 +20,15 @@ public class AppConfig {
                 )
                 .route(p->p
                         .path("/api/**")
-                        .uri("http://localhost:8082/")
+                        .uri("http://localhost:8083/")
                 )
                 .route(p->p
                         .path("/favourite/**")
-                        .uri("http://movie-service:8081/")
+                        .uri("http://localhost:8081/")
+                )
+                .route(p->p
+                        .path("/api/filter/**")
+                        .uri("http://localhost:8082/")
                 ).build();
     }
 }

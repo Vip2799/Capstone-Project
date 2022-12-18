@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class MovieService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: String = "http://localhost:8080/movie/api/v1/"
+  baseUrl: String = "http://localhost:9000/movie/api/v1/"
 
   getMovieById(id: number) {
     return new Promise((res, rej) => {
@@ -19,12 +19,14 @@ export class MovieService {
   }
 
   getAllMovies() {
-    let httpHeaders = new HttpHeaders({
-      'authorization': 'Bearer' + localStorage.getItem('jwt')
-    });
-    let requestToken = { headers: httpHeaders }
-    console.log(requestToken)
-    return this.http.get(this.baseUrl + "allmovies", requestToken)
+    // let httpHeaders = new HttpHeaders({
+    //   'authorization': 'Bearer' + localStorage.getItem('jwt')
+    // }).set('access-control-allow-origin', '*');
+    let token = 'Bearer '+localStorage.getItem('jwt');
+    let headers = new HttpHeaders().set("Authorization",token)
+   // let requestToken = { headers: httpHeaders }
+    console.log(headers)
+    return this.http.get(this.baseUrl + "allmovies",{headers,responseType:'text' as 'json'})
   }
 
   getRating(id: Int16Array, email: String) {
