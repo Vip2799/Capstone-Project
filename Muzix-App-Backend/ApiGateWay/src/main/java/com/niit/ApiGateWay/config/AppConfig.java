@@ -13,10 +13,22 @@ public class AppConfig {
         return builder.routes()
                 .route(p->p
                         .path("/user/v1/**")
-                        .uri("http://authenticationService:8092/")
+                        .uri("http://localhost:8092/")
                 ).route(p->p
-                        .path("/movie/**")
-                        .uri("http://movie-service:8080/")
+                        .path("/movie/api/v1/**")
+                        .uri("http://localhost:8080/")
+                )
+                .route(p->p
+                        .path("/api/**")
+                        .uri("http://localhost:8083/")
+                )
+                .route(p->p
+                        .path("/favourite/**")
+                        .uri("http://localhost:8081/")
+                )
+                .route(p->p
+                        .path("/api/filter/**")
+                        .uri("http://localhost:8082/")
                 ).build();
     }
 }

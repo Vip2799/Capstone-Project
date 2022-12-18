@@ -10,8 +10,8 @@ export class UserService {
 
   constructor( private http:HttpClient) { }
 
-  baseUrl:String = "http://localhost:8092/user/v1/"
-  baseUrl1:String = "http://localhost:8083/api/"
+  baseUrl:String = "http://localhost:9000/user/v1/"
+  baseUrl1:String = "http://localhost:9000/api/"
 
   registerUser(userData:any){
     return  this.http.post(this.baseUrl1+"register",userData);

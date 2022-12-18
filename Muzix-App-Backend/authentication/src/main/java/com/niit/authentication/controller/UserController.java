@@ -8,23 +8,27 @@ import com.niit.authentication.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("user/v1/")
-@CrossOrigin("*")
 public class UserController {
 
     private UserService userService;
 
     private SecurityTokenGenerator securityTokenGenerator;
 
+    private JavaMailSender javaMailSender;
+
     @Autowired
-    public UserController(UserService userService, SecurityTokenGenerator securityTokenGenerator){
+    public UserController(UserService userService, SecurityTokenGenerator securityTokenGenerator,JavaMailSender javaMailSender){
         this.userService=userService;
         this.securityTokenGenerator=securityTokenGenerator;
+        this.javaMailSender = javaMailSender;
     }
 
     @PostMapping("/login")
@@ -32,6 +36,11 @@ public class UserController {
         Map<String,String> map=null;
         try{
             User user1=userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(user.getEmail());
+            msg.setSubject("Login");
+            msg.setText("You have successfully LoggedIn.Please start Watching Movies.");
+            javaMailSender.send(msg);
             if(user1.getEmail().equals(user.getEmail())){
                 map=securityTokenGenerator.generateToken(user);
             }
@@ -46,6 +55,11 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody User user)throws UserAlreadyExistsException {
         User userCreated=userService.addUser(user);
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(user.getEmail());
+        msg.setSubject("Registration");
+        msg.setText("You have successfully registered.Please continue with login.");
+        javaMailSender.send(msg);
         return new ResponseEntity<>(userCreated, HttpStatus.CREATED);
     }
 
