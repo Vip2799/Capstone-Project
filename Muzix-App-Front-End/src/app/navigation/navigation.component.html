@@ -13,13 +13,16 @@
   </mat-sidenav> -->
   <mat-sidenav-content>
     <mat-toolbar class="topnav">
-      <div id="logo">
-        <mat-icon fontIcon="play_circle_filled"></mat-icon>
+      <div id="start">
+        <div id="logo">
+          <mat-icon fontIcon="play_circle_filled"></mat-icon>
+        </div>
+        <a routerLink="/dashboard" id="logo1">Muzix-App</a>
       </div>
-      <a routerLink="/dashboard" id="logo1">Muzix-App</a>
+      
 
       <section>
-        
+
       </section>
 
       <section id="container">
@@ -28,20 +31,24 @@
           <h3  href="#" class="navcomponent">Movies</h3>
         </div> -->
         <div id="profcont">
-          <a routerLink="/home" class="mat-icon" id="home" mat-icon-button>
-            <mat-icon fontIcon="home"> </mat-icon>
-          </a>
-          <a routerLink="/favourite" class="mat-icon" id="fav" mat-icon-button>
-            <mat-icon fontIcon="star"> </mat-icon>
-          </a>
-          <a routerLink="/profile" class="mat-icon" id="person" mat-icon-button>
-            <mat-icon fontIcon="person"> </mat-icon>
-          </a>
-          <img id="profile" src="../../assets/profile.jpg" (click)="profile()" *ngIf="isLoggedIn ; else loggedIn">
+          <div id="right-one">
 
-          <ng-template #loggedIn>
-            <a routerLink="/login" mat-raised-button >Login</a>
-          </ng-template>
+
+            <a routerLink="/home" class="mat-icon" id="home" mat-icon-button>
+              <mat-icon fontIcon="home"> </mat-icon>
+            </a>
+            <a routerLink="/favourite" class="mat-icon" id="fav" mat-icon-button>
+              <mat-icon fontIcon="star"> </mat-icon>
+            </a>
+            <a routerLink="/profile" class="mat-icon" id="person" mat-icon-button>
+              <mat-icon fontIcon="person"> </mat-icon>
+            </a>
+            <img id="profile" src="../../assets/profile.jpg" (click)="profile()" *ngIf="isLoggedIn ; else loggedIn">
+
+            <ng-template #loggedIn>
+              <a routerLink="/login" mat-raised-button>Login</a>
+            </ng-template>
+          </div>
         </div>
 
 

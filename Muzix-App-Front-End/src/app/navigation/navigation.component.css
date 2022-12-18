@@ -9,10 +9,10 @@
   /* color: rgb(8, 20, 30); */
 }
 
-.mat-icon mat-icon{
+/* .mat-icon mat-icon{
   position: relative;
   left: 1px;
-}
+} */
 
 .sidenav-container{
   /* border: 2px solid red; */
@@ -23,7 +23,7 @@
   cursor: pointer;
   position: relative;
   top: 6px;
-  margin-right: -20px;
+  margin-right: 0px;
 
 }
 
@@ -61,7 +61,7 @@
   align-self: center;
   border-radius: 50%;
   box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.4);
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 
@@ -74,10 +74,13 @@
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 /* align-items: center; */
 justify-content: flex-end;
-  padding: 0%;
+
+  /* padding: 0%; */
+  margin-right: 20px;
+  /* padding-right: 10px; */
   
 }
 
@@ -85,7 +88,13 @@ justify-content: flex-end;
   size: 50x;
   display: flex;
   flex-flow: column nowrap;
-  margin-right: 50px;
+  /* margin-right: 50px; */
+}
+#right-one{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  
 }
 
 .mat-icon{
@@ -93,7 +102,7 @@ justify-content: flex-end;
   position: relative;
   top: -3px;
   left: -3px;
-  margin-right: 25px;
+  margin-right: 5%;
 }
 
 #container{
@@ -130,7 +139,12 @@ justify-content: flex-end;
 #logo mat-icon:hover{
   color: red;
 }
+#start{
+  display: flex;
+  flex-flow: row nowrap;
+  /* justify-content: space-between; */
 
+}
 #toolkitcontainer{
     position: absolute;
     right: 12%;
@@ -189,12 +203,14 @@ justify-content: flex-end;
   /* justify-self: center; */
   align-self: center;
   /* padding: 2px; */
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 
 .topnav{
   /* position: relative; */
   background-color: rgb(185, 142, 255);
+  width: 100%;
+
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9);
   /* z-index: inherit; */
   /* border: 2px solid; */
@@ -202,6 +218,25 @@ justify-content: flex-end;
 }
 
 
-#profcont   {
-  /* text-decoration: none; */
+@media screen and (max-width: 576px) {
+  #logo{
+    margin-right: 0px;
+  }
+  #logo1{
+    font-size: 80%;
+    /* border: 2px solid red; */
+  }
+  mat-icon{
+    /* font-size: ; */
+    margin: 0px;
+  }
+  #person{
+    margin: 0px;
+  }
+  #profcont{
+    /* margin: 0px; */
+    /* border: 2px solid green; */
+    margin-right: 2%;
+
+  }
 }
