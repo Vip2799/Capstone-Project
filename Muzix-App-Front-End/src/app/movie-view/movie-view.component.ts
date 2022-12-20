@@ -141,11 +141,24 @@ export class MovieViewComponent implements OnInit {
         }
 
       }).catch(err => console.log(err))
+
+      this.movieservice.getRating(this.movie.id, localStorage.getItem("emailId")).then(data => {
+        if (data) {
+          this.movie.rating = data;
+          console.log(data);
+        }
+      })
     })
 
   }
 
   ngOnInit(): void {
+
+    this.email = localStorage.getItem("emailId");
+
+    this.ratingform.patchValue({
+      rating : this.movie.rating 
+    })
     // this.movieservice.currentMovieListToShow = null ;
 
     this.movieservice.currentMovieListToShow = this.movieservice.getUpdatedMovieList();
@@ -155,11 +168,7 @@ export class MovieViewComponent implements OnInit {
 
     // this.movieservice.getAllMovies().subscribe
     // console.log(localStorage.getItem("emailId"));
-    this.movieservice.getRating(this.movie.id, localStorage.getItem("emailId")).then(data => {
-      if (data) {
-        this.movie.rating = data;
-      }
-    })
+   
 
     // this.movieservice.getMovieById(this.paramMovieId).then(obj => {
     //   this.movie = obj;
@@ -200,7 +209,7 @@ export class MovieViewComponent implements OnInit {
   }
 
 
-  email: any = localStorage.getItem("emailId");
+  email: any = "";
   addMovieToFavList(favListName: string) {
     this.favService.addMovieToFav(this.email, favListName, this.movie).then(data => {
       console.log(data);

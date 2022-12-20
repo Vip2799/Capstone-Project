@@ -23,13 +23,14 @@ public class mainMethid {
 //        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 //        System.out.println(response.body());
 
-//        Map<String, Integer> rating = new HashMap<>();
-//        rating.put("vipul@gmail.com",5);
-//        rating.put("arjun@gmail.com",7);
-//        System.out.println(rating.get("vipul@gmail.com"));
+        Map<String, Integer> rating = new HashMap<>();
+        rating.put("vipul@gmail.com",5);
+        rating.put("arjun@gmail.com",7);
+        System.out.println(rating.get("vipul23@gmail.com"));
 //
 //        MovieService movieService = new MovieServiceImpl();
 //        movieService.addRating(238,"vipul99gmail.com",5);
+//        movi
 
     }
 }

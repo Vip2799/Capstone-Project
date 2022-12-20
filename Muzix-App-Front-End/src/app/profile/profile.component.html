@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-7 col-9">
               <div class="row ">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="outline">
                   <mat-label>User Name</mat-label>
                   <input [readonly]="edit" matInput placeholder="userName" formControlName="userName">
                   <mat-error *ngIf="profileForm.controls['userName'].hasError('required')">
@@ -33,7 +33,7 @@
 
               </div>
               <div class="row">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Age</mat-label>
                   <input [readonly]="edit" matInput placeholder="age" formControlName="age">
                   <mat-error *ngIf="profileForm.controls['age'].hasError('required')">
@@ -50,7 +50,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
               <input readonly=true matInput placeholder="Email" formControlName="email">
               <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
@@ -62,7 +62,7 @@
 
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Mobile Number</mat-label>
               <input [readonly]="edit" type="tel" matInput placeholder="Mobile No" formControlName="mobileNo">
               <mat-error *ngIf="profileForm.controls['city'].hasError('required')">
@@ -80,7 +80,7 @@
 
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Street Name</mat-label>
               <input [readonly]="edit" matInput placeholder="Street Name" formControlName="streetName">
               <mat-error *ngIf="profileForm.controls['streetName'].hasError('required')">
@@ -92,7 +92,7 @@
 
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>City</mat-label>
               <input [readonly]="edit" matInput placeholder="City" formControlName="city">
               <mat-error *ngIf="profileForm.controls['city'].hasError('required')">
@@ -101,7 +101,7 @@
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>State</mat-label>
               <mat-select placeholder="State" formControlName="state">
                 <mat-option [disabled]="edit" *ngFor="let state of states" [value]="state">
@@ -116,7 +116,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Pincode</mat-label>
               <input [readonly]="edit" matInput #postalCode maxlength="6" placeholder="Postal Code" type="number"
                 formControlName="postalCode">

@@ -47,7 +47,9 @@ export class NavigationComponent implements OnInit{
     localStorage.removeItem("emailId");
     localStorage.removeItem("jwt");
     this.loginAuth.logout;
-    this.router.navigate(['home'])
+    this.router.navigate(['home']).then(()=>{
+      window.location.reload();
+    })
   }
 
   profile() {

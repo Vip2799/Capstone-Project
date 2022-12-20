@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FavouriteList } from '../models/favourite';
 import { updatedMovieList } from '../models/updatedMovieList';
 import { FavouriteService } from '../services/favourite.service';
@@ -21,8 +22,8 @@ export class FavouriteComponent {
 
   movieName: any;
 
-  listName: any;
-  email: string = ""
+  listName: any ="";
+  email: any = ""
   lists: any = [];
 
   name: any;
@@ -38,6 +39,9 @@ export class FavouriteComponent {
   favListShow: boolean = true;
 
   ngOnInit() {
+
+    this.email = localStorage.getItem("emailId");
+
     this.userservice.getGenres().then((response) => {
       this.genresList = response;
       this.genres = this.genresList.genres;
@@ -81,7 +85,7 @@ export class FavouriteComponent {
   }
   updatedMovieList: updatedMovieList[] = [];
 
-  movieListShow: boolean = false;
+  movieListShow: boolean = true;
 
   view(listName: any) {
 
@@ -113,6 +117,9 @@ export class FavouriteComponent {
       // console.log(this.updatedMovieList[0]);
       if (this.updatedMovieList.length == 0) {
         this.movieListShow = true;
+      }else{
+        this.movieListShow = false ;
+        window.location.reload();
       }
 
     })
@@ -164,12 +171,13 @@ export class FavouriteComponent {
 
   }
 
+  // email:any = localStorage.getItem("emailId");
   addMovie(listName: any, movieName: any) {
 
     this.favourite.getFavListByListName(listName).subscribe(data => {
       this.search.searchedMovie(movieName).subscribe(data =>
-
-        this.favourite.add(listName, data[0]).subscribe(
+        
+        this.favourite.addMovieToFav(this.email,listName, data[0]).then(
 
           data1 => {
             this.addMovieData = data1;

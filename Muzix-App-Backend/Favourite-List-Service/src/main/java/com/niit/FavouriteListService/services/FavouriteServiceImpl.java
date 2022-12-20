@@ -33,17 +33,21 @@ public class FavouriteServiceImpl implements FavouriteService{
 
     @Override
     public Favourite addFavouriteList(String email, String favListName) throws FavouriteListAlreadyExists {
-        Favourite favAccount = favouriteRepository.findById(email).get();
-        List<FavouriteList> favLists = favAccount.getFavouriteLists();
+        Favourite favAccount = null;
+        List<FavouriteList> favLists = null ;
+        if(favouriteRepository.findById(email).isPresent()){
+             favAccount = favouriteRepository.findById(email).get();
+             favLists = favAccount.getFavouriteLists();
+
+        }
         for(FavouriteList favlist : favLists){
             if(favlist.getFavListName().equalsIgnoreCase(favListName)){
                 throw new FavouriteListAlreadyExists();
             }
-            else{
-                favLists.add(new FavouriteList(favListName,new ArrayList<>()));
-                favAccount.setFavouriteLists(favLists);
-            }
         }
+        favLists.add(new FavouriteList(favListName,new ArrayList<>()));
+        favAccount.setFavouriteLists(favLists);
+        System.out.println(favAccount);
 
         return favouriteRepository.save(favAccount);
 

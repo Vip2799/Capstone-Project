@@ -7,12 +7,15 @@ import { Movie } from '../models/Movie';
   providedIn: 'root'
 })
 export class FavouriteService {
+  getFavListByListName2(listName: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) { }
 
   URL: string = "http://localhost:9000/favourite/";
 
   createFavList(favListName:string){
-    return this.http.post(`http://localhost:8081/favourite/favList/${localStorage.getItem("emailId")}`,favListName)
+    return this.http.post(`${this.URL}favList/${localStorage.getItem("emailId")}`,favListName)
   }
 
   addMovieToFav(email: string, listName: string, movie: Movie) {
@@ -31,7 +34,7 @@ export class FavouriteService {
   }
 
   getFavListByListName(listName: any) {
-    return this.http.get<any>(`${this.URL} favList/get/${localStorage.getItem("emailId")}/ ${listName}`);
+    return this.http.get<any>(`http://localhost:9000/favourite/favList/get/${localStorage.getItem("emailId")}/${listName}`);
   }
 
   getFavListByName2(listName:any){
@@ -48,7 +51,7 @@ export class FavouriteService {
 
 
   deleteFavList(listName: any) {
-    return this.http.delete<any>(`${this.URL}favList/delete/${localStorage.getItem("emailId")}`, listName);
+    return this.http.delete<any>(`${this.URL}favList/delete/${localStorage.getItem("emailId")}/${listName}`);
   }
 
   deleteMovieFromList(listname: any, id: any) {
