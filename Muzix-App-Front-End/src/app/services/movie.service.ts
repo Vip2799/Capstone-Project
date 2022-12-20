@@ -10,15 +10,15 @@ import { UserService } from './user.service';
 })
 export class MovieService {
 
-<<<<<<< HEAD
+
   currentMovieListToShow:any = [];
 
+  
+
   constructor(private http: HttpClient, private userservice: UserService) { }
-  baseUrl: String = "http://localhost:8080/movie/api/v1/"
-=======
-  constructor(private http: HttpClient) { }
+  // baseUrl: String = "http://localhost:8080/movie/api/v1/"
+
   baseUrl: String = "http://localhost:9000/movie/api/v1/"
->>>>>>> 2e92e0b5efbddefbecfb61c4b70f68e99fa283b4
 
   getMovieById(id: number) {
     return new Promise((res, rej) => {
@@ -29,63 +29,57 @@ export class MovieService {
     })
   }
 
-  getAllMovies() {
-<<<<<<< HEAD
-    let httpHeaders = new HttpHeaders({
-      'authorization': 'Bearer' + localStorage.getItem('jwt')
-    });
-    let requestToken = { headers: httpHeaders }
-    // console.log(requestToken)
-    return this.http.get(this.baseUrl + "allmovies", requestToken)
-=======
-    // let httpHeaders = new HttpHeaders({
-    //   'authorization': 'Bearer' + localStorage.getItem('jwt')
-    // }).set('access-control-allow-origin', '*');
-    let token = 'Bearer '+localStorage.getItem('jwt');
-    let headers = new HttpHeaders().set("Authorization",token)
-   // let requestToken = { headers: httpHeaders }
-    console.log(headers)
-    return this.http.get(this.baseUrl + "allmovies",{headers,responseType:'text' as 'json'})
->>>>>>> 2e92e0b5efbddefbecfb61c4b70f68e99fa283b4
-  }
+ getAllMovies(){
+  let httpHeaders = new HttpHeaders({
+    'authorization': 'Bearer' + localStorage.getItem('jwt')
+  });
+  let requestToken = { headers: httpHeaders }
+  // console.log(requestToken)
+  return this.http.get(this.baseUrl + "allmovies", requestToken);
+ }
 
+ count:number  = 0 ;
   getUpdatedMovieList(){
 
-    let httpHeaders = new HttpHeaders({
-      'authorization': 'Bearer' + localStorage.getItem('jwt')
-    });
-    let requestToken = { headers: httpHeaders }
-    // console.log(requestToken)
-    // return 
-    let allMovies:any = [];
-    let genreList:any = [];
     let updatedMovieList: updatedMovieList[]=[];
 
-    this.http.get(this.baseUrl + "allmovies", requestToken).subscribe(data=>{
-      allMovies = data ;
-      
-      // this.recommendedMovieList = this.allMovies.slice(1,20)
-      this.userservice.getGenres().then(data=>{
-        genreList = data ;
-
-        for(let i = 0 ; i < allMovies.length ; i++){
-          let genreString: any[] = [];
-          for(let genre of allMovies[i].genre_ids){
-            // console.log(this.genreList)
-              genreList.genres.forEach((data: any) =>{
-                if(data.id == genre){
-                 genreString.push(data);
-                }
-            })
+    if(this.count ==0){
+      this.count++ ;
+      let httpHeaders = new HttpHeaders({
+        'authorization': 'Bearer' + localStorage.getItem('jwt')
+      });
+      let requestToken = { headers: httpHeaders }
+      // console.log(requestToken)
+      // return 
+      let allMovies:any = [];
+      let genreList:any = [];
+  
+      this.http.get(this.baseUrl + "allmovies", requestToken).subscribe(data=>{
+        allMovies = data ;
+        
+        // this.recommendedMovieList = this.allMovies.slice(1,20)
+        this.userservice.getGenres().then(data=>{
+          genreList = data ;
+  
+          for(let i = 0 ; i < allMovies.length ; i++){
+            let genreString: any[] = [];
+            for(let genre of allMovies[i].genre_ids){
+              // console.log(this.genreList)
+                genreList.genres.forEach((data: any) =>{
+                  if(data.id == genre){
+                   genreString.push(data);
+                  }
+              })
+            }
+            allMovies[i].currentGenreList = genreString ;
+            updatedMovieList.push(allMovies[i]);
           }
-          allMovies[i].currentGenreList = genreString ;
-          updatedMovieList.push(allMovies[i]);
-        }
+        })
       })
-      
+  
+    }
 
-    })
-    return updatedMovieList ;
+        return updatedMovieList ;
   }
 
   getRating(id: number, email: any) {

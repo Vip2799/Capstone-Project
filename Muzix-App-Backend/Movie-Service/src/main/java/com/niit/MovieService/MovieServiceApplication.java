@@ -17,7 +17,7 @@ public class MovieServiceApplication {
 
 		SpringApplication.run(MovieServiceApplication.class, args);
 	}
-	@Bean
+
 	FilterRegistrationBean jwtFilter(){
 		FilterRegistrationBean frb = new FilterRegistrationBean();
 		frb.setFilter(new JwtFilter());

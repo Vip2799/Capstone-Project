@@ -1,5 +1,6 @@
 package com.niit.FavouriteListService.controller;
 
+import com.niit.FavouriteListService.exception.FavouriteListAlreadyExists;
 import com.niit.FavouriteListService.exception.MovieAlreadyExistsException;
 import com.niit.FavouriteListService.services.FavouriteService;
 import com.niit.MovieService.domain.Movie;
@@ -9,10 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-<<<<<<< HEAD
-@CrossOrigin(origins = ("http://localhost:4200"))
-=======
->>>>>>> 2e92e0b5efbddefbecfb61c4b70f68e99fa283b4
 @RequestMapping("/favourite/")
 public class FavouriteServiceController {
 
@@ -27,7 +24,11 @@ public class FavouriteServiceController {
 
     @PostMapping("favList/{email}")
     public ResponseEntity<?> createFavList(@PathVariable String email, @RequestBody String favListName){
-        return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
+        } catch (FavouriteListAlreadyExists e) {
+            return new ResponseEntity<>(null,HttpStatus.ACCEPTED);
+        }
     }
 
     @PostMapping("favList/addMovie/{email}/{name}")

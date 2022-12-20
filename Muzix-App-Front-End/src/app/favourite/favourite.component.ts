@@ -12,103 +12,172 @@ import { UserService } from '../services/user.service';
 })
 export class FavouriteComponent {
 
+  isPlaylistOptionOpen: boolean = false;
   movies: any = [];
 
-  addMovieData : any = [];
+  addMovieData: any = [];
 
-  movie : any ;
+  movie: any;
 
-  movieName : any;
+  movieName: any;
 
   listName: any;
-  email:string = ""
-  lists : any = [];
+  email: string = ""
+  lists: any = [];
 
-  name : any;
-  isShow : boolean = true;
+  name: any;
+  isShow: boolean = true;
 
-  favs : any ;
-  moviesOfList : FavouriteList = {}; 
+  favs: any;
+  moviesOfList: FavouriteList = {};
   genresList: any = {};
   genres: any[] = [];
 
-  constructor(private favourite : FavouriteService, private search: SearchService, private userservice:UserService){}
+  constructor(private favourite: FavouriteService, private search: SearchService, private userservice: UserService, private snackBar: MatSnackBar) { }
 
-  
+  favListShow: boolean = true;
 
-  ngOnInit(){
+  ngOnInit() {
     this.userservice.getGenres().then((response) => {
       this.genresList = response;
       this.genres = this.genresList.genres;
-      console.log(this.genres);
-      
+      // console.log(this.genres);
+
 
     }).catch(err => console.log(err))
 
-      this.favourite.getAcc().subscribe(data => {
-        
-        this.favs = data.favouriteLists;
-    
-      })
-  }
+    this.favourite.getAcc().subscribe(data => {
 
-
-  
-  createList(){
-    this.favourite.createFavList(this.listName).subscribe(
-      data=> {
-        this.name = data
-      console.log(data);
-    }
-    )
-    window.location.reload();
-  }
-updatedMovieList:updatedMovieList[] = [];
-
- view(listName:any){
-    this.isShow = true;
-     this.favourite.getFavListByListName(listName).subscribe(data=>
-      {
-        
-        this.moviesOfList = data;
-        console.log(this.moviesOfList)
-
-        
-        this.movies=this.moviesOfList.movieList ;
-
-        for(let movie of this.movies){
-          let currentGenre: any[] = [];
-          for (let genre_id of movie.genre_ids) {
-            // this.currentGenre = this.genres.filter((obj) => obj.id == genre_id)
-            this.genres.forEach(obj => {
-              if (obj.id == genre_id) {
-                currentGenre.push(obj);
-              }
-            })
-          }
-          movie.currentGenreList = currentGenre ;
-          
-          this.updatedMovieList.push(movie);
-        }
-        // console.log(this.updatedMovieList[0]);
-  
+      this.favs = data.favouriteLists;
+      if (this.favs.length == 0) {
+        this.favListShow = false;
+      }
+      if (this.updatedMovieList.length == 0) {
+        this.isShow = false;
+      }
+      console.log(this.favs.length);
     })
 
-      
- }
+  }
 
 
-delete(listName:any,id:any){
 
-  // window.location.reload();
-  this.isShow = true;
-  this.favourite.deleteMovieFromList(listName,id).subscribe(data1 =>
-    
-        {this.favourite.getFavListByListName(listName).subscribe(data=>
-          {this.movies=data.movieList,
-            data1 = data;
+  createList() {
+    if (this.listName == "") {
+      alert("Please type name of Favourite List")
+    }
+    else {
+      this.isShow = true;
+      this.favourite.createFavList(this.listName).subscribe(
+        data => {
+          // this.name = data
           console.log(data);
-      })
-         })
+          this.snackBar.open(`${this.listName} Favourite List is created `, "*_*", { duration: 2000 });
+          window.location.reload();
+        }
+      )
+
+    }
+  }
+  updatedMovieList: updatedMovieList[] = [];
+
+  movieListShow: boolean = false;
+
+  view(listName: any) {
+
+    this.favListShow = true;
+
+    this.favourite.getFavListByListName(listName).subscribe(data => {
+
+      this.moviesOfList = data;
+
+      console.log(this.moviesOfList)
+
+
+      this.movies = this.moviesOfList.movieList;
+
+      for (let movie of this.movies) {
+        let currentGenre: any[] = [];
+        for (let genre_id of movie.genre_ids) {
+          // this.currentGenre = this.genres.filter((obj) => obj.id == genre_id)
+          this.genres.forEach(obj => {
+            if (obj.id == genre_id) {
+              currentGenre.push(obj);
+            }
+          })
+        }
+        movie.currentGenreList = currentGenre;
+
+        this.updatedMovieList.push(movie);
       }
+      // console.log(this.updatedMovieList[0]);
+      if (this.updatedMovieList.length == 0) {
+        this.movieListShow = true;
+      }
+
+    })
+
+  }
+
+
+
+  delete(listName: any, id: any) {
+
+    this.isShow = true;
+    this.favourite.deleteMovieFromList(listName, id).subscribe(data1 => {
+      this.favourite.getFavListByListName(listName).subscribe(data => {
+        this.movies = data.movieList,
+        data1 = data;
+        console.log(data);
+      })
+  
+    })
+    
+
+  }
+
+  deleteFavList(listName: any) {
+    this.favourite.deleteFavList(listName).subscribe(data1 => {
+      this.favourite.getFavListByListName(listName).subscribe(data => {
+        this.favs = data;
+        console.log(data);
+      })
+      window.location.reload();
+    })
+  }
+
+  createFavList: boolean = true;
+
+  playListOption() {
+    this.createFavList = true;
+    if (this.isPlaylistOptionOpen) {
+      this.isPlaylistOptionOpen = false;
+    } else {
+      this.isPlaylistOptionOpen = true;
+    }
+  }
+  create() {
+
+    if (this.createFavList) {
+      this.createFavList = false;
+    }
+
+  }
+
+  addMovie(listName: any, movieName: any) {
+
+    this.favourite.getFavListByListName(listName).subscribe(data => {
+      this.search.searchedMovie(movieName).subscribe(data =>
+
+        this.favourite.add(listName, data[0]).subscribe(
+
+          data1 => {
+            this.addMovieData = data1;
+            console.log(data1);
+          }
+        ))
+    })
+
+  }
+
 }

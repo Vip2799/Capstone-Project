@@ -4,146 +4,165 @@
   </div>
   <mat-card class="registration-card">
     <mat-card-header>
-      <mat-card-title>Registration Form </mat-card-title>
+      <!-- <mat-card-title>Registration Form </mat-card-title> -->
     </mat-card-header>
     <mat-card-content>
-      <div class="row">
-        <div class="col-3">
-          <div id="uploadInput">
-            <img id="profilephoto" [src]="url">
-            <input type="file" id="file" (change)="uploadProfile($event)">
-            <label for="file" id="uploadbtn">Choose Photo</label>
+      <div *ngIf="userform; else addressForm">
+        <h3>User Details</h3>
+        <div class="row">
+          <div class="col-3">
+            <div id="uploadInput">
+              <img id="profilephoto" [src]="url">
+              <input type="file" id="file" (change)="uploadProfile($event)">
+              <label for="file" id="uploadbtn">Choose Photo</label>
+            </div>
+          </div>
+          <div class="col ">
+            <mat-form-field class="full-width">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="userName" formControlName="userName">
+              <mat-error *ngIf="registrationForm.controls['userName'].hasError('required')">
+                User name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
           </div>
         </div>
-        <div class="col ">
-          <mat-form-field class="full-width">
-            <mat-label>User Name</mat-label>
-            <input matInput placeholder="userName" formControlName="userName">
-            <mat-error *ngIf="registrationForm.controls['userName'].hasError('required')">
-              User name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="registrationForm.controls['email'].hasError('required')">
+                Email id is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
+        <div class="row">
           <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="registrationForm.controls['email'].hasError('required')">
-              Email id is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <mat-form-field class="full-width">
-          <mat-label>Age</mat-label>
-          <input matInput placeholder="age" formControlName="age">
-          <mat-error *ngIf="registrationForm.controls['age'].hasError('required')">
-            Age is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-label>Mobile Number</mat-label>
-            <input type="tel" matInput placeholder="Mobile No" formControlName="mobileNo">
-            <mat-error *ngIf="registrationForm.controls['mobileNo'].hasError('required')">
-              Mobile number is <strong>required</strong>
+            <mat-label>Age</mat-label>
+            <input matInput placeholder="age" formControlName="age">
+            <mat-error *ngIf="registrationForm.controls['age'].hasError('required')">
+              Age is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
-      <h3>Address</h3>
-
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-label>Street Name</mat-label>
-            <input matInput placeholder="Street Name" formControlName="streetName">
-            <mat-error *ngIf="registrationForm.controls['streetName'].hasError('required')">
-              Street Name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Mobile Number</mat-label>
+              <input type="tel" matInput placeholder="Mobile No" formControlName="mobileNo">
+              <mat-error *ngIf="registrationForm.controls['mobileNo'].hasError('required')">
+                Mobile number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-label>City</mat-label>
-            <input type="text" matInput placeholder="City" formControlName="city">
-            <mat-error *ngIf="registrationForm.controls['city'].hasError('required')">
-              City is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-label>State</mat-label>
-            <mat-select placeholder="State" formControlName="state">
-              <mat-option *ngFor="let state of states" [value]="state">
-                {{ state }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="registrationForm.controls['state'].hasError('required')">
-              State is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-label>Pincode</mat-label>
-            <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="pinCode">
-            <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
-            <mat-error *ngIf="registrationForm.controls['pinCode'].hasError('required')">
-              Pincode is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="pinCode?.hasError('minlength')">
-              Pincode should be <strong>6 digit</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input type="password" matInput placeholder="Password" formControlName="password">
-            <mat-error *ngIf="registrationForm.controls['password'].hasError('required')">
-              Password is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="password?.hasError('invalidPassword')">
-              <strong>Invalid</strong> password !!
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
-            <mat-error *ngIf="confirmPassword?.hasError('required')">
-              Confirm Password is <strong>required</strong>
-            </mat-error>
+      <ng-template #addressForm>
+        <div *ngIf="address ; else passwordfield">
+          <h3>Address</h3>
 
-          </mat-form-field>
-          <mat-error *ngIf="registrationForm.hasError('passwordMisMatch1')">
-            Password <strong>MisMatch</strong>..Please enter same password
-          </mat-error>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Street Name</mat-label>
+                <input matInput placeholder="Street Name" formControlName="streetName">
+                <mat-error *ngIf="registrationForm.controls['streetName'].hasError('required')">
+                  Street Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>City</mat-label>
+                <input type="text" matInput placeholder="City" formControlName="city">
+                <mat-error *ngIf="registrationForm.controls['city'].hasError('required')">
+                  City is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>State</mat-label>
+                <mat-select placeholder="State" formControlName="state">
+                  <mat-option *ngFor="let state of states" [value]="state">
+                    {{ state }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="registrationForm.controls['state'].hasError('required')">
+                  State is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Pincode</mat-label>
+                <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number"
+                  formControlName="pinCode">
+                <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                <mat-error *ngIf="registrationForm.controls['pinCode'].hasError('required')">
+                  Pincode is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="pinCode?.hasError('minlength')">
+                  Pincode should be <strong>6 digit</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-      </div>
+      </ng-template>
+      <ng-template #passwordfield>
+        <h3>Set Password</h3>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input type="password" matInput placeholder="Password" formControlName="password">
+              <mat-error *ngIf="registrationForm.controls['password'].hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="password?.hasError('invalidPassword')">
+                <strong>Invalid</strong> password !!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
+              <mat-error *ngIf="confirmPassword?.hasError('required')">
+                Confirm Password is <strong>required</strong>
+              </mat-error>
+
+            </mat-form-field>
+            <mat-error *ngIf="registrationForm.hasError('passwordMisMatch1')">
+              Password <strong>MisMatch</strong>..Please enter same password
+            </mat-error>
+          </div>
+        </div>
+      </ng-template>
 
     </mat-card-content>
-    <mat-card-actions>
-      <button [disabled]="registrationForm.invalid" mat-raised-button color="primary" type="submit"
-        class="bg-success">Register</button>
+    <mat-card-actions  id="next" >
+      <button type="button" *ngIf="!userform" mat-raised-button (click)="prevbtn()">Previous</button>
+
+      <button *ngIf="register" mat-raised-button color="primary" ng-click type="submit"
+        class="bg-success" [disabled]="registrationForm.invalid">Register</button>
+        <!-- <div > -->
+          <!-- <div></div> -->
+          <button  *ngIf="!register" type="button" mat-raised-button id="nextbtn" (click)="nextForm()">Next</button>
+        <!-- </div> -->
 
     </mat-card-actions>
+    
     <div id="login">
       <a routerLink="/login">Already registered?? Login</a>
 

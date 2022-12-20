@@ -9,7 +9,7 @@ import { Movie } from '../models/Movie';
 export class FavouriteService {
   constructor(private http: HttpClient) { }
 
-  URL: string = "http://localhost:8081/favourite/";
+  URL: string = "http://localhost:9000/favourite/";
 
   createFavList(favListName:string){
     return this.http.post(`http://localhost:8081/favourite/favList/${localStorage.getItem("emailId")}`,favListName)

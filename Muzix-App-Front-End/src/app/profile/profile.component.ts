@@ -94,6 +94,8 @@ export class ProfileComponent implements OnInit {
 
       })
 
+      this.profilePicUrl = user.profilePic ;
+
       // this.profile.address = user.address;
       // console.log(data);
       // console.log(user.address.city)

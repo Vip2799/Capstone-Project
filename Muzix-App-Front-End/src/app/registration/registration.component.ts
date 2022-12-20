@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -11,8 +11,31 @@ import { passwordValidation } from '../validations/passwordValidation';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
+  userform:boolean = true;
+  address:boolean = false;
+  register:boolean = false;
+  count:number = 0 ;
+  nextForm(){
+    if(this.userform){
+      this.userform = false ;
+      this.address = true ;
+      // this.count++ ;
+    }else{
+      this.address = false ;
+      this.register = true ;
+    }
+  }
+  prevbtn(){
+    if(this.address){
+      this.userform=true;
+      this.address = false;
+    }else{
+      this.address= true;
+      this.register= false;
+    }
+  }
 
   registrationForm = this.fb.group({
     userName: ["", Validators.required],
@@ -54,7 +77,7 @@ export class RegistrationComponent {
     return this.registrationForm.get('state');
   }
   get pinCode(){
-    return this.registrationForm.get('postalCode');
+    return this.registrationForm.get('pinCode');
   }
   get password(){
     return this.registrationForm.get('password');
@@ -99,7 +122,11 @@ export class RegistrationComponent {
     console.log(filedata)
     console.log(file);
   }
-  constructor(private fb: FormBuilder,private router:Router, private regUser: UserService, private snackbar: MatSnackBar) {}
+  constructor(private fb: FormBuilder, private snackvar:MatSnackBar,private router:Router, private regUser: UserService, private snackbar: MatSnackBar) {}
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
+    // document.documentElement.scrollTop = 10
+  }
 
   onSubmit(): void {
     this.regUser.registerUser({

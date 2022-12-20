@@ -1,10 +1,10 @@
 <form [formGroup]="profileForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="profile-card">
     <mat-card-header>
-      <mat-card-title>User Profile</mat-card-title>
+      <mat-card-title class="my-1">User Profile</mat-card-title>
     </mat-card-header>
     <mat-card-content class="row">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
 
         <div class="row">
           <!-- <div class="col-3">
@@ -13,53 +13,58 @@
             </div>
         </div> -->
 
-
-          <div class="col-3">
-            <div id="uploadInput">
-              <img id="profilephoto" [src]="profilePicUrl">
-              <input type="file" id="file" (change)="uploadProfile($event)">
-              <label for="file" id="uploadbtn">Choose Photo</label>
+          <div class="row">
+            <div class="col-3 col-md-5">
+              <div id="uploadInput">
+                <img id="profilephoto" [src]="profilePicUrl">
+                <input [disabled]="edit" type="file" id="file" (change)="uploadProfile($event)">
+                <label for="file" id="uploadbtn">Choose Photo</label>
+              </div>
             </div>
-          </div>
-          <div class="col ">
-            <mat-form-field class="full-width">
-              <mat-label>User Name</mat-label>
-              <input  [readonly]="edit" matInput placeholder="userName"
-                formControlName="userName">
-              <mat-error *ngIf="profileForm.controls['userName'].hasError('required')">
-                First name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+            <div class="col-md-7 col-9">
+              <div class="row ">
+                <mat-form-field class="full-width">
+                  <mat-label>User Name</mat-label>
+                  <input [readonly]="edit" matInput placeholder="userName" formControlName="userName">
+                  <mat-error *ngIf="profileForm.controls['userName'].hasError('required')">
+                    First name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+              </div>
+              <div class="row">
+                <mat-form-field class="full-width">
+                  <mat-label>Age</mat-label>
+                  <input [readonly]="edit" matInput placeholder="age" formControlName="age">
+                  <mat-error *ngIf="profileForm.controls['age'].hasError('required')">
+                    First name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+              </div>
+            </div>
 
           </div>
+
+
         </div>
         <div class="row">
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Email</mat-label>
-              <input  readonly=true matInput placeholder="Email" formControlName="email">
+              <input readonly=true matInput placeholder="Email" formControlName="email">
               <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
                 First name is <strong>required</strong>
               </mat-error>
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <mat-form-field class="full-width">
-            <mat-label>Age</mat-label>
-            <input  [readonly]="edit" matInput placeholder="age" formControlName="age">
-            <mat-error *ngIf="profileForm.controls['age'].hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
 
-        </div>
         <div class="row">
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Mobile Number</mat-label>
-              <input  [readonly]="edit" type="tel" matInput placeholder="Mobile No"
-                formControlName="mobileNo">
+              <input [readonly]="edit" type="tel" matInput placeholder="Mobile No" formControlName="mobileNo">
               <mat-error *ngIf="profileForm.controls['city'].hasError('required')">
                 City is <strong>required</strong>
               </mat-error>
@@ -67,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h3>Address</h3>
         <button id="edit" (click)="editProfile()" *ngIf="edit; else save" mat-icon-button color="primary">
           <mat-icon fontIcon="edit"></mat-icon>
@@ -77,8 +82,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Street Name</mat-label>
-              <input  [readonly]="edit" matInput placeholder="Street Name"
-                formControlName="streetName">
+              <input [readonly]="edit" matInput placeholder="Street Name" formControlName="streetName">
               <mat-error *ngIf="profileForm.controls['streetName'].hasError('required')">
                 City is <strong>required</strong>
               </mat-error>
@@ -90,8 +94,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>City</mat-label>
-              <input  [readonly]="edit" matInput placeholder="City"
-                formControlName="city">
+              <input [readonly]="edit" matInput placeholder="City" formControlName="city">
               <mat-error *ngIf="profileForm.controls['city'].hasError('required')">
                 City is <strong>required</strong>
               </mat-error>
@@ -100,7 +103,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>State</mat-label>
-              <mat-select  placeholder="State" formControlName="state">
+              <mat-select placeholder="State" formControlName="state">
                 <mat-option [disabled]="edit" *ngFor="let state of states" [value]="state">
                   {{ state }}
                 </mat-option>
@@ -115,8 +118,8 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Pincode</mat-label>
-              <input [readonly]="edit" matInput #postalCode maxlength="6"
-                placeholder="Postal Code" type="number" formControlName="postalCode">
+              <input [readonly]="edit" matInput #postalCode maxlength="6" placeholder="Postal Code" type="number"
+                formControlName="postalCode">
               <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
             </mat-form-field>
           </div>
