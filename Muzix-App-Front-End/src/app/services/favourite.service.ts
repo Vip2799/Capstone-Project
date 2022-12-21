@@ -31,7 +31,8 @@ export class FavouriteService {
   }
 
   getFavListByListName(listName: any) {
-    return this.http.get<any>(`${this.URL}favList/get/${localStorage.getItem("emailId")}/ ${listName}`);
+    console.log(listName);
+    return this.http.get<any>(`${this.URL}favList/get/${localStorage.getItem("emailId")}/${listName}`);
   }
 
   getFavListByName2(listName:any){
@@ -48,7 +49,7 @@ export class FavouriteService {
 
 
   deleteFavList(listName: any) {
-    return this.http.delete<any>(`${this.URL}favList/delete/${localStorage.getItem("emailId")}`, listName);
+    return this.http.delete<any>(`${this.URL}favList/delete/${localStorage.getItem("emailId")}/${listName}`);
   }
 
   deleteMovieFromList(listname: any, id: any) {

@@ -1,3 +1,131 @@
+#backimage{
+    background-image: url("../../assets/searchBackground.jpg");
+    background-size: 1400px;
+    width: 95%;
+    height: 40%;
+    margin-left: 40px;
+    margin-right: 60px;
+    /* border: 2px solid red ; */
+    border-radius: 60px;
+    background-position-y: -90px;
+}
+
+input{
+    border-radius: 10rem 0 0 10rem;
+    border: none;
+    background-color: #f1f1f1;
+    height: 1rem;
+    width: 30rem;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    outline: none;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+button{
+    background-color: rgb(25, 5, 154);
+    color: black;
+    width: 6rem;
+    font-size: 1.2rem;
+    border-radius: 0 10rem 10rem 0;
+    /* font-weight: bold; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: none;
+    opacity: .8;
+    outline: none;
+    color: white;
+    font-style: italic;
+    padding: 10px;
+}
+
+button:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.cardWidth{
+    width: 200px;
+}
+
+.card{
+    cursor: pointer;
+    text-align: center;
+    background-color: rgb(200, 202, 197)
+}
+img{
+    border-radius: 10px;
+}p{
+    color: rgb(8, 8, 8);
+}
+
+h1 {
+    color: #bed9e3;
+    font-family: arial, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-bottom: 1px;
+    margin-left: 500px; 
+    position: relative;
+   
+}
+ .releasedate{
+        color: rgb(52, 41, 41);
+        font-style:oblique;
+        font-weight: 500;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 17px;  
+}/*
+.movieTitle{
+    color: rgb(174, 105, 176);
+    font-size: 14px;
+} */
+/* ----------------------------------Card-slider---------------------------------------------------- */
+.movies{
+    padding: 20px 0px;
+    margin-top: 0px;
+}
+.slider-wrap{
+    position: relative;
+     overflow: hidden;
+     overflow-inline:hidden;
+     height: 270px;;
+}
+.slider-main{
+    position: absolute;
+    width: 1080%;
+}
+.movie{
+    display: inline-block;
+    width: 195px;
+    height: 180px;
+    position: relative;
+    margin: 0px 12px;
+}
+.text{
+    postion: absolute;
+
+}
+.prev{
+    position: absolute;
+    left: 36px;
+    top: 120px;
+    transform: translate(-50%,-50%);
+}
+.next{
+    position: absolute;
+    right: -5px;
+    top: 120px;
+    transform: translate(-50%,-50%);
+}
+.heading{
+    margin-top: -50px;
+}
+mat-raised-button{
+    background-color: transparent;
+}
+/* ---------------------------------------------------- */
 .search-container{
     display: flex;
     justify-content: center;
@@ -31,7 +159,4 @@
 .search-container button:hover{
     opacity: 1;
     cursor: pointer;
-}
-.cardWidth{
-    width: 200px;
 }

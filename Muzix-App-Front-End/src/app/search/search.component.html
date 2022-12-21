@@ -1,30 +1,36 @@
-<div class="search-container">
-    <input (input)="onSearchTextChanged()" type="text" placeholder="Search Movie" [(ngModel)]="enterSearchValue" >
-    <button >Search</button>
+<div id="backimage">
+  <input (input)="onSearchTextChanged()" type="text" placeholder="Search Movie" [(ngModel)]="enterSearchValue" >
+  <button (click)="hidecont()" >Search</button>
 </div>
-
-<div class="container">
-    <div class="row">
-      <div class="col-lg-2 m-3 p-1 mb-2 rounded" *ngFor="let movie of movies">
-        <mat-card class="example-card" class="cardWidth">
-          <mat-card-title> <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" width="200px" height="200px" alt=""> </mat-card-title>
-          <mat-card-content>
-            <p class="text-center"><b>{{movie.title}}</b></p>
-            <p>{{movie.release_date}}</p>
-          </mat-card-content>
-          <mat-card-actions>
-            <a>
-              <button color="warn" mat-icon-button>
-           play
-              </button></a
-            >
-            <a>
-                <button color="warn" mat-icon-button>
-             favourite
-                </button></a
-              >
-          </mat-card-actions>
-        </mat-card>  
+<br>
+<section class="movies" *ngIf="searchSection">
+  <div class="container-fluid">
+    <div class="slider-wrap">
+      <div class="slider-main">
+        <div class="movie" *ngFor="let movie of movies"  (click)="navigateToMovie(movie.id)">
+          <div class="card">
+            <div class="card-body">
+              <img
+              src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
+                movie.poster_path
+              }}"
+              width="165px"
+              height="140px"
+              alt=""
+            />
+              <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
+              <p class="text-center movieTitle">
+                <b>{{ movie.title }}</b>
+              </p>
+              <p class="releasedate">OnAir:-{{ movie.release_date }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button-area">
+        <button type="button" mat-raised-button class="prev preButton" appPrev><mat-icon>arrow_back_ios</mat-icon></button>
+        <button type="button" mat-raised-button class="next nexButton" appNext><mat-icon>arrow_forward_ios</mat-icon></button>
       </div>
     </div>
   </div>
+</section><br>

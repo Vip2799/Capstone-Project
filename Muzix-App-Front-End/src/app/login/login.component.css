@@ -1,7 +1,7 @@
 form{
     padding: 999px;
-    margin-left: 400px; 
-    margin-top: 50px;
+   
+    margin:50px 50px 0px 0px ;
     position: relative;
     width: 350px;
     height: 350px;
@@ -16,7 +16,10 @@ form{
   a{
     text-decoration: none;
   }
-  loginPage{
+  .loginPage{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
     width: 100%;
     background-position: 100%;
     background-color: #cbced1;

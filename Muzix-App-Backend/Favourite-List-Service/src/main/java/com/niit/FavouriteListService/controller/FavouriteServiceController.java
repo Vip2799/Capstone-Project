@@ -1,5 +1,6 @@
 package com.niit.FavouriteListService.controller;
 
+import com.niit.FavouriteListService.exception.FavouriteListAlreadyExists;
 import com.niit.FavouriteListService.exception.MovieAlreadyExistsException;
 import com.niit.FavouriteListService.services.FavouriteService;
 import com.niit.MovieService.domain.Movie;
@@ -26,7 +27,7 @@ public class FavouriteServiceController {
     }
 
     @PostMapping("favList/{email}")
-    public ResponseEntity<?> createFavList(@PathVariable String email, @RequestBody String favListName){
+    public ResponseEntity<?> createFavList(@PathVariable String email, @RequestBody String favListName) throws FavouriteListAlreadyExists {
         return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
     }
 

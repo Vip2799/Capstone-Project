@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="col-1" >
         <h1 id="logo">𝑴𝒖𝒛𝒊𝒙-𝑨𝒑𝒑</h1> 
@@ -12,28 +11,22 @@
         <h2><mat-icon>star</mat-icon>Our Plans</h2>
         <form>
             <label for="basic">
-                <input type="radio" name="plans" id="basic">
-                <button (click)="payment(149)">PayNow</button>
-                <span>BASIC</span>@149/month
-
+                <span><button name="plans" id="basic"   (click)="payment(149)">BASIC</button> </span>
+                <h3>@149/month </h3>
             </label>
 
             <label for="super">
-                 <input type="radio" name="plans" id="super">
-                 <button (click)="payment(499)">SUPER</button>
-                 <span>SUPER</span>@499/month
+                 <span><button name="plans" id="super"   (click)="payment(499)">SUPER</button> </span>
+                <h3>@499/month </h3>
             </label>
 
             <label for="premium">
-                <input type="radio" name="plans" id="premium">
-                <button (click)="payment(999)">PREMIUM</button>
-                <span>PREMIUM</span>@999/month
+                <span> <button name="plans" id="premium" (click)="payment(999)">PREMIUM</button></span>
+                <h3>@999/month</h3>
             </label>
 
             <br>
 
-            <p>YOUR NAME</p>
-            <input type="text" placeholder="Enter Your Name">
             <p>EMAIL ADDRESS</p>
             <input type="email" placeholder="Enter Your Email">
 
@@ -41,7 +34,3 @@
         </form> 
     </div>
 </div>
-
-
-
-

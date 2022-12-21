@@ -1,98 +1,93 @@
 <body>
   <div class="container">
-      <br>
-       <div class="title-header" id="header" >
-           <li><a href="#" id="mylist"><h1><b>My Lists</b></h1></a>
-            <div class="sub-list">
-              <ul  *ngFor="let fav of favs">
-                <li><a href="#">{{fav.favListName}}</a>
-                  <!-- <div class="list1"> -->
-                    <li><button mat-raised-button (click)="deleteFavList(fav.favListName)" id="deletebtn">Delete List</button>
-                  <!-- </div> -->
-               </li>
-              </ul>
-            </div>      
-          </li>        
-        
-       
-        <div>
-          <div>                
-            <button id="listbtn" mat-icon-button (click)="playListOption()" >
-                <mat-icon id="addplaylist" fontIcon="playlist_add"></mat-icon>
-             </button>
-            <div id="playlistOption" *ngIf="isPlaylistOptionOpen">
-              <button (click)="create()" *ngIf="createFavList ; else inputfield" mat-raised-button><mat-icon fontIcon="add"></mat-icon> Create New Playlist </button>
-              <ng-template #inputfield>
-                  <div class="input-group">
-                     <input type="text" class="form-control btn-success" [(ngModel)]="listName"  placeholder="Favourite List Name">
-                     <button id="input" (click)="createList()" mat-raised-button class="input-group-btn">Save</button>
-                  </div>
-              </ng-template>
-             </div>
-          </div>
-      </div>  
-    </div>
     <br>
-  
-    <div class="container" id="list" *ngIf="favListShow ; else message">
-        <div *ngFor="let fav of favs">
-           <button id="view" mat-raised-button class="col-lg-2 m-3 p-1 mb-2" (click)="view(fav.favListName)">{{fav.favListName}}</button>
-      </div>
-    </div>
-    <ng-template #message>
-      <div id="message">
-        <h2 >You haven't created any lists.</h2>
-      </div>
-    </ng-template>
-    
-  
-    
-  
-    <br>
-    <aside>
-      <div class="container" >
-        <h3><b>Add Movie</b></h3>
-       <input matInput type="text" [(ngModel)]="listName" id="listname" placeholder="List Name" >
-        <input matInput  type="text" [(ngModel)]="movieName" id="moviename" placeholder="Movie Name" >
-        <br>
-        <button class="btn justify-content-center" id="addMovie" mat-raised-button (click)="addMovie(listName,movieName)">Add</button>
-      </div>
-    </aside>
-  </div>
-  
-    <div id="movieContainer" >
-      <div class="movie-card" *ngFor="let movie of movies">
-          <div class="img">
-              <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" alt="">
+    <div class="title-header" id="header">
+        <h1><b>My Lists</b></h1>
+      
+
+      <div class="container" id="list" *ngIf="favListShow ; else message">
+            <div *ngFor="let fav of favs">
+               <button id="view" mat-raised-button class="col-lg-2 m-3 p-1 mb-2" (click)="view(fav.favListName)">{{fav.favListName}}</button>
           </div>
-          <div>
-          <h3 class="title">{{movie.title}}</h3>
-          <h3 class="date">{{movie.release_date}} </h3>
-          <div class="footGenre"  >
-              <h4 *ngFor="let genre of movie.currentGenreList">{{genre.name}}</h4>
-          </div>
-          <a>
-            <button mat-icon-button ><mat-icon id="play">play_circle</mat-icon></button>
-          </a>
-          <a color="primary" >
-            <button mat-icon-button (click)="delete(moviesOfList.favListName,movie.id)"><mat-icon id="delete">delete</mat-icon></button>
-          </a> 
+        </div>
+      <ng-template #message>
+        <div id="message">
+          <h2>You haven't created any lists.</h2>
+        </div>
+      </ng-template>
+
+      
+      <div>
+        <button id="listbtn" mat-icon-button (click)="playListOption()">
+          <!-- <mat-icon id="addplaylist" fontIcon="favorite"></mat-icon> -->
+          <img src="../../assets/addfavlist-icon.jpg"id="addplaylist" >
+        </button>
+        <div id="playlistOption" *ngIf="isPlaylistOptionOpen">
+          <button (click)="create()" *ngIf="createFavList ; else inputfield" mat-raised-button><mat-icon
+              fontIcon="add"></mat-icon> Create New Playlist </button>
+          <ng-template #inputfield>
+            <div class="input-group">
+              <input type="text" class="form-control btn-success" [(ngModel)]="listName"
+                placeholder="Favourite List Name">
+              <button id="input" (click)="createList()" mat-raised-button class="input-group-btn">Save</button>
+            </div>
+          </ng-template>
         </div>
       </div>
-  </div>
-  
-    <div id="msg" *ngIf="movieListShow">
-      <h2 >You haven't added any movie in lists.</h2>
+
+      <div>
+        <div>
+          <button id="listbtn" mat-icon-button (click)="playListOption1()">
+            <img src="../../assets/deletefav.jpg"id="addplaylist" >
+          </button>
+          <div id="playlistOption" *ngIf="isPlaylistOptionOpen1">
+            <button (click)="remove()" *ngIf="createFavList ; else inputfield" mat-raised-button><mat-icon
+                fontIcon="heart_minus"></mat-icon> Enter Playlist Name </button>
+            <ng-template #inputfield>
+              <div class="input-group">
+                <input type="text" class="form-control btn-success" [(ngModel)]="listName"
+                  placeholder="Favourite List Name">
+                <button id="input" (click)="deleteFavList()" mat-raised-button class="input-group-btn">Delete</button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
     </div>
-  
-  
-  
-  
-  
-  </body>
-  
-  
-  
-  
-  
-   
+    <br>
+
+
+    <a routerLink="/movies"><button id="explore" mat-raised-button>Keep Exploring</button></a>
+
+
+  </div>
+  <div id="moviecontainer">
+    <div class="single-team" *ngFor="let movie of movies">
+      <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{movie.backdrop_path}}" alt="">
+      <div class="team-text">
+        <h3 class="title">{{movie.title}}</h3>
+        <h3 class="date">{{movie.release_date}} </h3>
+        <div class="footGenre">
+          <h4 *ngFor="let genre of movie.currentGenreList">{{genre.name}}</h4>
+        </div>
+        <p>
+          <a routerLink="/movie-view/{{movie.id}}">
+            <button mat-icon-button><mat-icon>play_circle</mat-icon></button>
+          </a>
+          <a color="primary" >
+            <button mat-icon-button
+              (click)="delete(moviesOfList.favListName,movie.id)"><mat-icon>delete</mat-icon></button>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="msg" *ngIf="movieListShow">
+    <h2>You haven't added any movie in lists.</h2>
+
+  </div>
+
+
+
+
+</body>

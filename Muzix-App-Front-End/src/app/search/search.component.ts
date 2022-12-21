@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
 
 @Component({
@@ -13,17 +13,30 @@ export class SearchComponent {
   enterSearchValue : string = '';
   movies: any = [];
 
-constructor(private searchService: SearchService){}
+constructor(private searchService: SearchService, private router : Router){}
 
 ngOnInit(){
   
+}
+searchSection:boolean = false
+
+
+navigateToMovie(id:any){
+  this.router.navigate(["movie-view",id]);
+}
+hidecont(){
+  if(this.searchSection){
+    this.searchSection = false;
+  }else{
+    this.searchSection = true ;
+  }
 }
 
 onSearchTextChanged(){
  this.searchService.searchedMovie(this.enterSearchValue).subscribe(
 
-  data=> {
-  
+   (  data: any)=> {
+    this.searchSection = true ;
     this.movies = data;
     
     // console.log(data);
@@ -31,5 +44,6 @@ onSearchTextChanged(){
 
  );
  
+
 }
 }

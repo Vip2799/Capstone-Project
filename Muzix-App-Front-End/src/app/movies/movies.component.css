@@ -1,8 +1,9 @@
 h1{
-    margin-top: 40px;
+    margin-top: 15px;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     font-weight: 800;
-    background-color: rgb(222, 238, 252);
+    background-color: rgb(0, 0, 0);
+    color:rgb(194, 187, 187);
 }

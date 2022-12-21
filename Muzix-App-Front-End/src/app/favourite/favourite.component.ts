@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { FavouriteList } from '../models/favourite';
 import { updatedMovieList } from '../models/updatedMovieList';
 import { FavouriteService } from '../services/favourite.service';
@@ -14,6 +15,7 @@ import { UserService } from '../services/user.service';
 export class FavouriteComponent {
 
   isPlaylistOptionOpen: boolean = false;
+  isPlaylistOptionOpen1: boolean = false;
   movies: any = [];
 
   addMovieData: any = [];
@@ -34,7 +36,7 @@ export class FavouriteComponent {
   genresList: any = {};
   genres: any[] = [];
 
-  constructor(private favourite: FavouriteService, private search: SearchService, private userservice: UserService, private snackBar: MatSnackBar) { }
+  constructor(private favourite: FavouriteService,private router : Router, private search: SearchService, private userservice: UserService, private snackBar: MatSnackBar) { }
 
   favListShow: boolean = true;
 
@@ -50,9 +52,9 @@ export class FavouriteComponent {
 
     }).catch(err => console.log(err))
 
-    this.favourite.getAcc().subscribe(data => {
+    this.favourite.getAcc().subscribe(data1 => {
 
-      this.favs = data.favouriteLists;
+      this.favs = data1.favouriteLists;
       if (this.favs.length == 0) {
         this.favListShow = false;
       }
@@ -85,17 +87,19 @@ export class FavouriteComponent {
   }
   updatedMovieList: updatedMovieList[] = [];
 
-  movieListShow: boolean = true;
+  movieListShow: boolean = false;
 
   view(listName: any) {
 
     this.favListShow = true;
 
-    this.favourite.getFavListByListName(listName).subscribe(data => {
+    this.favourite.getFavListByListName(listName).subscribe(data1 => {
 
-      this.moviesOfList = data;
+      this.moviesOfList = data1;
 
       console.log(this.moviesOfList)
+      console.log(data1);
+      
 
 
       this.movies = this.moviesOfList.movieList;
@@ -117,6 +121,10 @@ export class FavouriteComponent {
       // console.log(this.updatedMovieList[0]);
       if (this.updatedMovieList.length == 0) {
         this.movieListShow = true;
+      }
+      else if(this.favListShow = true){
+        this.movieListShow = false ;
+        
       }else{
         this.movieListShow = false ;
         window.location.reload();
@@ -136,6 +144,9 @@ export class FavouriteComponent {
         this.movies = data.movieList,
         data1 = data;
         console.log(data);
+
+        // this.router.navigate([""])
+
       })
   
     })
@@ -143,13 +154,15 @@ export class FavouriteComponent {
 
   }
 
-  deleteFavList(listName: any) {
-    this.favourite.deleteFavList(listName).subscribe(data1 => {
-      this.favourite.getFavListByListName(listName).subscribe(data => {
+  deleteFavList() {
+    this.favourite.deleteFavList(this.listName).subscribe(data1 => {
+      console.log(this.listName);
+      this.favourite.getFavListByListName(this.listName).subscribe(data => {
         this.favs = data;
         console.log(data);
+        window.location.reload();
       })
-      window.location.reload();
+
     })
   }
 
@@ -163,6 +176,15 @@ export class FavouriteComponent {
       this.isPlaylistOptionOpen = true;
     }
   }
+
+  playListOption1() {
+    this.createFavList = true;
+    if (this.isPlaylistOptionOpen1) {
+      this.isPlaylistOptionOpen1 = false;
+    } else {
+      this.isPlaylistOptionOpen1 = true;
+    }
+  }
   create() {
 
     if (this.createFavList) {
@@ -171,21 +193,29 @@ export class FavouriteComponent {
 
   }
 
-  // email:any = localStorage.getItem("emailId");
-  addMovie(listName: any, movieName: any) {
+  remove() {
 
-    this.favourite.getFavListByListName(listName).subscribe(data => {
-      this.search.searchedMovie(movieName).subscribe(data =>
-        
-        this.favourite.addMovieToFav(this.email,listName, data[0]).then(
-
-          data1 => {
-            this.addMovieData = data1;
-            console.log(data1);
-          }
-        ))
-    })
+    if (this.createFavList) {
+      this.createFavList = false;
+    }
 
   }
+
+  // // email:any = localStorage.getItem("emailId");
+  // addMovie(listName: any, movieName: any) {
+
+  //   this.favourite.getFavListByListName(listName).subscribe((data: any) => {
+  //     this.search.searchedMovie(movieName).subscribe(data =>
+        
+  //       this.favourite.addMovieToFav(this.email,listName, data[0]).then(
+
+  //         data1 => {
+  //           this.addMovieData = data1;
+  //           console.log(data1);
+  //         }
+  //       ))
+  //   })
+
+  // }
 
 }

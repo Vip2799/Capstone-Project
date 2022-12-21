@@ -21,15 +21,15 @@
       </div>
       
 
-      <section>
-
-      </section>
+      
 
       <section id="container">
-        <!-- <a mat-list-item href="#" *ngIf="isLoggedIn ; else notLoggedIn">Profile</a> -->
-        <!-- <div id="navstart">
-          <h3  href="#" class="navcomponent">Movies</h3>
-        </div> -->
+
+        <section id="middle">
+            <a routerLink="/movies">Movies</a>
+            <a routerLink="/payment">Subscriptions</a>
+        </section>
+       
         <div id="profcont">
           <div id="right-one">
 
@@ -43,7 +43,8 @@
             <a routerLink="/profile" class="mat-icon" id="person" mat-icon-button>
               <mat-icon fontIcon="person"> </mat-icon>
             </a>
-            <img id="profile" src="../../assets/profile.jpg" (click)="profile()" *ngIf="isLoggedIn ; else loggedIn">
+            
+            <img  id="profile" [src]="profilepic" (click)="profile()" *ngIf="isLoggedIn ; else loggedIn">
 
             <ng-template #loggedIn>
               <a routerLink="/login" mat-raised-button>Login</a>
@@ -70,7 +71,7 @@
 <!-- <app-login></app-login> -->
 <div id="toolkitcontainer" *ngIf="toolkit">
   <mat-nav-list id="toolkit">
-    <a mat-list-item id="name"><small>User: </small><strong>Arjun</strong> </a>
+    <a mat-list-item id="name"><small>User: </small><strong>{{userName}}</strong> </a>
     <a routerLink="/profile" mat-list-item>Profile</a>
     <a routerLink="/favourite" mat-list-item>Favourite List</a>
     <button (click)="logout()" type="button" mat-list-item id="logout" class="btn btn-outline-danger">Logout</button>

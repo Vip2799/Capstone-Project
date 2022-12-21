@@ -156,6 +156,7 @@ public class MovieServiceImpl implements MovieService{
             ratings.put(updatedEmail,rating);
         }
         movie.setRating(ratings);
+        System.out.println(movie);
         movieRepository.save(movie);
         return ratings;
     }

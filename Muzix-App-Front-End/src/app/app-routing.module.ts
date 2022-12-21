@@ -5,6 +5,7 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { LoginComponent } from './login/login.component';
 import { MovieViewComponent } from './movie-view/movie-view.component';
 import { MoviesComponent } from './movies/movies.component';
+import { OrderServiceComponent } from './order-service/order-service.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"profile",component:ProfileComponent},
   {path:"favourite",component:FavouriteComponent},
   {path:"movies",component:MoviesComponent},
+  {path:"payment",component:OrderServiceComponent},
   {path:"**",redirectTo:"home", pathMatch:"full"}
 ];
 

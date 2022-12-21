@@ -27,7 +27,7 @@ public class FavouriteServiceImpl implements FavouriteService{
     @Override
     public Favourite getFavAccountByEmail(String email) {
         Favourite favAcc = favouriteRepository.findById(email).get() ;
-//        System.out.println(favAcc);
+        System.out.println(favAcc);
         return favAcc;
     }
 

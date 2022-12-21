@@ -20,7 +20,7 @@ export class DashboardComponent {
  
 
   movies: Movie[] = []
-  navigateToMovie(movieId: number) {
+  navigateToMovie(movieId: number | undefined) {
     this.router.navigate(["movie-view", movieId])
   }
 

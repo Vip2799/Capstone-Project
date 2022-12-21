@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { user } from '../models/user';
 import { MovieService } from '../services/movie.service';
 import { UserService } from '../services/user.service';
@@ -16,11 +17,12 @@ export class OrderServiceComponent {
 
   form: any = {}; 
   constructor(private http: HttpClient,
-    private orderService:MovieService,private userService:UserService) {
+    private orderService:MovieService,private userService:UserService,private snackBar:MatSnackBar) {
 
   }
   paymentId: string | undefined;
   error: string | undefined;
+  // paymentPlan = null
   
   options = {
     "key": "",
@@ -59,7 +61,8 @@ export class OrderServiceComponent {
       const currentUser = localStorage.getItem('emailId')
       this.userService.getUser(currentUser).subscribe( data=>{
         this.userData = data;
-        this.userData.amount= 5000;
+        this.userData.amount= amount;
+        // this.paymentPlan = amount;
         console.log(this.userData)
         this.orderService.createOrder(this.userData).subscribe(
           data => {
@@ -68,9 +71,9 @@ export class OrderServiceComponent {
             this.options.key = 'rzp_test_9IVAsnKVhMQV9W';
             this.options.order_id = data.razorpayOrderId;
             this.options.amount = data.applicationFee; //paise
-            this.options.prefill.name = "ArjunReddy";
-            this.options.prefill.email = "arjunreddykorni@gmail.com";
-            this.options.prefill.contact = "999999999";
+            this.options.prefill.name = this.userData.userName;
+            this.options.prefill.email = this.userData.email;
+            this.options.prefill.contact = this.userData.mobileNo;
             console.log(this.options)
             var rzp1 = new Razorpay(this.options);
             rzp1.open();
@@ -83,21 +86,49 @@ export class OrderServiceComponent {
               console.log(response.error.reason);    
               console.log(response.error.metadata.order_id);    
               console.log(response.error.metadata.payment_id); 
-            }
+            })
            
-            );
           }
           ,
           err => {
             this.error = err.error.message;
+            this.snackBar.open('You Payment is UnSuccessFull!!', 'Failure', {​
+              duration: 5000,
+               panelClass: ['mat-toolbar', 'mat-primary'] 
+             })
           }
           );
       })
     }
-
     @HostListener('window:payment.success', ['$event']) 
     onPaymentSuccess(event: any): void {
        console.log(event.detail);
+       console.log(event.detail.razorpay_payment_id);
+       if(event.detail.razorpay_payment_id !== null){
+        console.log(this.userData)
+        let updatedPlanForUser = this.userData;
+        switch(this.userData.amount) {
+          case 149:
+            updatedPlanForUser.subscribedPlan = 'Basic'
+            break;
+          case 499:
+            updatedPlanForUser.subscribedPlan = 'Super'
+            break;
+          case 999:
+            updatedPlanForUser.subscribedPlan = 'Premium'
+            break;
+          default:
+            updatedPlanForUser.subscribedPlan = 'Gold'
+        }
+          console.log(updatedPlanForUser)
+          this.userService.updateProfile(updatedPlanForUser).subscribe(
+            data => console.log(data)
+          )
+          this.snackBar.open('You Payment is SuccessFull!!', 'PlanUpgraded', {​
+            duration: 5000,​
+             panelClass: ['mat-toolbar', 'mat-primary'] ​
+           })
+       }
     }
 
 
