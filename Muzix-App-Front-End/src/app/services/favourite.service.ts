@@ -9,10 +9,10 @@ import { Movie } from '../models/Movie';
 export class FavouriteService {
   constructor(private http: HttpClient) { }
 
-  URL: string = "http://localhost:8081/favourite/";
+  URL: string = "http://localhost:9000/favourite/";
 
   createFavList(favListName:string){
-    return this.http.post(`http://localhost:8081/favourite/favList/${localStorage.getItem("emailId")}`,favListName)
+    return this.http.post("http://localhost:9000/favourite/favList/"+localStorage.getItem("emailId"),favListName)
   }
 
   addMovieToFav(email: string, listName: string, movie: Movie) {
@@ -31,7 +31,7 @@ export class FavouriteService {
   }
 
   getFavListByListName(listName: any) {
-    return this.http.get<any>(`${this.URL} favList/get/${localStorage.getItem("emailId")}/ ${listName}`);
+    return this.http.get<any>(`${this.URL}favList/get/${localStorage.getItem("emailId")}/ ${listName}`);
   }
 
   getFavListByName2(listName:any){

@@ -1,13 +1,112 @@
-.cardWidth{
-    width: 165px;
-    height: 210px;
+  .card{
+    cursor: pointer;
+    text-align: center;
+    background-color: rgb(200, 202, 197)
 }
+img{
+    border-radius: 10px;
+}p{
+    color: rgb(8, 8, 8);
+}
+
 h1 {
-    color: #999999;
+    color: #bed9e3;
     font-family: arial, sans-serif;
     font-size: 26px;
     font-weight: bold;
     margin-top: 3px;
     margin-bottom: 1px;
     margin-left: 500px; 
+    position: relative;
+   
+}
+ .releasedate{
+        color: rgb(52, 41, 41);
+        font-style:oblique;
+        font-weight: 500;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 17px;  
+}/*
+.movieTitle{
+    color: rgb(174, 105, 176);
+    font-size: 14px;
+} */
+/* ----------------------------------Card-slider---------------------------------------------------- */
+.movies{
+    padding: 20px 0px;
+    margin-top: 0px;
+}
+.slider-wrap{
+    position: relative;
+     overflow: hidden;
+     overflow-inline:hidden;
+     height: 270px;;
+}
+.slider-main{
+    position: absolute;
+    width: 1080%;
+}
+.movie{
+    display: inline-block;
+    width: 195px;
+    height: 180px;
+    position: relative;
+    margin: 0px 12px;
+}
+.text{
+    postion: absolute;
+
+}
+.prev{
+    position: absolute;
+    left: 36px;
+    top: 120px;
+    transform: translate(-50%,-50%);
+}
+.next{
+    position: absolute;
+    right: -5px;
+    top: 120px;
+    transform: translate(-50%,-50%);
+}
+.heading{
+    margin-top: -50px;
+}
+mat-raised-button{
+    background-color: transparent;
+}
+/* ---------------------------------------------------- */
+.search-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.search-container input{
+    border-radius: 10rem 0 0 10rem;
+    border: none;
+    background-color: #f1f1f1;
+    height: 1rem;
+    width: 20rem;
+    padding: 1.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+}
+
+.search-container button{
+    background-color: rgb(209, 37, 37);
+    color: black;
+    width: 5rem;
+    font-size: 1rem;
+    border-radius: 0 10rem 10rem 0;
+    border: none;
+    opacity: .8;
+    outline: none;
+}
+
+.search-container button:hover{
+    opacity: 1;
+    cursor: pointer;
 }

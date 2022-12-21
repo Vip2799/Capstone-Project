@@ -33,7 +33,7 @@ constructor(private fb:FormBuilder,private router:Router,private _snackBar:MatSn
 
    onSubmit(){
     this.userService.loginCheck(this.loginForm.value).subscribe(
-      response => {
+      response =>{ 
 
         this.loginauth.login();
         console.log(response);
@@ -47,18 +47,33 @@ constructor(private fb:FormBuilder,private router:Router,private _snackBar:MatSn
         localStorage.setItem('emailId',this.decodeEmail);
         localStorage.setItem('jwt',this.data.token);
       //  alert('Login success');
+      this._snackBar.open('Congrats, you have successfully  LogedIn!!', 'success', {
+        duration: 3000,​
+         panelClass: ['mat-toolbar', 'mat-primary'] ​
+       }) 
+      // window.location.reload();
+      this.router.navigate(["/home"]).then(()=>{
+        window.location.reload();
+      })
+      },
+      (error) =>{
+        if(error.response = 404){
+          console.log(error.response)
+          this._snackBar.open('Username Or Password is Invalid!!', 'LoginFailed', {​
+            duration: 5000,​
+             panelClass: ['mat-toolbar', 'mat-primary'] ​
+           }) 
+        }else{
+          console.log(error.response)
+          this._snackBar.open('Network issue Please Try Again!!', 'LoginFailed', {​
+            duration: 5000,​
+             panelClass: ['mat-toolbar', 'mat-primary'] ​
+           }) 
+        }
+        
       }
     )
-    this._snackBar.open('Congrats, you have successfully the LogedIn!!', 'success', {​
-      duration: 3000,​
-       panelClass: ['mat-toolbar', 'mat-primary'] ​
-     }) 
-    // window.location.reload();
-    this.router.navigate(["/home"]).then(()=>{
-      window.location.reload();
-    })
-
-
+    
     
   }
 }

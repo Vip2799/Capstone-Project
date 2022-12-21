@@ -1,5 +1,5 @@
 form{
-    /* padding: 99px;*/
+    padding: 999px;
     margin-left: 400px; 
     margin-top: 50px;
     position: relative;
@@ -15,4 +15,21 @@ form{
   }
   a{
     text-decoration: none;
+  }
+  loginPage{
+    width: 100%;
+    background-position: 100%;
+    background-color: #cbced1;
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+  margin: 0px;
+  min-height: 100%;
+  width: 100%;
+  }
+  .footer{
+    padding-top: 170px;
+  }
+  .top{
+    padding-top: 15px;
   }

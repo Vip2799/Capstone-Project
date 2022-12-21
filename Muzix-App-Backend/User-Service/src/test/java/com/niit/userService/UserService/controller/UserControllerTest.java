@@ -55,7 +55,7 @@ public class UserControllerTest {
     @BeforeEach
     public void setUp() {
         address = new Address("Highway", "Pune", "MH", 412308);
-        user = new User("mona@gmail.com", "Monali","premium", "profile1", "mona123", 24, 9874586134L, address);
+        user = new User("mona@gmail.com", "Monali",12,"premium", "profile1", "mona123", 24, 9874586134L, address);
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 

@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="col-1" >
+        <h1 id="logo">𝑴𝒖𝒛𝒊𝒙-𝑨𝒑𝒑</h1> 
+        <ul>
+            <li><mat-icon>star</mat-icon>Unlimited movies.</li>
+            <li><mat-icon>star</mat-icon>Watch anywhere.</li>
+            <li><mat-icon>star</mat-icon>Stream unlimited movies.</li>
+        </ul>
+    </div>
+    <div class="col-2">
+        <h2><mat-icon>star</mat-icon>Our Plans</h2>
+        <form>
+            <label for="basic">
+                <input type="radio" name="plans" id="basic">
+                <button (click)="payment(149)">PayNow</button>
+                <span>BASIC</span>@149/month
+
+            </label>
+
+            <label for="super">
+                 <input type="radio" name="plans" id="super">
+                 <button (click)="payment(499)">SUPER</button>
+                 <span>SUPER</span>@499/month
+            </label>
+
+            <label for="premium">
+                <input type="radio" name="plans" id="premium">
+                <button (click)="payment(999)">PREMIUM</button>
+                <span>PREMIUM</span>@999/month
+            </label>
+
+            <br>
+
+            <p>YOUR NAME</p>
+            <input type="text" placeholder="Enter Your Name">
+            <p>EMAIL ADDRESS</p>
+            <input type="email" placeholder="Enter Your Email">
+
+            <button type="submit" >Subscribe</button>
+        </form> 
+    </div>
+</div>
+
+
+
+

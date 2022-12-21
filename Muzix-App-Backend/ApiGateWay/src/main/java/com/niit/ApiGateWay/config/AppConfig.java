@@ -19,7 +19,7 @@ public class AppConfig {
                         .uri("http://localhost:8080/")
                 )
                 .route(p->p
-                        .path("/api/**")
+                        .path("/api/v1/**")
                         .uri("http://localhost:8083/")
                 )
                 .route(p->p

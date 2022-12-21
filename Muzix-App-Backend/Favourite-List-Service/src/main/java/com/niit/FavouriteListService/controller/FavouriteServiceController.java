@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-<<<<<<< HEAD
-@CrossOrigin(origins = ("http://localhost:4200"))
-=======
->>>>>>> 2e92e0b5efbddefbecfb61c4b70f68e99fa283b4
+//<<<<<<< HEAD
+//@CrossOrigin(origins = ("http://localhost:4200"))
+//=======
+//>>>>>>> 2e92e0b5efbddefbecfb61c4b70f68e99fa283b4
 @RequestMapping("/favourite/")
 public class FavouriteServiceController {
 

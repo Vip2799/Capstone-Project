@@ -40,7 +40,7 @@ export class MovieCardComponent implements OnInit {
     this.router.navigate(["movie-view", id]).then(()=>{
       document.documentElement.scrollTop = 0 ;
     })
-    // alert("fuck")
+   
     this.parentMethod.emit(id);
   }
 

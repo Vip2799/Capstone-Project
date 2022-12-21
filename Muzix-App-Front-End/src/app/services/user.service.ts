@@ -39,10 +39,10 @@ export class UserService {
    })
   }
 
-  getUser(email:string){
-    this.http.get("http://localhost:8083/api/getProfile/vip1@gmail.com").subscribe(data=>{
-      console.log(data);
-    })
+  getUser(email:any){
+    let userdata = this.http.get("http://localhost:9000/api/v1/getProfile/"+email);
+    console.log(userdata)
+    return userdata;
   }
 
   getGenres(){

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SearchService {
 
-  URL:string = "http://localhost:8082/api/";
+  URL:string = "http://localhost:9000/api/filter/";
   
 
   constructor(private http:HttpClient) { }
@@ -15,7 +15,7 @@ export class SearchService {
   searchedMovie(enterSearchValue:string){
    let result =  this.http.get<any>(this.URL+'startsWith/'+ enterSearchValue);
 
-  //  console.log(result);
+   console.log(result);
    return result;
   }
 }

@@ -21,14 +21,17 @@ public class User {
     private long mobileNo;
     private Address address;
     private String subscribedPlan;
+
+    private int amount;
     public User() {
     }
 
-    public User(String email, String userName,String subscribedPlan,String profilePic,String password, int age, long mobileNo, Address address) {
+    public User(String email, String userName,int amount,String subscribedPlan,String profilePic,String password, int age, long mobileNo, Address address) {
         this.email = email;
         this.userName = userName;
         this.password = password;
         this.profilePic = profilePic;
+        this.amount= amount;
         this.age = age;
         this.mobileNo = mobileNo;
         this.address = address;
@@ -99,6 +102,14 @@ public class User {
         this.password = password;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -110,6 +121,7 @@ public class User {
                 ", mobileNo=" + mobileNo +
                 ", address=" + address +
                 ", subscribedPlan='" + subscribedPlan + '\'' +
+                ", amount=" + amount +
                 '}';
     }
 }

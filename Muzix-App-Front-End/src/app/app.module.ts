@@ -30,6 +30,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SafePipe } from './safe.pipe';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MoviesComponent } from './movies/movies.component';
+import { NextDirective } from './next.directive';
+import { PrevDirective } from './prev.directive';
+import { OrderServiceComponent } from './order-service/order-service.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,10 @@ import { MoviesComponent } from './movies/movies.component';
     DashboardComponent,
     SafePipe,
     MovieCardComponent,
-    MoviesComponent
+    MoviesComponent,
+    NextDirective,
+    PrevDirective,
+    OrderServiceComponent
 
   ],
   imports: [
