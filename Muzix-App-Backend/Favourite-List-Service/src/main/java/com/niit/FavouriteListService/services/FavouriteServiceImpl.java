@@ -2,6 +2,7 @@ package com.niit.FavouriteListService.services;
 
 import com.niit.FavouriteListService.domain.Favourite;
 import com.niit.FavouriteListService.domain.FavouriteList;
+import com.niit.FavouriteListService.exception.FavouriteListAlreadyExists;
 import com.niit.FavouriteListService.exception.MovieAlreadyExistsException;
 import com.niit.FavouriteListService.repository.FavouriteRepository;
 import com.niit.MovieService.domain.Movie;
@@ -31,11 +32,23 @@ public class FavouriteServiceImpl implements FavouriteService{
     }
 
     @Override
-    public Favourite addFavouriteList(String email, String favListName) {
-        Favourite favAccount = favouriteRepository.findById(email).get();
-        List<FavouriteList> favLists = favAccount.getFavouriteLists();
+    public Favourite addFavouriteList(String email, String favListName) throws FavouriteListAlreadyExists {
+        Favourite favAccount = null;
+        List<FavouriteList> favLists = null ;
+        if(favouriteRepository.findById(email).isPresent()){
+             favAccount = favouriteRepository.findById(email).get();
+             favLists = favAccount.getFavouriteLists();
+
+        }
+        for(FavouriteList favlist : favLists){
+            if(favlist.getFavListName().equalsIgnoreCase(favListName)){
+                throw new FavouriteListAlreadyExists();
+            }
+        }
         favLists.add(new FavouriteList(favListName,new ArrayList<>()));
         favAccount.setFavouriteLists(favLists);
+        System.out.println(favAccount);
+
         return favouriteRepository.save(favAccount);
 
     }

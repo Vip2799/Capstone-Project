@@ -74,7 +74,14 @@ public class MovieController {
 
     @GetMapping("rating/{id}/{email}")
     public ResponseEntity<?> getRatingOfMovie(@PathVariable int id, @PathVariable String email){
-        return new ResponseEntity<>(movieService.getRatingOnMovieIdAndUserId(id,email),HttpStatus.ACCEPTED);
+        ResponseEntity responseEntity = null;
+        int rating = movieService.getRatingOnMovieIdAndUserId(id,email);
+        if(rating != 0){
+            responseEntity = new ResponseEntity(rating,HttpStatus.ACCEPTED);
+        }else{
+            responseEntity = new ResponseEntity(null, HttpStatus.ACCEPTED);
+        }
+        return responseEntity;
     }
 
     @PostMapping("addrating/{id}/{rating}")

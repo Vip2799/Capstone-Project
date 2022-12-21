@@ -48,7 +48,7 @@
                 </button>
             </ng-template>
             <div id="rating" *ngIf="ratingOption ; else ratingbtn ">
-                <input type="radio" name="rate" id="rate1" value="5" (change)="selectRating($event)">
+                <input type="radio" name="rate" id="rate1" value="5" (change)="selectRating($event)" >
                 <label for="rate1"> <mat-icon fontIcon="star"></mat-icon></label>
                 <input type="radio" name="rate" id="rate2" value="4" (change)="selectRating($event)">
                 <label for="rate2"> <mat-icon fontIcon="star"></mat-icon></label>

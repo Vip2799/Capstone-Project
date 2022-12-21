@@ -3,14 +3,20 @@
   /* height: 50%; */
 }
 
+h3{
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+}
+
 .registration-card {
-  width: 550px;
+  width: 450px;
   /* height: 40vh; */
   opacity: 0.9;
   /* min-width: 120px; */
   margin: 20px auto;
   padding: 15px;
-  margin-right: 2%;
+  margin-right: 4%;
   box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
   border-radius: 20px;
   background-color: aliceblue;
@@ -125,18 +131,20 @@ a{
 form{
   background-image: url("../../assets/pexels-pixabay-265685.jpg");
   background-size: 120%;
+  background-position-y: -250px;
   /* background-repeat: no-repeat; */
+  height: 100vh;
   /* background */
   
-  padding: 20px;
+  padding: 5px;
   /* border: 2px solid; */
 }
 
 h1{
   font-family: Aclonica;
-  font-size: 300%;
+  font-size: 230%;
   margin-top: 7%;
-  color: white;
+  color: rgb(247, 78, 78);
   align-self: center;
   align-items: center;
   align-content: center;
@@ -144,8 +152,8 @@ h1{
 }
 #applogo{
   position: absolute;
-  top: 40%;
-  left: 12%;
+  top: 30%;
+  left: 8%;
   display: flex;
   flex-flow: row nowrap;
   border-radius: 50%;
@@ -156,8 +164,47 @@ h1{
   align-items: center;
   align-self: center;
   /* padding-top: 10px; */
-  width: 20%;
-  height: 15%;
+  width: 16%;
+  height: 12%;
+  opacity: 0.8;
   /* border: 2px solid; */
+}
+/* mat-form-field{
+  font-size: small;
+  height: 3em;
+  line-height: 0px;
+  border: 2px solid;
+  margin: 0px;
+}
+input{
+  height: 2em;
+}
+mat-label{
+  font-size: small;
+}
+mat-error{
+  border: 2px solid red;
+  padding: 0px ;
+  margin: 0px;
+} */
+input.mat-input-element {height:10px}
+mat-label{
+  font-size: small;
+}
+mat-form-field{
+  font-size: small;
+}
+#next{
+  margin-top: -10px;
+  display: flex ;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  /* border: 2px solid; */
+  
+}
+#nextbtn{
+  /* justify-self: flex-end;
+   */
+  
 }
 

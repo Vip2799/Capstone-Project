@@ -1,41 +1,97 @@
+body{
+    background-color: rgb(92, 91, 91); 
+}
+
 #header{
     display: flex;
     justify-content: space-between;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-right: 20px;
 }
 
-.cardWidth{
-    width: 200px;
+.sub-list{
+    display: none;
 }
-#genreList{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
+li{
+    list-style: none;
 }
-
-
-#icon{
-    display: flex;
+h1{
+    font-size: 30px;
     color: black;
-    font-weight: bold;
-   font-size: 20px;
 }
 
-mat-expansion-panel{
-
-    background-color: aqua;
+.title-header:hover .sub-list{
+    display: block;
+    position: absolute;
 }
 
-#main{
-   position: relative; 
+
+.title-header .sub-list li:hover li{
+    display: block;
+    position: absolute;
+    opacity: 1;
+}
+.title-header li:hover .sub-list ul{
+    display: block;
+    margin: 0px;
 }
 
-/* #add{
-    display: flex;
-    align-items: center;
+.list1 li{
+    opacity: 0;
+}
+.title-header li:hover .sub-list ul li{
+    width: 150px;
+    background: transparent;
+    border-radius: 0px;
+    text-align: left;
+}
+
+a{
+    color: black;
+    text-decoration:none;
+    font-size: 20px;
+}
+
+#deletebtn{
+    background-color: black;
+    color: whitesmoke;
+}
+
+#message{
+    color: black;
     justify-content: center;
-} */
+    margin-left: 500px;
+}
+
+#msg{
+    color: black;
+    margin-left: 600px;
+    margin-top: 100px;
+    justify-content: center;
+}
+
+#listbtn{
+    width:60px ;
+    height: 60px;
+    background-color: rgba(0,0,0,0.3);
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+}
+
+#playlistOption button mat-icon{
+     color: black;
+} 
+
+#addplaylist{
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: -5px;
+}
+#input{
+    background-color: black;
+    color: whitesmoke;
+}
 
 #list{
     border: 1px solid black;  
@@ -58,15 +114,99 @@ mat-expansion-panel{
     cursor: pointer;
 }
 
-#close{
-   margin-left: 400px;
+#delete{
+    font-size: 25px;
+}
+#play{
+    font-size: 25px;
 }
 
-#card{
-    background-color: darksalmon;
-    
+#add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.text-center{
-    font-size: 15px;
+aside{
+    float: right
+}
+
+aside .container{
+    background-color: gray;
+    width: 250px;
+    height: 200px;
+    border: 1px solid black;
+   
+}
+h3{
+    margin-left: 50px;
+}
+
+#addMovie{
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+#listname{
+    margin-top: 10px;
+}
+#moviename{
+    margin-top: 20px;
+}
+
+#movieContainer{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 50%;
+    padding-top: 20px ;
+    background-color: rgb(92, 91, 91);
+   
+}
+.movie-card{
+    width: 180px;
+    text-align: center;
+    cursor: pointer;
+}
+.img{
+    height: 250px;
+    margin-bottom: 10px;
+}
+.img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 10px 10px rgba(0, 0, 0,0.4);
+}
+.movie-card:hover img{
+    box-shadow: 0px 10px 10px rgba(241, 78, 78, 0.4);
+
+}
+
+.title{
+    line-height: 14px;
+    height: fit-content;
+    font-weight: 600;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.date{
+    color: rgb(34, 32, 32);
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 200;
+    margin-top: -15px;
+}
+.movie-card h4{
+    background-color: gray;
+    color: white;
+    padding: 0px 5px 0px 5px;
+    border-radius: 23px;
+    font-size: 10px;
+    margin-top: -15px;
+}
+.footGenre{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
 }

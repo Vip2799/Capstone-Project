@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscriber } from 'rxjs';
@@ -18,7 +19,7 @@ import { UserService } from '../services/user.service';
 })
 export class MovieViewComponent implements OnInit {
 
-  constructor(private activeRoute: ActivatedRoute, private userservice: UserService, private movieservice: MovieService, private favService: FavouriteService, private snackBar: MatSnackBar, private http: HttpClient, private router: Router) { }
+  constructor(private activeRoute: ActivatedRoute,private fb:FormBuilder, private userservice: UserService, private movieservice: MovieService, private favService: FavouriteService, private snackBar: MatSnackBar, private http: HttpClient, private router: Router) { }
 
   // ngOnChanges(changes: SimpleChanges): void {
   //     this.movieservice.getMovieById(this.paramMovieId).then(data=>{
@@ -27,6 +28,10 @@ export class MovieViewComponent implements OnInit {
   //     })
   // }
   isPlaylistOptionOpen: boolean = false;
+
+  ratingform = this.fb.group({
+    rating : [""]
+  })
 
   posterBaseUrl: string = "https://www.themoviedb.org/t/p/w440_and_h660_face";
   backdropBaseUrl: string = "https://www.themoviedb.org/t/p/original/"
@@ -112,6 +117,7 @@ export class MovieViewComponent implements OnInit {
   }
 
   updateMovie() {
+    this.currentGenre = [];
     this.movieservice.getMovieById(this.paramMovieId).then(obj => {
       this.movie = obj;
 
@@ -135,11 +141,25 @@ export class MovieViewComponent implements OnInit {
         }
 
       }).catch(err => console.log(err))
+
+      this.movieservice.getRating(this.movie.id, localStorage.getItem("emailId")).then(data => {
+        if (data) {
+          this.movie.rating = data;
+          console.log(data);
+        }
+      })
     })
 
   }
 
   ngOnInit(): void {
+
+    this.email = localStorage.getItem("emailId");
+
+    this.ratingform.patchValue({
+      rating : this.movie.rating 
+    })
+    // this.movieservice.currentMovieListToShow = null ;
 
     this.movieservice.currentMovieListToShow = this.movieservice.getUpdatedMovieList();
 
@@ -148,11 +168,7 @@ export class MovieViewComponent implements OnInit {
 
     // this.movieservice.getAllMovies().subscribe
     // console.log(localStorage.getItem("emailId"));
-    this.movieservice.getRating(this.movie.id, localStorage.getItem("emailId")).then(data => {
-      if (data) {
-        this.movie.rating = data;
-      }
-    })
+   
 
     // this.movieservice.getMovieById(this.paramMovieId).then(obj => {
     //   this.movie = obj;
@@ -193,7 +209,7 @@ export class MovieViewComponent implements OnInit {
   }
 
 
-  email: any = localStorage.getItem("emailId");
+  email: any = "";
   addMovieToFavList(favListName: string) {
     this.favService.addMovieToFav(this.email, favListName, this.movie).then(data => {
       console.log(data);
@@ -217,9 +233,16 @@ export class MovieViewComponent implements OnInit {
       alert("Please type name of Favourite List")
     } else {
       this.favService.createFavList(this.favListNameInput).subscribe(data => {
-        console.log(data);
-        this.snackBar.open(`${this.favListNameInput} Favourite List is created `, "*_*", { duration: 2000 });
-        window.location.reload();
+        // console.log(data);
+        if(data){
+          this.snackBar.open(`${this.favListNameInput} Favourite List is created `, "*_*", { duration: 2500 });
+          this.createFavList = true ;
+          window.location.reload();
+        }
+        else{
+          this.snackBar.open(`${this.favListNameInput} Favourite List with name "${this.favListNameInput}" already exists`, "", { duration: 3000 });
+
+        }
       })
     }
 
@@ -242,15 +265,15 @@ export class MovieViewComponent implements OnInit {
   }
 
   playView: boolean = true;
-  zaxis: number = -2;
+  zaxis: number = -10;
   playTrailor() {
     if (this.playView) {
       this.playView = false;
-      this.zaxis = 5;
+      this.zaxis = 0;
     }
     else {
       this.playView = true;
-      this.zaxis = -2;
+      this.zaxis = -10;
     }
   }
 

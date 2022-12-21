@@ -2,72 +2,92 @@
   width: 100%;
 }
 
-.profile-card {
-  width: 100%;
-  /* min-width: 120px; */
-  margin: 20px auto;
-  box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
+mat-card-title{
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 28px;
+padding-bottom: 50px;
+  color: white;
+
 }
-mat-card-header{
+
+.profile-card {
+  /* background-image: url("../../assets/pexels-pixabay-33129.jpg"); */
+  background-size: 100%;
+  width: 100%;
+  background-position-y: -80px;
+  /* min-width: 120px; */
+  /* border-top: 5px dotted rgb(7, 6, 6); */
+  /* margin: 20px auto; */
+  padding: 10px 50px 50px 50px;
+  background-color: rgb(177, 175, 175);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+mat-card-header {
   display: flex;
   justify-content: center;
   text-align: center;
   /* border: 2px solid; */
   width: 100%;
 }
+
 .mat-radio-button {
   display: block;
   margin: 5px 0;
 }
-form{
-  /* background-color: aliceblue; */
-}
-#profilephoto{
-  /* background-image: url("../../assets/defaultprofile.jpg"); */
-  /* border: 1px dashed; */
+
+
+
+#profilephoto {
+  background-image: url("../../assets/defaultprofile.jpg");
+  border: 1px solid black;
   box-shadow: 5px 10px 10px rgba(38, 36, 36, 0.3);
 
   cursor: pointer;
-  background-size: 90px;
-  height: 100px;
-  width: 100px;
+  background-size: 100%;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   /* position:relative;
   top:-10px;
   left: 20px; */
 }
-#uploadInput{
-  border: 1px solid gray;
-  height: 100px;
-  width: 100px;
-  position:relative;
-  top:-20px;
+
+#uploadInput {
+  /* border: 1px solid gray; */
+  height: 200px;
+  width: 200px;
+  position: relative;
+  top: -20px;
   left: 2px;
   border-radius: 50%;
   overflow: hidden;
 }
-#file{
+
+#file {
   display: none;
 }
 
-#uploadInput:hover #uploadbtn{
+#uploadInput:hover #uploadbtn {
   opacity: 1;
 }
 
 
-#uploadbtn{
-  padding: 3px 0px 20px 0px;
+#uploadbtn {
+  padding: 8px 0px 30px 0px;
   opacity: 0;
-  width: 100px;
+  width: 200px;
   height: fit-content;
   /* border: 2px solid red; */
   /* border: 1px solid; */
   position: absolute;
-  bottom: -10px;
-  left: 1%;
-  background-color: rgba(0,0,0,0.8);
+  bottom: -15px;
+  left: 2px;
+  background-color: rgba(0, 0, 0, 0.8);
   color: wheat;
-  font-size: 9px;
+  font-size: 12px;
   text-align: center;
   cursor: pointer;
   /* font-size: 8px; */
@@ -93,7 +113,7 @@ form{
   margin-right: 0;
 }
 
-mat-card-actions{
+mat-card-actions {
   /* text-align: center; */
   display: flex;
   justify-content: center;
@@ -101,27 +121,76 @@ mat-card-actions{
   /* border: 2px solid; */
 
 }
-mat-card-actions button{
+
+mat-card-actions button {
   width: 100px;
 }
 
-#edit{
+mat-form-field{
+  font-size: small;
+}
+#edit {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 60px;
+  right: 80px;
   /* width: fit-content; */
   /* border: 2px solid; */
   /* font-size: 30px; */
-  
+
 }
-#save{
+
+#save {
   position: absolute;
-  bottom: 10px;
-  right: 20px;
+  bottom: 90px;
+  right: 60px;
 }
-#edit mat-icon{
+
+#edit mat-icon {
   width: 70px;
   height: 70px;
   color: black;
   font-size: 30px;
+  position: inherit;
+  left: -12px ;
+  top: 5px;
+}
+
+@media screen and (max-width:576px) {
+
+  #profilephoto {
+    /* background-image: url("../../assets/defaultprofile.jpg"); */
+    /* border: 1px dashed; */
+
+    background-size: 110px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    /* border: 2px solid red; */
+    /* position:relative;
+    top:-10px;
+    left: 20px; */
+  }
+
+  #uploadbtn {
+    width: 100px;
+    height: fit-content;
+  padding: 0px 0px 30px 0px;
+
+    /* border: 2px solid red; */
+    /* border: 1px solid; */
+    position: absolute;
+    bottom: -25px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: wheat;
+    font-size: 8px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  #uploadInput {
+    width: 100px;
+    height: 100px;
+    /* border: 2px solid; */
+  }
 }

@@ -136,7 +136,11 @@ public class MovieServiceImpl implements MovieService{
         String updatedEmail = email.replace(".","-");
         Movie movie = movieRepository.findById(id).get();
         Map<String,Integer> ratings = movie.getRating();
-        return ratings.get(updatedEmail);
+        int result = 0 ;
+        if(ratings.get(updatedEmail) != null){
+            result = ratings.get(updatedEmail);
+        }
+        return result ;
     }
 
     @Override
