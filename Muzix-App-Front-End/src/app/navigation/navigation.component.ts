@@ -14,6 +14,7 @@ import { MovieService } from '../services/movie.service';
 })
 export class NavigationComponent implements OnInit{
 
+    
   // isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   //   .pipe(
   //     map(result => result.matches),
@@ -22,6 +23,8 @@ export class NavigationComponent implements OnInit{
   userName:string  = "";
   profilepic:string = "";
   isLoggedIn: boolean = false;
+  subscribedPlan:string | null = null;
+  showsubscribed:boolean = false;
     
   toolkit: boolean = false;
   ngOnInit(): void {
@@ -29,10 +32,14 @@ export class NavigationComponent implements OnInit{
     // this.movieservice.getUpdatedMovieList();
     if (localStorage.getItem("emailId")) {
       this.loginAuth.login();
-      this.userservice.getProfile(localStorage.getItem("emailId")).then((data)=>{
+      this.userservice.getProfile(localStorage.getItem("emailId")).then((data: any)=>{
         let user:any = data
         this.userName = user.userName;
         this.profilepic = user.profilePic
+        this.subscribedPlan = user.subscribedPlan ;
+        if(this.subscribedPlan){
+          this.showsubscribed = true;
+        }
 
       })
     }

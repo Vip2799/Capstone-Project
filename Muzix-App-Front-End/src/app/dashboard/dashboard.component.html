@@ -1,13 +1,15 @@
-<app-search></app-search>
-
-<div class="dashBoard" style="background-image: url('../../assets/realistic-movie-clapper-slapstick_260559-141.webp');">
-<br>
-<!-- <div class="search-container">
+<div id="search">
+  <app-search></app-search>
+</div>
+<!-- style="background-image: url('../../assets/realistic-movie-clapper-slapstick_260559-141.webp');" -->
+<div class="dashBoard" style="background-color: rgb(63, 59, 59);">
+  <br>
+  <!-- <div class="search-container">
   <input (input)="onSearchTextChanged()" type="text" placeholder="Search Movie" [(ngModel)]="searchValue" >
   <button >Search</button>
 </div> -->
-<br>
-<!-- <section class="movies" *ngIf="searchSection">
+  <br>
+  <!-- <section class="movies" *ngIf="searchSection">
   <div class="container-fluid">
     <div class="slider-wrap">
       <div class="slider-main">
@@ -38,102 +40,99 @@
     </div>
   </div>
 </section><br> -->
-<h1>Trending Movies</h1>
-<section class="movies">
-  <div class="container-fluid">
-    <div class="slider-wrap">
-      <div class="slider-main">
-        <div class="movie" *ngFor="let movie of trendingmovies"  (click)="navigateToMovie(movie.id)">
-          <div class="card">
-            <div class="card-body">
-              <img
-              src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
+  <h1>Trending Movies</h1>
+  <section class="movies">
+    <div class="container-fluid">
+      <div class="slider-wrap">
+        <div class="slider-main">
+          <div class="movie" *ngFor="let movie of trendingmovies" (click)="navigateToMovie(movie.id)">
+            <div class="card">
+              <div class="card-body">
+                <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
                 movie.poster_path
-              }}"
-              width="165px"
-              height="140px"
-              alt=""
-            />
-              <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
-              <p class="text-center movieTitle">
-                <b>{{ movie.title }}</b>
-              </p>
-              <p class="releasedate">OnAir:-{{ movie.release_date }}</p>
+              }}" width="165px" height="140px" alt="" />
+                <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
+                <p class="text-center movieTitle">
+                  <b>{{ movie.title }}</b>
+                </p>
+                <p class="releasedate">OnAir:-{{ movie.release_date }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="button-area">
-        <button type="button" mat-raised-button class="prev preButton" appPrev><mat-icon>arrow_back_ios</mat-icon></button>
-        <button type="button" mat-raised-button class="next nexButton" appNext><mat-icon>arrow_forward_ios</mat-icon></button>
+        <div class="button-area">
+          <button type="button" mat-raised-button class="prev preButton" appPrev>
+            <mat-icon>arrow_back_ios</mat-icon>
+          </button>
+          <button type="button" mat-raised-button class="next nexButton" appNext>
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section><br><br>
-<h1 class="heading mt3">Popular Movies</h1>
-<section class="movies">
-  <div class="container-fluid">
-    <div class="slider-wrap">
-      <div class="slider-main">
-        <div class="movie" *ngFor="let movie of popularMovies" (click)="navigateToMovie(movie.id)">
-          <div class="card">
-            <div class="card-body">
-              <img
-              src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
+  </section><br><br>
+  <h1 class="heading mt3">Popular Movies</h1>
+  <section class="movies">
+    <div class="container-fluid">
+      <div class="slider-wrap">
+        <div class="slider-main">
+          <div class="movie" *ngFor="let movie of popularMovies" (click)="navigateToMovie(movie.id)">
+            <div class="card">
+              <div class="card-body">
+                <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
                 movie.poster_path
-              }}"
-              width="165px"
-              height="140px"
-              alt=""
-            />
-              <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
-              <p class="text-center movieTitle">
-                <b>{{ movie.title }}</b>
-              </p>
-              <p class="releasedate">OnAir{{ movie.release_date }}</p>
+              }}" width="165px" height="140px" alt="" />
+                <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
+                <p class="text-center movieTitle">
+                  <b>{{ movie.title }}</b>
+                </p>
+                <p class="releasedate">OnAir{{ movie.release_date }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="button-area">
-        <button type="button" mat-raised-button class="prev preButton" appPrev><mat-icon>arrow_back_ios</mat-icon></button>
-        <button type="button" mat-raised-button class="next nexButton" appNext><mat-icon>arrow_forward_ios</mat-icon></button>
+        <div class="button-area">
+          <button type="button" mat-raised-button class="prev preButton" appPrev>
+            <mat-icon>arrow_back_ios</mat-icon>
+          </button>
+          <button type="button" mat-raised-button class="next nexButton" appNext>
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section><br><br>
-<h1 class="heading">Free Movies</h1>
-<section class="movies">
-  <div class="container-fluid">
-    <div class="slider-wrap">
-      <div class="slider-main">
-        <div class="movie" *ngFor="let movie of freeMovies" (click)="navigateToMovie(movie.id)" >
-          <div class="card">
-            <div class="card-body">
-              <img
-              src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
+  </section><br><br>
+  <h1 class="heading">Free Movies</h1>
+  <section class="movies">
+    <div class="container-fluid">
+      <div class="slider-wrap">
+        <div class="slider-main">
+          <div class="movie" *ngFor="let movie of freeMovies" (click)="navigateToMovie(movie.id)">
+            <div class="card">
+              <div class="card-body">
+                <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
                 movie.poster_path
-              }}"
-              width="165px"
-              height="140px"
-              alt=""
-            />
-              <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
-              <p class="text-center movieTitle">
-                <b>{{ movie.title }}</b>
-              </p>
-              <p class="releasedate">OnAir{{ movie.release_date }}</p>
+              }}" width="165px" height="140px" alt="" />
+                <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
+                <p class="text-center movieTitle">
+                  <b>{{ movie.title }}</b>
+                </p>
+                <p class="releasedate">OnAir{{ movie.release_date }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="button-area">
-        <button type="button" mat-raised-button class="prev preButton" appPrev><mat-icon>arrow_back_ios</mat-icon></button>
-        <button type="button" mat-raised-button class="next nexButton" appNext><mat-icon>arrow_forward_ios</mat-icon></button>
+        <div class="button-area">
+          <button type="button" mat-raised-button class="prev preButton" appPrev>
+            <mat-icon>arrow_back_ios</mat-icon>
+          </button>
+          <button type="button" mat-raised-button class="next nexButton" appNext>
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 </div>
 

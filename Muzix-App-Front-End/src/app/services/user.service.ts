@@ -30,7 +30,6 @@ export class UserService {
   }
 
   getProfile(userId:any){
-  
    return new Promise((resolve, reject) => {
     this.http.get(this.baseUrl1+"getProfile/"+userId).subscribe(data=>{
       resolve(data);

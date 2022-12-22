@@ -27,8 +27,13 @@ public class FavouriteServiceController {
     }
 
     @PostMapping("favList/{email}")
-    public ResponseEntity<?> createFavList(@PathVariable String email, @RequestBody String favListName) throws FavouriteListAlreadyExists {
-        return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
+    public ResponseEntity<?> createFavList(@PathVariable String email, @RequestBody String favListName)  {
+
+        try {
+            return new ResponseEntity<>(favouriteService.addFavouriteList(email,favListName),HttpStatus.CREATED);
+        } catch (FavouriteListAlreadyExists e) {
+            return new ResponseEntity<>(null,HttpStatus.ACCEPTED);
+        }
     }
 
     @PostMapping("favList/addMovie/{email}/{name}")

@@ -19,7 +19,7 @@ import { UserService } from '../services/user.service';
 })
 export class MovieViewComponent implements OnInit {
 
-  constructor(private activeRoute: ActivatedRoute, private fb: FormBuilder, private userservice: UserService, private movieservice: MovieService, private favService: FavouriteService, private snackBar: MatSnackBar, private http: HttpClient, private router: Router) { }
+  constructor(private activeRoute: ActivatedRoute, private fb: FormBuilder, private userservice: UserService, private movieservice: MovieService, private favService: FavouriteService, private snackBar: MatSnackBar, private router: Router) { }
 
   // ngOnChanges(changes: SimpleChanges): void {
   //     this.movieservice.getMovieById(this.paramMovieId).then(data=>{
@@ -49,6 +49,8 @@ export class MovieViewComponent implements OnInit {
     rating: null
   }
   paramId: any = "";
+  paramMovieId: number = 0;
+
   favListsAcc: any = {};
 
   genresList: any = {};
@@ -74,36 +76,8 @@ export class MovieViewComponent implements OnInit {
 
     })
   }
-  //  allMovies:any = [] ;
-  // genreList:any= [];
-  // getRecommendedList(){
-  //   this.movieservice.getAllMovies().subscribe(data=>{
-  //     this.allMovies = data ;
-
-  //     // this.recommendedMovieList = this.allMovies.slice(1,20)
-  //     this.userservice.getGenres().then(data=>{
-  //       this.genreList = data ;
-
-  //       for(let i = 0 ; i < 20 ; i++){
-  //         let genreString: any[] = [];
-  //         for(let genre of this.allMovies[i].genre_ids){
-  //           // console.log(this.genreList)
-  //           this.genreList.genres.forEach((data: any) =>{
-  //               if(data.id == genre){
-  //                genreString.push(data);
-  //               }
-  //           })
-  //         }
-  //         this.allMovies[i].currentGenreList = genreString ;
-  //         this.recommendedMovieList.push(this.allMovies[i]);
-  //       }
-  //     })
 
 
-  //   })
-  // }
-
-  paramMovieId: number = 0;
 
   getparam() {
     return new Promise((res, rej) => {
@@ -118,9 +92,9 @@ export class MovieViewComponent implements OnInit {
 
   updateMovie() {
     this.ratingform.patchValue({
-      rate : "" 
+      rate: ""
     })
-    this.ratingOption = false;  
+    this.ratingOption = false;
     this.currentGenre = [];
     this.movieservice.getMovieById(this.paramMovieId).then(obj => {
       this.movie = obj;
@@ -164,42 +138,10 @@ export class MovieViewComponent implements OnInit {
 
     this.email = localStorage.getItem("emailId");
 
-
-    // this.movieservice.currentMovieListToShow = null ;
-
     this.movieservice.currentMovieListToShow = this.movieservice.getUpdatedMovieList();
 
     this.getparam();
-    // this.recommendedMovieList = this.movieservice.getUpdatedMovieList()
-
-    // this.movieservice.getAllMovies().subscribe
-    // console.log(localStorage.getItem("emailId"));
-
-
-    // this.movieservice.getMovieById(this.paramMovieId).then(obj => {
-    //   this.movie = obj;
-
-    //   this.trailerInit();
-
-    //   this.favService.getFavListAcc().then(data => {
-    //     this.favListsAcc = data;
-    //   })
-
-    //   this.userservice.getGenres().then((response) => {
-    //     this.genresList = response;
-    //     this.genres = this.genresList.genres;
-
-    //     for (let genre_id of this.movie.genre_ids) {
-    //       // this.currentGenre = this.genres.filter((obj) => obj.id == genre_id)
-    //       this.genres.forEach(obj => {
-    //         if (obj.id == genre_id) {
-    //           this.currentGenre.push(obj);
-    //         }
-    //       })
-    //     }
-
-    //   }).catch(err => console.log(err))
-    // })
+    
     this.updateMovie();
 
   }
@@ -222,34 +164,40 @@ export class MovieViewComponent implements OnInit {
       this.snackBar.open("Movie added to Favourite list", favListName, { duration: 3000 });
     }).catch(err => {
       this.snackBar.open("Movie Already Added to Favourite list", favListName, { duration: 6000 });
-
     })
-
   }
+
   favListNameInput: string = "";
   createFavList: boolean = true;
+
   create() {
     if (this.createFavList) {
       this.createFavList = false;
     }
-
   }
-  createPlaylist() {
-    if (this.favListNameInput == "") {
-      alert("Please type name of Favourite List")
-    } else {
-      this.favService.createFavList(this.favListNameInput).subscribe(data => {
-        // console.log(data);
-        if (data) {
-          this.snackBar.open(`${this.favListNameInput} Favourite List is created `, "*_*", { duration: 2500 });
-          this.createFavList = true;
-          window.location.reload();
-        }
-        else {
-          this.snackBar.open(`${this.favListNameInput} Favourite List with name "${this.favListNameInput}" already exists`, "", { duration: 3000 });
 
-        }
-      })
+  createPlaylist() {
+    if (localStorage.getItem("emailId")) {
+      if (this.favListNameInput == "") {
+        alert("Please type name of Favourite List")
+      } else {
+        this.favService.createFavList(this.favListNameInput).subscribe(data => {
+          // console.log(data);
+          if (data) {
+            this.snackBar.open(`${this.favListNameInput} Favourite List is created `, "*_*", { duration: 2500 });
+            this.createFavList = true;
+            window.location.reload();
+          }
+          else {
+            this.snackBar.open(`${this.favListNameInput} Favourite List with name "${this.favListNameInput}" already exists`, "", { duration: 3000 });
+
+          }
+        })
+      }
+    }
+    else {
+      alert("Please Login to create Favourite List...!");
+      this.router.navigate(["login"]);
     }
 
   }
@@ -262,6 +210,7 @@ export class MovieViewComponent implements OnInit {
   // }
 
   selectRating(rating: any) {
+
     this.movieservice.addRating(localStorage.getItem("emailId"), this.movie.id, rating.target.value).subscribe(data => {
       console.log(data);
       this.snackBar.open(`You rated this movie`, this.ratingform.get("rate")?.value + "/5", { duration: 1000 });
@@ -279,24 +228,47 @@ export class MovieViewComponent implements OnInit {
   playView: boolean = true;
   zaxis: number = -10;
   playTrailor() {
-    if (this.playView) {
-      this.playView = false;
-      this.zaxis = 0;
+    let user: any = localStorage.getItem("emailId");
+    if (user) {
+      this.userservice.getProfile(user).then((data:any)=>{
+        if (data.subscribedPlan) {
+          if (this.playView) {
+            this.playView = false;
+            this.zaxis = 0;
+          }
+          else {
+            this.playView = true;
+            this.zaxis = -10;
+          }
+        } else {
+          this.snackBar.open("Please Buy Subscription plan to watch movie", ";)", { duration: 3000 });
+          this.router.navigate(["payment"]);
+        }
+      })
+     
+    } else {
+      this.snackBar.open("Please Login before playing movie", ";)", { duration: 3000 });
+      this.router.navigate(["login"]);
+
     }
-    else {
-      this.playView = true;
-      this.zaxis = -10;
-    }
+
   }
 
   ratingOption: boolean = false;
   ratingbtnOption() {
-    if (this.ratingOption) {
-      this.ratingOption = false;
+    if (localStorage.getItem("emailId")) {
+      if (this.ratingOption) {
+        this.ratingOption = false;
+      }
+      else {
+        this.ratingOption = true;
+      }
     }
     else {
-      this.ratingOption = true;
+      alert("Please Login to give rating!!")
+      this.router.navigate(["login"])
     }
+
   }
 
   navigateToMovie(id: number) {

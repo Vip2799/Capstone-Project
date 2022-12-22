@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CanDeactivate } from '@angular/router';
 import { user } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -79,7 +80,7 @@ export class ProfileComponent implements OnInit {
     // this.profileForm.get('userName')?.value 
     // this.profileForm.ser
     let user: any = {}
-    this.userservice.getProfile(localStorage.getItem("emailId")).then(data => {
+    this.userservice.getProfile(localStorage.getItem("emailId")).then((data: any) => {
       user = data;
 
       this.profileForm.patchValue({

@@ -1,31 +1,30 @@
 #backimage{
-    background-image: url("../../assets/searchBackground.jpg");
-    background-size: 1400px;
-    width: 95%;
-    height: 40%;
-    margin-left: 40px;
-    margin-right: 60px;
-    /* border: 2px solid red ; */
-    border-radius: 60px;
-    background-position-y: -90px;
+    background-image: url("../../assets/pexels-cottonbro-studio-3945321.jpg");
+    background-size: 100%;
+    width: 100%;
+    /* height: 100%; */
+    /* margin-left: 140px; */
+    /* border: 5px solid rgb(94, 53, 129) ; */
+    /* border-radius: 60px; */
+    background-position-y: -120px;
+    padding-bottom: 30px;
 }
 
 input{
     border-radius: 10rem 0 0 10rem;
     border: none;
     background-color: #f1f1f1;
-    height: 1rem;
-    width: 30rem;
+    height: 3rem;
+    width: 22rem;
     padding: 1.2rem;
     font-size: 1.2rem;
     font-weight: 500;
     outline: none;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin: 90px 0px 80px 320px;
 }
 
 button{
-    background-color: rgb(25, 5, 154);
+    background-color: rgb(85, 58, 151);
     color: black;
     width: 6rem;
     font-size: 1.2rem;
@@ -33,11 +32,11 @@ button{
     /* font-weight: bold; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border: none;
-    opacity: .8;
+    opacity: .9;
     outline: none;
     color: white;
     font-style: italic;
-    padding: 10px;
+    padding: 15px;
 }
 
 button:hover{
