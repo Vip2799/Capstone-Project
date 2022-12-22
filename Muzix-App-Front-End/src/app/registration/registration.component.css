@@ -7,6 +7,8 @@ h3{
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 600;
+  margin-top: -30px;
+  margin-bottom: 0px;
 }
 
 .registration-card {
@@ -81,7 +83,7 @@ mat-card-header{
   width: 100px;
   position:relative;
   top:-20px;
-  left: 2px;
+  left: -5px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -133,9 +135,10 @@ form{
   background-size: 120%;
   background-position-y: -250px;
   /* background-repeat: no-repeat; */
-  height: 100vh;
+  height: 88%;
+  /* border: 2px solid; */
   /* background */
-  
+  /* overflow-y: hidden; */
   padding: 5px;
   /* border: 2px solid; */
 }

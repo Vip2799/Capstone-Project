@@ -40,13 +40,13 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm = this.fb.group({
     userName: ["", Validators.required],
-    email: ["", Validators.required],
-    age: [null, Validators.required],
-    mobileNo: [null, Validators.required],
+    email: ["", [Validators.required,Validators.email]],
+    age: [null, [Validators.required, Validators.min(1)]],
+    mobileNo: [null, [Validators.required,Validators.pattern(/^[789]\d{9,9}$/)]],
     streetName: ["", Validators.required],
     city: ["", Validators.required],
     state: ["", Validators.required],
-    pinCode: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]
+    pinCode: [null, [Validators.required, Validators.pattern(/^\d{6}$/)]
     ],
     password: [null,[ Validators.required, passwordValidation]],
     confirmPassword: [null, Validators.required]

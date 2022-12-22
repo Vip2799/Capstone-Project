@@ -20,7 +20,7 @@
           <div class="col ">
             <mat-form-field class="full-width">
               <mat-label>User Name</mat-label>
-              <input matInput placeholder="userName" formControlName="userName">
+              <input type="text" matInput placeholder="userName" formControlName="userName">
               <mat-error *ngIf="registrationForm.controls['userName'].hasError('required')">
                 User name is <strong>required</strong>
               </mat-error>
@@ -32,9 +32,12 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Email" formControlName="email">
+              <input type="email" matInput placeholder="Email" formControlName="email">
               <mat-error *ngIf="registrationForm.controls['email'].hasError('required')">
                 Email id is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="registrationForm.controls['email'].hasError('email')">
+                Email id is <strong>invalid</strong>
               </mat-error>
             </mat-form-field>
           </div>
@@ -42,9 +45,12 @@
         <div class="row">
           <mat-form-field class="full-width">
             <mat-label>Age</mat-label>
-            <input matInput placeholder="age" formControlName="age">
+            <input min="1" matInput placeholder="age" formControlName="age">
             <mat-error *ngIf="registrationForm.controls['age'].hasError('required')">
               Age is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registrationForm.controls['age'].hasError('min')">
+              Age can't be <strong>negative </strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -52,9 +58,12 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Mobile Number</mat-label>
-              <input type="tel" matInput placeholder="Mobile No" formControlName="mobileNo">
+              <input type="tel"  matInput placeholder="Mobile No" formControlName="mobileNo">
               <mat-error *ngIf="registrationForm.controls['mobileNo'].hasError('required')">
                 Mobile number is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="registrationForm.controls['mobileNo'].hasError('pattern')">
+                Mobile number should be <strong>start with 6,7,8,9 and should be 10 digit</strong>
               </mat-error>
             </mat-form-field>
           </div>
@@ -105,13 +114,13 @@
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-label>Pincode</mat-label>
-                <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number"
+                <input matInput #postalCode maxlength="6" placeholder="Postal Code" type="number"
                   formControlName="pinCode">
                 <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
                 <mat-error *ngIf="registrationForm.controls['pinCode'].hasError('required')">
                   Pincode is <strong>required</strong>
                 </mat-error>
-                <mat-error *ngIf="pinCode?.hasError('minlength')">
+                <mat-error *ngIf="pinCode?.hasError('pattern')">
                   Pincode should be <strong>6 digit</strong>
                 </mat-error>
               </mat-form-field>
