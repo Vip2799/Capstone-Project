@@ -88,9 +88,13 @@
 }
 
 
-#name{
+#name strong{
   font-family: Comic Sans MS;
+  font-size: 12px;
 
+}
+#name small{
+  font-size: 11px;
 }
 
 #profcont{
@@ -207,6 +211,12 @@ mat-sidenav-content{
     z-index: 2;
 }
 
+#toolkit a{
+  font-size: 8px;
+  border: 2px solid;
+
+}
+
 #toolkit::after{
   content: "";
   position: absolute;
@@ -236,6 +246,7 @@ mat-sidenav-content{
 
 #toolkit a{
   border-bottom: 1px dashed;
+  line-height: 0px;
 }
 
 

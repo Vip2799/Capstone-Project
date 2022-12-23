@@ -36,6 +36,7 @@ import { PrevDirective } from './prev.directive';
 import { OrderServiceComponent } from './order-service/order-service.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatCheckboxModule,
     HttpClientModule,
+    MatChipsModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatFormFieldModule,

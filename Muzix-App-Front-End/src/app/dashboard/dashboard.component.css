@@ -133,3 +133,25 @@ mat-raised-button{
 .card-body{
     height: fit-content;
 }
+
+.chips{
+    background-color: rgb(105, 108, 110);
+    padding: 15px 0px;
+    padding-left: 50px;
+    padding-bottom: -15px;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+.langChip{
+   padding-left: 25px;
+   margin-left: 10px;
+   padding: 5px;
+   border: 1px solid rgb(239, 199, 199);
+   border-radius: 5px;
+}
+.langHeading{
+    color: aquamarine;
+}
+.genreChips{
+    padding-top: 7px;
+}

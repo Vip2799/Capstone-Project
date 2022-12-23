@@ -33,12 +33,16 @@ hidecont(){
 }
 
 onSearchTextChanged(){
+  if(this.enterSearchValue == ""){
+    this.movies = [];
+    this.searchSection = false;
+  }
  this.searchService.searchedMovie(this.enterSearchValue).subscribe(
 
    (  data: any)=> {
     this.searchSection = true ;
     this.movies = data;
-    
+   
     // console.log(data);
   }
 

@@ -40,6 +40,56 @@
     </div>
   </div>
 </section><br> -->
+<div class="chips">
+<mat-chip-listbox aria-label="Fish selection"><div class="genreChips">
+  <mat-chip-option selected (click)="allMovieList()">All Movies</mat-chip-option>
+  <mat-chip-option (click)="genreFilterMovieList(28)">Adventure</mat-chip-option>
+  <mat-chip-option  (click)="genreFilterMovieList(14)">Action</mat-chip-option>
+  <mat-chip-option color="accent"  (click)="genreFilterMovieList(35)">Comedy</mat-chip-option>
+  <mat-chip-option color="warn"  (click)="genreFilterMovieList(18)">drama</mat-chip-option>
+  <mat-chip-option color="warn"  (click)="genreFilterMovieList(27)">Horror</mat-chip-option>
+  <mat-chip-option color="accent"  (click)="genreFilterMovieList(10751)">Family</mat-chip-option>
+  <mat-chip-option color="warn"  (click)="genreFilterMovieList(10770)">Documentary</mat-chip-option>
+  <mat-chip-option color="warn"  (click)="genreFilterMovieList(37)">History</mat-chip-option></div>
+  <div class="langChip">
+    <small class="langHeading">Languages</small><br>
+    <mat-chip-option color="accent"  (click)="languageFilterMovieList('en')">English</mat-chip-option>
+     <mat-chip-option color="warn"  (click)="languageFilterMovieList('ja')">Japanese</mat-chip-option>
+    <mat-chip-option color="warn"  (click)="languageFilterMovieList('ko')">Korean</mat-chip-option>
+    <mat-chip-option color="warn"  (click)="languageFilterMovieList('fr')">France</mat-chip-option>
+  </div>
+</mat-chip-listbox>
+</div>
+<section class="movies" *ngIf="filterSectionHide">
+  <div class="container-fluid">
+    <div class="slider-wrap">
+      <div class="slider-main">
+        <div class="movie" *ngFor="let movie of filteredMovies" (click)="navigateToMovie(movie.id)">
+          <div class="card">
+            <div class="card-body">
+              <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{
+              movie.poster_path
+            }}" width="165px" height="140px" alt="" />
+              <h6 class="card-subtitle mb-2 text-muted">{{movie.original_language}}</h6>
+              <p class="text-center movieTitle">
+                <b>{{ movie.title }}</b>
+              </p>
+              <p class="releasedate">OnAir:-{{ movie.release_date }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button-area">
+        <button type="button" mat-raised-button class="prev preButton" appPrev>
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <button type="button" mat-raised-button class="next nexButton" appNext>
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
   <h1>Trending Movies</h1>
   <section class="movies">
     <div class="container-fluid">

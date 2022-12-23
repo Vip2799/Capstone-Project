@@ -53,5 +53,8 @@ export class UserService {
       })
     })
   }
+  subscribe(){
+    return this.http.post(this.baseUrl+`/subscribe/${localStorage.getItem('emailId')}`,{})
+  }
 
 }

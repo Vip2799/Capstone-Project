@@ -16,6 +16,7 @@ export class DashboardComponent {
 
   searchValue:string =''
   searchSection:boolean = false
+  filterSectionHide:boolean = false
 
  
 
@@ -28,6 +29,7 @@ export class DashboardComponent {
   trendingmovies: Movie[] = []
   freeMovies: Movie[] = []
   searchedMovies: Movie[] =[]
+  filteredMovies: Movie[] =[]
 
  
 
@@ -38,6 +40,7 @@ export class DashboardComponent {
       next: (data: any) => {
         var arr: any = data;
         this.movies = arr;
+        this.filteredMovies = arr;
         this.popularMovies = this.movies.filter((movie: { keyWords: string[]; }) => movie.keyWords[0] == "popular");
         this.trendingmovies = this.movies.filter((movie: { keyWords: string[]; }) => movie.keyWords[0] == "trending")
         this.freeMovies = this.movies.filter((movie: { keyWords: string[]; }) => movie.keyWords[0] == "free")
@@ -70,4 +73,22 @@ export class DashboardComponent {
     //  }
     // );
   }
+
+  genreFilterMovieList(genreId:Number){
+    this.filterSectionHide = true
+    this.filteredMovies = this.movies.filter((movie: { genre_ids: Number[]; }) => movie.genre_ids[0] == genreId);
+   
+  }
+
+  allMovieList(){
+    this.filterSectionHide = false
+  }
+
+  languageFilterMovieList(language:string){
+    this.filterSectionHide = true
+    this.filteredMovies = this.movies.filter((movie) => movie.original_language === language);
+  }
+
+
+
 }

@@ -55,6 +55,14 @@ export class OrderServiceComponent {
     }
     };
 
+    subscribe(){
+      this.userService.subscribe().subscribe(data => console.log(data))
+      this.snackBar.open('You will get Updates!!', 'Subscribed', {​
+        duration: 5000,
+         panelClass: ['mat-toolbar', 'mat-primary'] 
+       })
+    }
+
     payment(amount:any): void {
       this.paymentId = ''; 
       this.error = ''; 
