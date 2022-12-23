@@ -1,38 +1,49 @@
-form{
-    padding: 999px;
-   
-    margin:50px 50px 0px 0px ;
-    position: relative;
-    width: 350px;
-    height: 350px;
-    border-radius: 20px;
-    padding: 40px;
-    box-sizing: border-box;
-    background: #ecf0f3;
-    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px rgb(143, 139, 139);
-    text-decoration: none;
-  
-  }
-  a{
-    text-decoration: none;
-  }
-  .loginPage{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    width: 100%;
-    background-position: 100%;
-    background-color: #cbced1;
-    background-size: cover;
-    background-repeat: no-repeat;
-   
-  margin: 0px;
-  min-height: 100%;
+form {
+  padding: 999px;
+
+  margin: 50px 50px 0px 0px;
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #ecf0f3;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px rgb(143, 139, 139);
+  text-decoration: none;
+
+}
+
+mat-spinner {
+
+  display: inline-block;
+  margin-bottom: -10px;
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.loginPage {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
   width: 100%;
-  }
-  .footer{
-    padding-top: 170px;
-  }
-  .top{
-    padding-top: 15px;
-  }
+  background-position: 100%;
+  background-color: #cbced1;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  margin: 0px;
+  min-height: 88%;
+  width: 100%;
+}
+
+.footer {
+  padding-top: 170px;
+}
+
+.top {
+  padding-top: 15px;
+}

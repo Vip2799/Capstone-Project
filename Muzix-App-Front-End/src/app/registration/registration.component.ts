@@ -128,8 +128,9 @@ export class RegistrationComponent implements OnInit {
     // throw new Error('Method not implemented.');
     // document.documentElement.scrollTop = 10
   }
-
+  loading:boolean=false
   onSubmit(): void {
+    this.loading=true;
     this.regUser.registerUser({
       email: this.email?.value,
       userName: this.userName?.value,

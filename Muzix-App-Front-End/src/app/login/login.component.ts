@@ -31,7 +31,9 @@ constructor(private fb:FormBuilder,private router:Router,private _snackBar:MatSn
    decodeEmail:any;
    data:any;
 
+   loading:boolean=false;
    onSubmit(){
+    this.loading = true;
     this.userService.loginCheck(this.loginForm.value).subscribe(
       response =>{ 
 
@@ -57,6 +59,7 @@ constructor(private fb:FormBuilder,private router:Router,private _snackBar:MatSn
       })
       },
       (error) =>{
+        this.loading = false
         if(error.response = 404){
           console.log(error.response)
           this._snackBar.open('Username Or Password is Invalid!!', 'LoginFailed', {​

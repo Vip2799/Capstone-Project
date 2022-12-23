@@ -77,6 +77,11 @@ mat-card-header{
   /* font-size: 8px; */
 }
 
+mat-spinner{
+  display: inline-block;
+  margin-left: -20px;
+}
+
 #uploadInput{
   border: 1px solid gray;
   height: 100px;

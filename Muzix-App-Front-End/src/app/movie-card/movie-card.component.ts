@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 
@@ -12,7 +12,7 @@ export class MovieCardComponent implements OnInit {
   constructor(private movieservice: MovieService, private router: Router, private activatedRouter: ActivatedRoute) { }
 
   posterBaseUrl: string = "https://www.themoviedb.org/t/p/w440_and_h660_face";
-
+  @Input()
   allMovies: any = [];
   paramMovieId: number = 0
   ngOnInit(): void {

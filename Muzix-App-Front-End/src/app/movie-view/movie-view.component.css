@@ -394,7 +394,7 @@ p{
 }
 
 #ratingBtn:hover mat-icon{
-    font-size: 55px;
+    font-size: 40px;
     color: rgb(246, 246, 170);
 
 }
@@ -403,7 +403,7 @@ p{
    height: fit-content;
    width: fit-content;
     /* border: 2px solid; */
-    font-size: 49px;
+    font-size: 35px;
     color: white;
     /* padding: 0px; */
 

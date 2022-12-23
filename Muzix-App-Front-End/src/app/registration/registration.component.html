@@ -138,7 +138,7 @@
                 Password is <strong>required</strong>
               </mat-error>
               <mat-error *ngIf="password?.hasError('invalidPassword')">
-                <strong>Invalid</strong> password !!
+                password length should be grater than 8 and must contain atleat 1 capital letter, 1 symbol and 1 number.
               </mat-error>
             </mat-form-field>
           </div>
@@ -165,6 +165,8 @@
 
       <button *ngIf="register" mat-raised-button color="primary" ng-click type="submit"
         class="bg-success" [disabled]="registrationForm.invalid">Register</button>
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+
         <!-- <div > -->
           <!-- <div></div> -->
           <button  *ngIf="!register" type="button" mat-raised-button id="nextbtn" (click)="nextForm()">Next</button>

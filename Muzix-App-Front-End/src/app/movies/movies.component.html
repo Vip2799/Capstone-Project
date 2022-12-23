@@ -1,4 +1,81 @@
-
 <!-- <app-search></app-search> -->
 <h1>All Movies</h1>
-<app-movie-card></app-movie-card>
+<div id="filter" [formGroup]="filter" >
+    <button (click)="filterOption()" [matBadge]="notification" matBadgeColor="accent" matBadgePosition="before" mat-raised-button>Filter <mat-icon fontIcon="filter_alt"></mat-icon></button>
+    <div *ngIf="filterOptionShow">
+
+        <section class="form-check" id="genre">
+            <button class="btn" (click)="opengenreList()">Genre<mat-icon fontIcon="chevron_right"></mat-icon></button>
+            <div id="genrelist" *ngIf="genreShow">
+                <div>
+                    <input type="checkbox" class="form-check-input" id="action" value="Action" formControlName="value1">
+                    <label class="form-check-label" for="action">Action</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="animation" value="Animation"
+                        formControlName="value2">
+                    <label for="animation">Animation</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="comedy" value="Comedy" formControlName="value3">
+                    <label for="comedy">Comedy</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="romance" value="Romance"
+                        formControlName="value4">
+                    <label for="romance">Romance</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="thriller" value="Thriller"
+                        formControlName="value5">
+                    <label for="thriller">Thriller</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="drama" value="Drama" formControlName="value6">
+                    <label for="drama">Drama</label>
+                </div>
+            </div>
+
+        </section>
+        <section class="form-check" id="language">
+            <button class="btn" (click)="openlanList()">Language<mat-icon fontIcon="chevron_right"></mat-icon></button>
+            <div id="languagelist" *ngIf="languageShow">
+                <div>
+                    <input type="checkbox" class="form-check-input" id="english" value="en" formControlName="value7">
+                    <label for="english">English</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="hindi" value="hi" formControlName="value8">
+                    <label for="hindi">Hindi</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="french" value="fr" formControlName="value9">
+                    <label for="french">French</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="spanish" value="is" formControlName="value10">
+                    <label for="spanish">Spanish</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="italian" value="it" formControlName="value11">
+                    <label for="italian">Italian</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="form-check-input" id="polish" value="pl" formControlName="value12">
+                    <label for="polish">Polish</label>
+                </div>
+
+
+
+
+            </div>
+
+        </section>
+        <button id="apply" class="btn btn-success" (click)="onSubmit()">Apply filter</button>
+    </div>
+
+</div>
+<div id="card-container">
+    <app-movie-card [allMovies]="result"></app-movie-card>
+
+</div>

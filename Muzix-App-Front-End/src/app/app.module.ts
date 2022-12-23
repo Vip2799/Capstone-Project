@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ProfileComponent } from './profile/profile.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -33,6 +34,9 @@ import { MoviesComponent } from './movies/movies.component';
 import { NextDirective } from './next.directive';
 import { PrevDirective } from './prev.directive';
 import { OrderServiceComponent } from './order-service/order-service.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatBadgeModule} from '@angular/material/badge';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,13 +58,16 @@ import { OrderServiceComponent } from './order-service/order-service.component';
   ],
   imports: [
     BrowserModule,
+    MatBadgeModule,
     AppRoutingModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

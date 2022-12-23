@@ -21,9 +21,12 @@
         </mat-error>
     </mat-form-field>
     <br>
-    <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="accent" style="margin-left: 20px;">Login</button>
+    <div>
+        <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="accent" style="margin-left: 20px;">Login</button>
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+    </div>
     <br><br><br><div id="signup">
-        <span>Don't Have A Account?</span>
+        <span >Don't Have A Account?</span>
         <a routerLink="../register">
             <button mat-raised-button  color="accent" style="margin-left: 20px;">SignUp</button></a>
         </div>
