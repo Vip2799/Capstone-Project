@@ -83,22 +83,43 @@ export class MoviesComponent implements OnInit {
         selectedlanguage.push(language[i - 1]);
       }
     }
-    
+
     this.result = [];
     let allmovies: any[] = this.movieservice.getUpdatedMovieList();
     setTimeout(() => {
-      for (let movie of allmovies) {
-        for (let genre of selectedgenre) {
-          for (let genreName of movie.currentGenreList) {
-            if (genreName.name == genre) {
-              this.result.push(movie);
-              break;
+     for (let movie of allmovies) {
+        if (selectedlanguage.length != 0 && selectedgenre.length != 0) {
+          for (let language of selectedlanguage) {
+            if (movie.original_language.includes(language)) {
+              for (let genre of movie.currentGenreList) {
+                for (let genreSel of selectedgenre) {
+                  if (genre.name.includes(genreSel)) {
+                    if (!this.result.includes(movie)) {
+                      this.result.push(movie);
+                      break;
+                    }
+                  }
+                }
+              }
             }
           }
-        }
-        if (!this.result.includes(movie)) {
-          if (selectedlanguage.includes(movie.original_language)) {
-            this.result.push(movie);
+        } 
+        else if (selectedgenre.length != 0) {
+          for (let genre of movie.currentGenreList) {
+            for (let genreSel of selectedgenre) {
+              if (genre.name.includes(genreSel)) {
+                if (!this.result.includes(movie)) {
+                  this.result.push(movie);
+                  break;
+                }
+              }
+            }
+          }
+        }else if(selectedlanguage.length !=0){
+          for(let language of selectedlanguage){
+            if(movie.original_language.includes(language)){
+              this.result.push(movie)
+            }
           }
         }
       }
