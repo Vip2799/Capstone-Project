@@ -192,6 +192,9 @@ export class MovieViewComponent implements OnInit {
             this.snackBar.open(`${this.favListNameInput} Favourite List with name "${this.favListNameInput}" already exists`, "", { duration: 3000 });
 
           }
+        },
+        err=>{
+          alert("Network Error!! Try Again");
         })
       }
     }

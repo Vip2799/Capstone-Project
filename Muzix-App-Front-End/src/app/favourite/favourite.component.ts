@@ -57,11 +57,15 @@ export class FavouriteComponent {
       this.favs = data1.favouriteLists;
       if (this.favs.length == 0) {
         this.favListShow = false;
+      }else{
+        this.view(this.favs[0].favListName);
+
       }
       if (this.updatedMovieList.length == 0) {
         this.isShow = false;
       }
       console.log(this.favs.length);
+      
     })
 
   }
@@ -119,7 +123,7 @@ export class FavouriteComponent {
         this.updatedMovieList.push(movie);
       }
       // console.log(this.updatedMovieList[0]);
-      if (this.updatedMovieList.length == 0) {
+      if (this.movies.length == 0) {
         this.movieListShow = true;
       }
       else if(this.favListShow = true){

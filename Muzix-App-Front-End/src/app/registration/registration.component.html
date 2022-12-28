@@ -24,6 +24,9 @@
               <mat-error *ngIf="registrationForm.controls['userName'].hasError('required')">
                 User name is <strong>required</strong>
               </mat-error>
+              <mat-error *ngIf="registrationForm.controls['userName'].hasError('pattern')">
+                User name is  <strong>Invalid</strong>. should not start with number
+              </mat-error>
             </mat-form-field>
 
           </div>

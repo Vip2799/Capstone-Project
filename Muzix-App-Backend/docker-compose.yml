@@ -1,0 +1,102 @@
+version:  '3.9'
+services:
+  mysql-service:
+    image:  mysql
+    container_name: mysql-service
+    ports:
+      - 3306:3306
+    networks: personal-network
+    environment:
+      MYSQL_ROOT_PASSWORD:  root
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  mongo-service:
+    image:  mongo
+    container_name: mongo-service
+    ports:
+      - 27017:27017
+    networks: personal-network
+
+  api-gateway-service:
+    image:  api-gateway
+    container_name: api-gateway-service
+    build:  ApiGateWay/
+    restart:  always
+    ports:  9000:9000
+    networks: personal-network
+    depends_on:
+      - eureka-service
+
+  authentication-service:
+    image:  authentication
+    container_name: authentication-service
+    build:  authentication/
+    restart:  always
+    ports:
+      - 8092:8092
+    network:  personal-network
+    depends_on:
+      - mysql-service
+
+  eureka-service:
+    image:  eureka
+    container_name: eureka-service
+    build:  EurekaServer/
+    restart:  always
+    ports:
+      - 8761:8761
+    network:  personal-network
+
+  favourite-service:
+    image:  favourite
+    container_name: favourite-service
+    build:  Favourite-List-Service/
+    restart:  always
+    ports:
+      - 8081:8081
+    network:  personal-network
+    depends_on:
+      - mongo-service
+      - eureka-service
+
+  movie-service:
+    image:  movie
+    container_name: movie-service
+    build:  Movie-Service/
+    restart:  always
+    ports:
+      - 8080:8080
+    networks: personal-network
+    depends_on:
+      - mongo-service
+      - eureka-service
+
+  search-service:
+    image:  search
+    container_name: search-service
+    build:  Search-Service/
+    restart:  always
+    ports:
+      - 8082:8082
+    networks: personal-network
+    depends_on:
+      - mongo-service
+      - eureka-service
+
+  user-service:
+    image:  user
+    container_name: user-service
+    build:  User-Service/
+    restart:  always
+    ports:
+      - 8083:8083
+    networks: personal-network
+    depends_on:
+      - mongo-service
+      - eureka-service
+
+networks:
+  personal-network:
+    driver: bridge

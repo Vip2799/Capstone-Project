@@ -70,10 +70,10 @@
 <!-- <app-login></app-login> -->
 <div id="toolkitcontainer" *ngIf="toolkit">
   <mat-nav-list id="toolkit">
-    <a mat-list-item id="name"><small>User: </small><strong>{{userName}}</strong> </a>
-    <a routerLink="/profile" mat-list-item>Profile</a>
-    <a routerLink="/favourite" mat-list-item>Favourite List</a>
-    <button (click)="logout()" type="button" mat-list-item id="logout" class="btn btn-outline-danger">Logout</button>
+    <p mat-list-item id="name"><small>User: </small><strong>{{userName}}</strong> </p>
+    <a id="prof" routerLink="/profile" >Profile</a>
+    <a routerLink="/favourite" >Favourite List</a>
+    <button (click)="logout()" type="button" id="logout" class="btn btn-outline-danger">Logout</button>
   </mat-nav-list>
 </div>
 <!-- <app-movie-view></app-movie-view> -->

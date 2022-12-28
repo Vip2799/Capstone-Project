@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "authenticationService",url = "http://localhost:8092")
+@FeignClient(name = "authenticationService",url = "http://localhost:9000")
 public interface UserProxy {
 
     @PostMapping("user/v1/register")

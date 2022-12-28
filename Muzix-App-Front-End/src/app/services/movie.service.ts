@@ -87,8 +87,6 @@ export class MovieService {
           updatedMovieList.push(allMovies[i]);
         }
       })
-      
-
     })
     return updatedMovieList ;
   }

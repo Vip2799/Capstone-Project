@@ -19,11 +19,11 @@
   position: absolute;
   bottom: 5px;
   left: 105px;
-  font-size: 13px;
+  font-size: 9px;
   color: rgb(46, 40, 40);
   /* border: 2px dashed; */
   background-color: rgb(135, 135, 216);
-  padding: 0px 15px 0px 15px;
+  padding: 0px 10px ;
   height: fit-content;
   line-height: 15px;
   border-radius: 25px;
@@ -33,6 +33,7 @@
 #subscribe:hover{
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
   background-color: red;
+  cursor: pointer;
 
 }
 
@@ -59,6 +60,9 @@
   /* margin-top: 7%; */
   /* color: white; */
   
+}
+#prof{
+  font-size: 10px;
 }
 
 #profcont #fav:hover mat-icon {
@@ -154,10 +158,11 @@ mat-sidenav-content{
   /* border: 1px solid red; */
   position: relative;
   border-radius: 10px;
-  background-color: rgb(152, 219, 250);
+  background-color: rgb(198, 227, 240);
   /* right: 10px; */
   left: 87%;
   opacity: 1;
+  padding: 5px 10px 5px 10px;
   
   /* top: 50px;
   left: -80px; */
@@ -206,15 +211,28 @@ mat-sidenav-content{
 }
 #toolkitcontainer{
     position: absolute;
-    right: 12%;
+    right: 8.6%;
     top: 70px;
     z-index: 2;
+    opacity: 0.9;
+    
+}
+#toolkit p{
+  margin: 0px 10px;
+}
+#toolkit a{
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+  /* border: 2px solid; */
+  width: 100%;
+  display: block;
+  height: 30px;
 }
 
-#toolkit a{
-  font-size: 8px;
-  border: 2px solid;
-
+#toolkit a:hover{
+  background-color: gray;
+  color : white;
 }
 
 #toolkit::after{
@@ -223,7 +241,7 @@ mat-sidenav-content{
   top: -5px;
   width: 15px;
   height: 15px;
-  background-color: rgb(152, 219, 250);
+  background-color: rgb(198, 227, 240);
   rotate: 45deg;
   left: 65%;
 }
@@ -232,6 +250,7 @@ mat-sidenav-content{
   /* background-color: rgb(192, 53, 53); */
   border-radius: 20px;
   margin-top: 3px;
+  font-size: 12px;
 
 }
 .sidenav .mat-toolbar {
@@ -244,10 +263,7 @@ mat-sidenav-content{
   /* z-index: 1; */
 }
 
-#toolkit a{
-  border-bottom: 1px dashed;
-  line-height: 0px;
-}
+
 
 
 

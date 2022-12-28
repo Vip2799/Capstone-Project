@@ -1,6 +1,6 @@
 <!-- <app-search></app-search> -->
 <h1>All Movies</h1>
-<div id="filter" [formGroup]="filter" >
+<div id="filter" [formGroup]="filterForm" >
     <button (click)="filterOption()" [matBadge]="notification" matBadgeColor="accent" matBadgePosition="before" mat-raised-button>Filter <mat-icon fontIcon="filter_alt"></mat-icon></button>
     <div *ngIf="filterOptionShow">
 
@@ -64,9 +64,6 @@
                     <input type="checkbox" class="form-check-input" id="polish" value="pl" formControlName="value12">
                     <label for="polish">Polish</label>
                 </div>
-
-
-
 
             </div>
 

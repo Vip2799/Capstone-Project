@@ -17,10 +17,11 @@ img{
 
 .container{
   width: 100%;
-  min-height: 100vh;
+  height: 88%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .col-1{
@@ -29,7 +30,8 @@ img{
   background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)),url("src/assets/Netflix-Background.jpg");
   background-size: cover;
   background-position: center;
-  min-height: inherit;
+  /* min-height: inherit; */
+  height: 88%;
   padding: 50px;
   display: flex;
   align-items: center;
@@ -74,7 +76,7 @@ h2{
   font-weight: 50px;
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   margin-top: -30px;
   font-family: Shrikhand;
 }
@@ -84,11 +86,13 @@ form{
   color: #333;
   font-weight: 500;
   font-size: 14px;
+  /* border: 2px solid; */
+  /* height: 500px; */
 }
 
 label{
   display: block;
-  padding: 15px;
+  /* padding: 6px; */
   margin-bottom: 30px;
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -97,6 +101,7 @@ label{
   font-weight: 500;
   color: #999;
   cursor: pointer;
+  height: fit-content;
 }
 
 label span{
@@ -125,7 +130,7 @@ form button{
   color: #fff;
   font-size: 16px;
   padding: 12px 50px;
-  margin: 20px 0;
+  margin: 10px 0;
   border: 0;
   outline: none;
   border-radius: 5px;

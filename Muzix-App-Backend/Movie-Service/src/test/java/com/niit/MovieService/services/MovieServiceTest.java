@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +34,11 @@ public class MovieServiceTest {
 
     @BeforeEach
     public void setUp(){
-        movie1 = new Movie(102,"Kesariyaan", "usa","08-10-2022","jhbfvjhdsvy",new int[]{102,100,234},"Hindi","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular","trending"));
-        movie2 = new Movie(109,"Iron-Man", "ncvn","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
+//        movie1 = new Movie(102,"Kesariyaan", "usa","08-10-2022","jhbfvjhdsvy",new int[]{102,100,234},, Arrays.asList("popular","trending"));
+//        movie2 = new Movie(109,"Iron-Man", "ncvn","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,);
+
+        movie1 = new Movie(101,"iwuecwidub",new HashMap<>(),"uuhuh","27-02-1999","khbhkbhk", new int[]{78, 99},"Hindi","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
+        movie2 = new Movie(102,"iubkjb",new HashMap<>(),"ihbhkh","21-06-1999","khbhkbhk", new int[]{78, 99},"Hindi","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
         List<Movie> movieList = Arrays.asList(movie1,movie2);
     }
 

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "favourite-list-service",url = "http://localhost:8081/favourite/")
+@FeignClient(name = "favourite-list-service",url = "http://localhost:9000/favourite/")
 public interface FavouriteProxy {
 
     @PostMapping("favAcc/{email}")

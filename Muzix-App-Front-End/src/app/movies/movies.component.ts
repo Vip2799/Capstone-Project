@@ -25,7 +25,7 @@ export class MoviesComponent implements OnInit {
 
   constructor(private movieservice: MovieService, private fb: FormBuilder) { }
 
-  filter = this.fb.group({
+  filterForm = this.fb.group({
     value1: [null],
     value2: [null],
     value3: [null],
@@ -75,13 +75,15 @@ export class MoviesComponent implements OnInit {
     let selectedgenre: string[] = [];
     let selectedlanguage: string[] = [];
     for (let i = 1; i <= genre.length; i++) {
-      if (this.filter.get(`value${i}`)?.value) {
+      if (this.filterForm.get(`value${i}`)?.value) {
         selectedgenre.push(genre[i - 1]);
+        // console.log(this.filter.get())
       }
-      if (this.filter.get(`value${i + 6}`)?.value) {
+      if (this.filterForm.get(`value${i + 6}`)?.value) {
         selectedlanguage.push(language[i - 1]);
       }
     }
+    
     this.result = [];
     let allmovies: any[] = this.movieservice.getUpdatedMovieList();
     setTimeout(() => {
@@ -93,14 +95,12 @@ export class MoviesComponent implements OnInit {
               break;
             }
           }
-
         }
         if (!this.result.includes(movie)) {
           if (selectedlanguage.includes(movie.original_language)) {
             this.result.push(movie);
           }
         }
-
       }
       if(selectedgenre.length > 0 || selectedlanguage.length > 0){
         this.notification = this.result.length.toString();
@@ -108,9 +108,6 @@ export class MoviesComponent implements OnInit {
         this.result = this.movieservice.currentMovieListToShow;
         this.notification = "";
       }
-      
-
-
     }, 1000)
   }
 

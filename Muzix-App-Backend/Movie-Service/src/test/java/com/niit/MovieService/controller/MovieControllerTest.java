@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,9 +47,9 @@ public class MovieControllerTest {
 
     @BeforeEach
     void setUp(){
-        movie1 = new Movie(115,"Captain America", "usa","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
-        movie2 = new Movie(109,"Iron-Man", "jhhh","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
-        movie3 = new Movie(101,"Sholay", "jhvvh","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
+        movie1 = new Movie(115,"Captain America",new HashMap<>(), "usa","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9,Arrays.asList("popular"));
+        movie2 = new Movie(109,"Iron-Man",new HashMap<>(), "jhhh","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
+        movie3 = new Movie(101,"Sholay",new HashMap<>(), "jhvvh","02-12-2022","jhbfvjhdsvy",new int[]{102,100,234},"English","Inspired by the gripping true story of a man who would do anything for his family�and for freedom.",8.9, Arrays.asList("popular"));
         movieList = Arrays.asList(movie1,movie2,movie3);
         mockMvc = MockMvcBuilders.standaloneSetup(movieController).build();
 
@@ -72,7 +73,7 @@ public class MovieControllerTest {
     void loadPopularMoviesTest() throws Exception {
         when(movieService.loadPopularMovies(any())).thenReturn(Arrays.asList(movie1));
 
-        mockMvc.perform(post("/movie/addpopularmovies")
+        mockMvc.perform(post("/movie/api/v1/addpopularmovies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(Arrays.asList(movie1))))
                 .andExpect(status().isCreated())
@@ -86,7 +87,7 @@ public class MovieControllerTest {
     void loadFreeMoviesTest() throws Exception {
         when(movieService.loadFreeMovies(any())).thenReturn(movieList);
 
-        mockMvc.perform(post("/movie/addfreemovies")
+        mockMvc.perform(post("/movie/api/v1/addfreemovies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(movieList)))
                 .andExpect(status().isCreated())
@@ -99,7 +100,7 @@ public class MovieControllerTest {
     @Test
     void loadTrendingMoviesTest() throws Exception {
         when(movieService.loadTrendingMovies(any())).thenReturn(movieList);
-        mockMvc.perform(post("/movie/addtrendingmovies")
+        mockMvc.perform(post("/movie/api/v1/addtrendingmovies")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonToString(movieList)))
                 .andExpect(status().isCreated())
@@ -113,7 +114,7 @@ public class MovieControllerTest {
     void deleteAllMoviesTest() throws Exception {
         when(movieService.deleteAllMovies()).thenReturn(true);
 
-        mockMvc.perform(delete("/movie/deleteAll")
+        mockMvc.perform(delete("/movie/api/v1/deleteAll")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isAccepted())
                 .andDo(MockMvcResultHandlers.print());

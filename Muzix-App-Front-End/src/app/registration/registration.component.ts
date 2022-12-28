@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   registrationForm = this.fb.group({
-    userName: ["", Validators.required],
+    userName: ["", [Validators.required,Validators.pattern(/[A-Za-z0-9]{6,20}/)]],
     email: ["", [Validators.required,Validators.email]],
     age: [null, [Validators.required, Validators.min(1)]],
     mobileNo: [null, [Validators.required,Validators.pattern(/^[789]\d{9,9}$/)]],
