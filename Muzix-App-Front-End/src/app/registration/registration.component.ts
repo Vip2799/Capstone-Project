@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm = this.fb.group({
     userName: ["", [Validators.required,Validators.pattern(/[A-Za-z0-9]{6,20}/)]],
-    email: ["", [Validators.required,Validators.email]],
+    email: ["", [Validators.required,Validators.pattern(/^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z]+(\.[A-Za-z]+)*(\.[A-Za-z]{2,})$/)]],
     age: [null, [Validators.required, Validators.min(1)]],
     mobileNo: [null, [Validators.required,Validators.pattern(/^[789]\d{9,9}$/)]],
     streetName: ["", Validators.required],

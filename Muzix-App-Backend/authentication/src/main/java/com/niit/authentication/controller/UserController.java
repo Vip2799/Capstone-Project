@@ -55,8 +55,9 @@ public class UserController {
             }
             return new ResponseEntity<>(map, HttpStatus.OK);
         }catch (UserNotFoundException e){
-            throw new RuntimeException(e);
+            throw new UserNotFoundException();
         }catch (Exception e){
+            e.printStackTrace();
             return new ResponseEntity<>("Try after sometimes", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
